@@ -1033,7 +1033,9 @@
       try{
 
         const response =
-        await fetch(SHEET_URL);
+       await fetch(
+  `${SHEET_URL}?phone=${encodeURIComponent(phone)}`
+);
 
         const data =
         await response.json();
@@ -1043,13 +1045,8 @@
         progressFill.style.width =
         "100%";
 
-        const matchedStudents =
-        data.filter(item =>
-
-          item.UUID
-          .toString()
-          .toLowerCase() === phone
-        );
+        const matchedStudents = data;
+        
 
         results.innerHTML = "";
 

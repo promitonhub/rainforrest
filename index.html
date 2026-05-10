@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +23,6 @@
   >
 
   <style>
-
-    /* =========================================
-    RESET
-    ========================================= */
 
     *{
       margin:0;
@@ -130,17 +127,13 @@
       linear-gradient(
         to bottom,
         rgba(0,0,0,0.10),
-        rgba(0,0,0,0.48)
+        rgba(0,0,0,0.50)
       );
 
       z-index:-29;
 
       pointer-events:none;
     }
-
-    /* =========================================
-    GPU FIX
-    ========================================= */
 
     .app,
     .glass-card,
@@ -153,10 +146,6 @@
       -webkit-transform:
       translateZ(0);
     }
-
-    /* =========================================
-    APP
-    ========================================= */
 
     .app{
 
@@ -177,7 +166,7 @@
     }
 
     /* =========================================
-    FALLING LEAVES
+    LEAVES
     ========================================= */
 
     .leaf{
@@ -226,24 +215,6 @@
         rotate(0deg);
       }
 
-      25%{
-        transform:
-        translate3d(15px,25vh,0)
-        rotate(90deg);
-      }
-
-      50%{
-        transform:
-        translate3d(-12px,50vh,0)
-        rotate(180deg);
-      }
-
-      75%{
-        transform:
-        translate3d(18px,75vh,0)
-        rotate(270deg);
-      }
-
       100%{
         transform:
         translate3d(-10px,120vh,0)
@@ -252,7 +223,7 @@
     }
 
     /* =========================================
-    MOVING ORBS
+    ORBS
     ========================================= */
 
     .orb{
@@ -413,12 +384,12 @@
 
       width:120px;
 
-  margin:0 auto;
+      margin:0 auto;
 
-  margin-top:4px;
+      margin-top:4px;
 
-  margin-bottom:-10px;
-  
+      margin-bottom:-10px;
+
       animation:
       pulse 4s ease-in-out infinite;
     }
@@ -429,23 +400,23 @@
 
     .hero{
 
-       min-height:auto;
+      min-height:auto;
 
-  display:flex;
+      display:flex;
 
-  flex-direction:column;
+      flex-direction:column;
 
-  justify-content:center;
+      justify-content:center;
 
-  align-items:center;
+      align-items:center;
 
-  text-align:center;
+      text-align:center;
 
-  padding-top:0px;
+      padding-top:0px;
 
-  margin-top:-8px;
+      margin-top:-8px;
 
-  margin-bottom:-10px;
+      margin-bottom:-10px;
     }
 
     .hero-title{
@@ -460,34 +431,6 @@
 
       filter:
       drop-shadow(0 10px 25px rgba(0,0,0,0.45));
-    }
-
-    .hero-tag{
-
-      width:100%;
-
-      margin-top:20px;
-
-      padding:20px;
-
-      border-radius:28px;
-
-      background:
-      rgba(255,255,255,0.10);
-
-      border:
-      1px solid rgba(255,255,255,0.16);
-
-      backdrop-filter:blur(10px);
-
-      -webkit-backdrop-filter:blur(10px);
-
-      line-height:1.7;
-
-      font-size:16px;
-
-      animation:
-      textReveal 1.6s ease;
     }
 
     /* =========================================
@@ -653,6 +596,13 @@
     button:active{
 
       transform:scale(0.98);
+    }
+
+    button:disabled{
+
+      opacity:0.7;
+
+      cursor:not-allowed;
     }
 
     /* =========================================
@@ -892,9 +842,9 @@
 
       </div>
 
-      <button onclick="searchStudents()">
+      <button id="searchButton" onclick="searchStudents()">
 
-        🌴Search🌴
+        🌴 Search 🌴
 
       </button>
 
@@ -967,6 +917,8 @@
       "🦁","🌈","🐍","🦚"
     ];
 
+    let isSearching = false;
+
     function randomEmoji(){
 
       return rainforestEmojis[
@@ -979,6 +931,19 @@
 
     async function searchStudents(){
 
+      if(isSearching){
+        return;
+      }
+
+      isSearching = true;
+
+      const button =
+      document.getElementById(
+        "searchButton"
+      );
+
+      button.disabled = true;
+
       const phone =
       document
       .getElementById("phone")
@@ -987,23 +952,35 @@
       .toLowerCase();
 
       const loadingContainer =
-      document.getElementById("loadingContainer");
+      document.getElementById(
+        "loadingContainer"
+      );
 
       const progressFill =
-      document.getElementById("progressFill");
+      document.getElementById(
+        "progressFill"
+      );
 
       const loadingText =
-      document.getElementById("loadingText");
+      document.getElementById(
+        "loadingText"
+      );
 
       const error =
-      document.getElementById("error");
+      document.getElementById(
+        "error"
+      );
 
       const results =
-      document.getElementById("results");
+      document.getElementById(
+        "results"
+      );
 
-      loadingContainer.style.display = "block";
+      loadingContainer.style.display =
+      "block";
 
-      progressFill.style.width = "0%";
+      progressFill.style.width =
+      "0%";
 
       error.innerHTML = "";
 
@@ -1018,6 +995,7 @@
         "🍃 Looking for your campers...",
         "🐒 Exploring the waterfall trails...",
         "🌈 Almost there..."
+
       ];
 
       let messageIndex = 0;
@@ -1045,7 +1023,9 @@
           ){
 
             loadingText.innerHTML =
-            loadingMessages[messageIndex];
+            loadingMessages[
+              messageIndex
+            ];
           }
         }
 
@@ -1061,14 +1041,8 @@
 
         clearInterval(interval);
 
-        progressFill.style.width = "100%";
-
-        setTimeout(() => {
-
-          loadingContainer.style.display =
-          "none";
-
-        },500);
+        progressFill.style.width =
+        "100%";
 
         const matchedStudents =
         data.filter(item =>
@@ -1077,6 +1051,8 @@
           .toString()
           .toLowerCase() === phone
         );
+
+        results.innerHTML = "";
 
         if(matchedStudents.length === 0){
 
@@ -1160,106 +1136,125 @@
 
       catch(err){
 
-        clearInterval(interval);
-
-        loadingContainer.style.display =
-        "none";
-
         error.innerHTML =
         "🌧️ Lost connection to the rainforest trails.";
 
         console.error(err);
+
+      }
+
+      finally{
+
+        clearInterval(interval);
+
+        setTimeout(() => {
+
+          loadingContainer.style.display =
+          "none";
+
+          button.disabled = false;
+
+          isSearching = false;
+
+        },500);
       }
     }
 
     function celebrate(){
 
       const emojis = [
-    "✨","🌿","🍃","🦋","🌈"
-  ];
+        "✨","🌿","🍃","🦋","🌈"
+      ];
 
-  const centerX =
-  window.innerWidth / 2;
+      const centerX =
+      window.innerWidth / 2;
 
-  const centerY =
-  window.innerHeight * 0.42;
+      const centerY =
+      window.innerHeight * 0.42;
 
-  for(let i = 0; i < 18; i++){
+      for(let i = 0; i < 18; i++){
 
-    const particle =
-    document.createElement("div");
+        const particle =
+        document.createElement("div");
 
-    particle.innerHTML =
-    emojis[
-      Math.floor(
+        particle.innerHTML =
+        emojis[
+          Math.floor(
+            Math.random() *
+            emojis.length
+          )
+        ];
+
+        particle.style.position =
+        "fixed";
+
+        particle.style.left =
+        centerX + "px";
+
+        particle.style.top =
+        centerY + "px";
+
+        particle.style.fontSize =
+        (18 + Math.random() * 10)
+        + "px";
+
+        particle.style.pointerEvents =
+        "none";
+
+        particle.style.zIndex =
+        "9999";
+
+        particle.style.opacity =
+        "0";
+
+        particle.style.transition =
+        "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease";
+
+        document.body.appendChild(
+          particle
+        );
+
+        const angle =
         Math.random() *
-        emojis.length
-      )
-    ];
+        Math.PI * 2;
 
-    particle.style.position = "fixed";
+        const distance =
+        80 + Math.random() * 140;
 
-    particle.style.left =
-    centerX + "px";
+        const x =
+        Math.cos(angle) *
+        distance;
 
-    particle.style.top =
-    centerY + "px";
+        const y =
+        Math.sin(angle) *
+        distance;
 
-    particle.style.fontSize =
-    (18 + Math.random() * 10) + "px";
+        setTimeout(() => {
 
-    particle.style.pointerEvents =
-    "none";
+          particle.style.opacity =
+          "1";
 
-    particle.style.zIndex = "9999";
+          particle.style.transform = `
+            translate(${x}px, ${y}px)
+            scale(1.4)
+            rotate(${Math.random()*120-60}deg)
+          `;
 
-    particle.style.opacity = "0";
+        },30);
 
-    particle.style.transition =
-    "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease";
+        setTimeout(() => {
 
-    document.body.appendChild(
-      particle
-    );
+          particle.style.opacity =
+          "0";
 
-    const angle =
-    Math.random() * Math.PI * 2;
+          particle.style.transform +=
+          " scale(0.6)";
 
-    const distance =
-    80 + Math.random() * 140;
+        },1800);
 
-    const x =
-    Math.cos(angle) * distance;
+        setTimeout(() => {
 
-    const y =
-    Math.sin(angle) * distance;
-
-    setTimeout(() => {
-
-      particle.style.opacity =
-      "1";
-
-      particle.style.transform = `
-        translate(${x}px, ${y}px)
-        scale(1.4)
-        rotate(${Math.random()*120-60}deg)
-      `;
-
-    },30);
-
-    setTimeout(() => {
-
-      particle.style.opacity =
-      "0";
-
-      particle.style.transform +=
-      " scale(0.6)";
-
-    },1800);
-
-    setTimeout(() => {
-
-      particle.remove();
+          particle.remove();
 
         },3000);
       }
@@ -1270,3 +1265,4 @@
 </body>
 
 </html>
+```

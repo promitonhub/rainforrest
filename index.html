@@ -77,7 +77,7 @@
     }
 
     /* =========================================
-    TRULY FIXED IOS BACKGROUND
+    FIXED BACKGROUND
     ========================================= */
 
     .bg-image{
@@ -139,7 +139,7 @@
     }
 
     /* =========================================
-    GPU RENDER FIX
+    GPU FIX
     ========================================= */
 
     .app,
@@ -830,39 +830,25 @@
 
 <body>
 
-  <!-- BACKGROUND -->
-
   <div class="bg-image"></div>
 
   <div class="bg-overlay"></div>
 
-  <!-- LEAVES -->
-
   <div class="leaf leaf1">🌿</div>
-
   <div class="leaf leaf2">🍃</div>
-
   <div class="leaf leaf3">🌱</div>
 
-  <!-- ORBS -->
-
   <div class="orb orb1"></div>
-
   <div class="orb orb2"></div>
-
   <div class="orb orb3"></div>
 
   <div class="app">
-
-    <!-- TOP LOGO -->
 
     <img
       src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
       class="top-logo"
       alt="Top Logo"
     >
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -881,8 +867,6 @@
       </div>
 
     </section>
-
-    <!-- SEARCH -->
 
     <div class="glass-card">
 
@@ -916,8 +900,6 @@
 
       </button>
 
-      <!-- LOADING -->
-
       <div
         class="loading-container"
         id="loadingContainer"
@@ -927,9 +909,7 @@
           class="loading-text"
           id="loadingText"
         >
-
           🌿 Searching the rainforest...
-
         </div>
 
         <div class="progress-bar">
@@ -943,14 +923,10 @@
 
       </div>
 
-      <!-- ERROR -->
-
       <div
         class="error"
         id="error"
       ></div>
-
-      <!-- RESULTS -->
 
       <div
         class="results"
@@ -958,8 +934,6 @@
       ></div>
 
     </div>
-
-    <!-- FOOTER -->
 
     <div class="footer">
 
@@ -1056,6 +1030,10 @@
       const interval = setInterval(() => {
 
         progress += 8;
+
+        if(progress > 92){
+          progress = 92;
+        }
 
         progressFill.style.width =
         progress + "%";

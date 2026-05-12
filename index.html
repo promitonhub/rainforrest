@@ -3,149 +3,726 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+/>
 
-  <title>RAINFOREST FALLS 🌿</title>
+<title>RAINFOREST FALLS 🌿</title>
 
-  <!-- ======================================================
-       GOOGLE FONT
-       ====================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+<style>
 
-  <style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-    /* ======================================================
-       RESET
-       ====================================================== */
+html{
+  width:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
+body{
 
-    html{
-      width:100%;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
-      -webkit-text-size-adjust:100%;
-    }
+  width:100%;
+  min-height:100vh;
 
-    body{
+  overflow-x:hidden;
+  overflow-y:auto;
 
-      width:100%;
-      min-height:100vh;
+  position:relative;
 
-      overflow-x:hidden;
-      overflow-y:auto;
+  font-family:'Fredoka', sans-serif;
 
-      position:relative;
+  color:white;
 
-      font-family:'Fredoka', sans-serif;
+  background:#000;
 
-      color:white;
+  -webkit-overflow-scrolling:touch;
 
-      background:#000;
+  text-shadow:
+  0 2px 12px rgba(0,0,0,0.40);
+}
 
-      -webkit-overflow-scrolling:touch;
+img{
+  display:block;
+  max-width:100%;
+}
 
-      text-shadow:
-      0 2px 12px rgba(0,0,0,0.42);
-    }
+/* ======================================================
+   BACKGROUND
+====================================================== */
 
-    img{
-      display:block;
-      max-width:100%;
-    }
+.bg-image{
 
-    /* ======================================================
-       BACKGROUND IMAGE
-       ====================================================== */
+  position:fixed;
+  inset:0;
 
-    .bg-image{
+  width:100vw;
+  height:100dvh;
 
-      position:fixed;
-      inset:0;
+  background-image:
+  url('https://lh3.googleusercontent.com/d/1AmXZ8Q1VhdUH6cLrOir6QdhDpgACb4Z8');
 
-      width:100vw;
-      height:100lvh;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
 
-      background-image:
-      url('https://lh3.googleusercontent.com/d/1AmXZ8Q1VhdUH6cLrOir6QdhDpgACb4Z8=w2000');
+  z-index:-30;
 
-      background-size:cover;
-      background-position:center center;
-      background-repeat:no-repeat;
+  pointer-events:none;
 
-      z-index:-70;
+  transform:translate3d(0,0,0);
 
-      pointer-events:none;
-    }
+  will-change:transform;
+}
 
-    /* ======================================================
-       DARK OVERLAY
-       ====================================================== */
+.bg-overlay{
 
-    .bg-overlay{
+  position:fixed;
+  inset:0;
 
-      position:fixed;
-      inset:0;
+  width:100%;
+  height:100dvh;
 
-      width:100%;
-      height:100lvh;
+  background:
+  linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.10),
+    rgba(0,0,0,0.50)
+  );
 
-      background:
-      linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.04),
-        rgba(0,0,0,0.52)
-      );
+  z-index:-29;
 
-      z-index:-65;
+  pointer-events:none;
+}
 
-      pointer-events:none;
-    }
-    /* ======================================================
-   TOUCH TRAIL STARS
-   ====================================================== */
+/* ======================================================
+   APP WRAPPER
+====================================================== */
+
+.app{
+
+  width:100%;
+  max-width:430px;
+
+  margin:0 auto;
+
+  padding:
+  env(safe-area-inset-top)
+  18px
+  env(safe-area-inset-bottom);
+
+  position:relative;
+  z-index:5;
+}
+
+/* ======================================================
+   MACAW
+====================================================== */
+
+.macaw-overlay{
+
+  position:fixed;
+
+  left:-32px;
+  top:13%;
+
+  width:165px;
+
+  z-index:12;
+
+  pointer-events:none;
+
+  will-change:transform;
+
+  filter:
+  drop-shadow(0 16px 28px rgba(0,0,0,0.38));
+
+  animation:
+  macawFloat 17s ease-in-out infinite;
+}
+
+@keyframes macawFloat{
+
+  0%{
+    transform:
+    translateY(0px)
+    rotate(0deg);
+  }
+
+  25%{
+    transform:
+    translateY(-8px)
+    rotate(-1deg);
+  }
+
+  50%{
+    transform:
+    translateY(5px)
+    rotate(1deg);
+  }
+
+  75%{
+    transform:
+    translateY(-5px)
+    rotate(-0.5deg);
+  }
+
+  100%{
+    transform:
+    translateY(0px)
+    rotate(0deg);
+  }
+}
+
+/* ======================================================
+   LEAVES
+====================================================== */
+
+.leaf{
+
+  position:fixed;
+  top:-10vh;
+
+  font-size:24px;
+
+  opacity:0.60;
+
+  pointer-events:none;
+
+  z-index:1;
+
+  animation-name:leafFall;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+
+.leaf1{
+  left:8%;
+  animation-duration:12s;
+}
+
+.leaf2{
+  left:72%;
+  animation-duration:16s;
+  animation-delay:2s;
+}
+
+.leaf3{
+  left:45%;
+  animation-duration:20s;
+  animation-delay:4s;
+}
+
+@keyframes leafFall{
+
+  0%{
+    transform:
+    translate3d(0,-10vh,0)
+    rotate(0deg);
+  }
+
+  100%{
+    transform:
+    translate3d(-10px,120vh,0)
+    rotate(360deg);
+  }
+}
+
+/* ======================================================
+   ORBS
+====================================================== */
+
+.orb{
+
+  position:fixed;
+
+  border-radius:50%;
+
+  background:
+  rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  z-index:1;
+  pointer-events:none;
+}
+
+.orb1{
+  width:140px;
+  height:140px;
+  top:15%;
+  left:-40px;
+  animation:orbMove1 18s ease-in-out infinite;
+}
+
+.orb2{
+  width:110px;
+  height:110px;
+  top:50%;
+  right:-35px;
+  animation:orbMove2 22s ease-in-out infinite;
+}
+
+.orb3{
+  width:180px;
+  height:180px;
+  bottom:5%;
+  left:20%;
+  animation:orbMove3 26s ease-in-out infinite;
+}
+
+@keyframes orbMove1{
+  0%{transform:translate(0px,0px);}
+  25%{transform:translate(30px,40px);}
+  50%{transform:translate(70px,-20px);}
+  75%{transform:translate(20px,30px);}
+  100%{transform:translate(0px,0px);}
+}
+
+@keyframes orbMove2{
+  0%{transform:translate(0px,0px);}
+  25%{transform:translate(-50px,30px);}
+  50%{transform:translate(-20px,-40px);}
+  75%{transform:translate(-60px,10px);}
+  100%{transform:translate(0px,0px);}
+}
+
+@keyframes orbMove3{
+  0%{transform:translate(0px,0px);}
+  25%{transform:translate(40px,-30px);}
+  50%{transform:translate(-30px,-50px);}
+  75%{transform:translate(20px,20px);}
+  100%{transform:translate(0px,0px);}
+}
+
+/* ======================================================
+   ANIMATIONS
+====================================================== */
+
+@keyframes textReveal{
+
+  0%{
+    opacity:0;
+    transform:
+    translateY(25px)
+    scale(0.96);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+    translateY(0px)
+    scale(1);
+  }
+}
+
+@keyframes cardReveal{
+
+  0%{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  100%{
+    opacity:1;
+    transform:translateY(0px);
+  }
+}
+
+@keyframes buttonGlow{
+
+  0%{
+    box-shadow:0 0 0px rgba(255,255,255,0);
+  }
+
+  50%{
+    box-shadow:0 0 22px rgba(255,255,255,0.20);
+  }
+
+  100%{
+    box-shadow:0 0 0px rgba(255,255,255,0);
+  }
+}
+
+@keyframes pulse{
+
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+
+/* ======================================================
+   LOGO
+====================================================== */
+
+.top-logo{
+
+  width:120px;
+
+  margin:0 auto;
+
+  margin-top:4px;
+  margin-bottom:-10px;
+
+  animation:pulse 4s ease-in-out infinite;
+}
+
+/* ======================================================
+   HERO
+====================================================== */
+
+.hero{
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  margin-top:-8px;
+  margin-bottom:-10px;
+}
+
+.hero-title{
+
+  width:100%;
+  max-width:360px;
+
+  animation:
+  pulse 5s ease-in-out infinite,
+  textReveal 1.2s ease;
+
+  filter:
+  drop-shadow(0 10px 25px rgba(0,0,0,0.45));
+}
+
+/* ======================================================
+   GLASS CARD
+====================================================== */
+
+.glass-card{
+
+  width:100%;
+
+  margin-top:8px;
+
+  padding:24px 18px;
+
+  border-radius:34px;
+
+  background:
+  rgba(255,255,255,0.12);
+
+  border:
+  1px solid rgba(255,255,255,0.18);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  box-shadow:
+  0 12px 40px rgba(0,0,0,0.20);
+
+  animation:
+  cardReveal 1.2s ease;
+}
+
+.card-title{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:12px;
+}
+
+.card-subtitle{
+  text-align:center;
+  line-height:1.7;
+  font-size:15px;
+  margin-bottom:24px;
+}
+
+/* ======================================================
+   INPUT
+====================================================== */
+
+.input-group{
+
+  position:relative;
+
+  margin-bottom:18px;
+
+  animation:textReveal 1.4s ease;
+}
+
+.input-icon{
+
+  position:absolute;
+
+  top:50%;
+  left:18px;
+
+  transform:translateY(-50%);
+}
+
+input{
+
+  width:100%;
+
+  border:none;
+  outline:none;
+
+  border-radius:22px;
+
+  padding:
+  18px
+  18px
+  18px
+  52px;
+
+  background:
+  rgba(255,255,255,0.14);
+
+  color:white;
+
+  font-size:16px;
+
+  backdrop-filter:blur(8px);
+
+  transition:0.25s ease;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,0.75);
+}
+
+input:focus{
+
+  background:
+  rgba(255,255,255,0.20);
+
+  transform:scale(1.01);
+}
+
+/* ======================================================
+   BUTTON
+====================================================== */
+
+button{
+
+  width:100%;
+
+  border:none;
+
+  border-radius:24px;
+
+  padding:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.14)
+  );
+
+  color:white;
+
+  font-size:18px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  backdrop-filter:blur(8px);
+
+  transition:0.25s ease;
+
+  animation:
+  buttonGlow 3s infinite,
+  textReveal 1.8s ease;
+}
+
+button:active{
+  transform:scale(0.98);
+}
+
+button:disabled{
+  opacity:0.7;
+  cursor:not-allowed;
+}
+
+/* ======================================================
+   LOADING
+====================================================== */
+
+.loading-container{
+
+  display:none;
+
+  margin-top:24px;
+
+  animation:textReveal 0.5s ease;
+}
+
+.loading-text{
+  text-align:center;
+  margin-bottom:12px;
+  font-size:15px;
+}
+
+.progress-bar{
+
+  width:100%;
+  height:14px;
+
+  background:
+  rgba(255,255,255,0.12);
+
+  border-radius:999px;
+
+  overflow:hidden;
+}
+
+.progress-fill{
+
+  width:0%;
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #6eff8f,
+    #c2ffcf
+  );
+
+  transition:width 0.25s linear;
+}
+
+/* ======================================================
+   RESULTS
+====================================================== */
+
+.results{
+  margin-top:24px;
+}
+
+.student-card{
+
+  background:
+  rgba(255,255,255,0.12);
+
+  border:
+  1px solid rgba(255,255,255,0.16);
+
+  border-radius:28px;
+
+  padding:18px;
+
+  margin-bottom:18px;
+
+  backdrop-filter:blur(10px);
+
+  animation:cardReveal 0.5s ease;
+}
+
+.student-name{
+  font-size:24px;
+  margin-bottom:14px;
+  text-align:center;
+}
+
+.info-box{
+
+  background:
+  rgba(255,255,255,0.10);
+
+  border-radius:18px;
+
+  padding:14px;
+
+  margin-bottom:10px;
+}
+
+.info-label{
+  font-size:12px;
+  opacity:0.80;
+  margin-bottom:4px;
+}
+
+.info-value{
+  font-size:18px;
+  font-weight:600;
+}
+
+.error{
+  text-align:center;
+  margin-top:18px;
+  color:#ffd7d7;
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+.footer{
+
+  margin-top:36px;
+  margin-bottom:30px;
+
+  text-align:center;
+
+  animation:textReveal 2s ease;
+}
+
+.footer-text{
+  font-size:14px;
+  line-height:1.7;
+  margin-bottom:18px;
+}
+
+.footer-logo{
+  display:flex;
+  justify-content:center;
+}
+
+.footer-logo img{
+  width:120px;
+  animation:pulse 5s ease-in-out infinite;
+}
+
+/* ======================================================
+   TOUCH STARS
+====================================================== */
 
 .touch-star{
 
   position:fixed;
 
-  width:14px;
-  height:14px;
+  width:10px;
+  height:10px;
 
   pointer-events:none;
 
   z-index:9999;
 
   opacity:0;
-
-  transform:
-    translate(-50%,-50%);
-
-  will-change:
-    transform,
-    opacity;
 }
-
-/*
-  STAR ICON
-*/
 
 .touch-star::before{
 
@@ -161,45 +738,13 @@
 
   color:white;
 
-  font-size:14px;
+  font-size:12px;
 
   text-shadow:
-    0 0 6px rgba(255,255,255,0.95),
-    0 0 12px rgba(255,255,255,0.75),
-    0 0 20px rgba(255,255,255,0.45);
+    0 0 6px rgba(255,255,255,0.9),
+    0 0 12px rgba(255,255,255,0.7),
+    0 0 18px rgba(255,255,255,0.5);
 }
-
-/*
-  GOLD VARIATION
-*/
-
-.touch-star.gold::before{
-
-  color:#fff6c7;
-
-  text-shadow:
-    0 0 6px rgba(255,245,180,0.95),
-    0 0 14px rgba(255,230,120,0.75),
-    0 0 22px rgba(255,220,90,0.42);
-}
-
-/*
-  BLUE VARIATION
-*/
-
-.touch-star.blue::before{
-
-  color:#dff8ff;
-
-  text-shadow:
-    0 0 6px rgba(190,240,255,0.95),
-    0 0 14px rgba(120,220,255,0.75),
-    0 0 22px rgba(100,200,255,0.42);
-}
-
-/*
-  STAR ANIMATION
-*/
 
 @keyframes touchStarAnim{
 
@@ -214,13 +759,13 @@
 
   }
 
-  18%{
+  20%{
 
     opacity:1;
 
     transform:
       translate(-50%,-50%)
-      scale(1.5)
+      scale(1.4)
       rotate(90deg);
 
   }
@@ -254,820 +799,494 @@
   }
 }
 
-    /* ======================================================
-       GLITTER PARTICLES
-       ====================================================== */
-
-    .glitter-layer{
-
-      position:fixed;
-      inset:0;
-
-      overflow:hidden;
-
-      pointer-events:none;
-
-      z-index:-35;
-    }
-
-    .glitter{
-
-      position:absolute;
-
-      width:4px;
-      height:4px;
-
-      border-radius:50%;
-
-      background:white;
-
-      opacity:0;
-
-      filter:
-        blur(0.5px)
-        drop-shadow(0 0 6px rgba(255,255,255,0.9));
-
-      animation:
-        glitterFlash linear infinite;
-
-      will-change:
-        transform,
-        opacity;
-    }
-
-    .glitter::before{
-
-      content:"";
-
-      position:absolute;
-
-      inset:-6px;
-
-      border-radius:50%;
-
-      background:
-      radial-gradient(
-        circle,
-        rgba(255,255,255,0.45),
-        transparent 70%
-      );
-
-      opacity:0.6;
-    }
-
-    @keyframes glitterFlash{
-
-      0%{
-        opacity:0;
-        transform:
-          scale(0.2)
-          rotate(0deg);
-      }
-
-      10%{
-        opacity:0;
-      }
-
-      20%{
-        opacity:0.9;
-        transform:
-          scale(1.6)
-          rotate(90deg);
-      }
-
-      35%{
-        opacity:0.2;
-        transform:
-          scale(0.7)
-          rotate(180deg);
-      }
-
-      100%{
-        opacity:0;
-        transform:
-          scale(0.2)
-          rotate(360deg);
-      }
-    }
-
-    /* ======================================================
-       FLOATING MACAW
-       ====================================================== */
-
- .macaw-overlay{
-
-  position:fixed;
-
-  left:-32px;
-  top:13%;
-
-  width:165px;
-
-  z-index:12;
-
-      pointer-events:none;
-
-      will-change:
-        transform;
-
-      filter:
-        drop-shadow(0 16px 28px rgba(0,0,0,0.38));
-
-      animation:
-        macawFloat 17s ease-in-out infinite;
-    }
-
-    @keyframes macawFloat{
-
-      0%{
-
-        transform:
-          translateY(0px)
-          rotate(0deg);
-
-      }
-
-      25%{
-
-        transform:
-          translateY(-8px)
-          rotate(-1deg);
-
-      }
-
-      50%{
-
-        transform:
-          translateY(5px)
-          rotate(1deg);
-
-      }
-
-      75%{
-
-        transform:
-          translateY(-5px)
-          rotate(-0.5deg);
-
-      }
-
-      100%{
-
-        transform:
-          translateY(0px)
-          rotate(0deg);
-
-      }
-    }
-
-    /* ======================================================
-       FLOATING LEAVES
-       ====================================================== */
-
-    .leaf{
-
-      position:fixed;
-      top:-10vh;
-
-      font-size:24px;
-
-      opacity:0.60;
-
-      pointer-events:none;
-
-      z-index:1;
-
-      animation-name:leafFall;
-      animation-timing-function:linear;
-      animation-iteration-count:infinite;
-    }
-
-    .leaf1{
-      left:8%;
-      animation-duration:13s;
-      animation-delay:0s;
-    }
-
-    .leaf2{
-      left:72%;
-      animation-duration:17s;
-      animation-delay:2s;
-    }
-
-    .leaf3{
-      left:45%;
-      animation-duration:21s;
-      animation-delay:5s;
-    }
-
-    @keyframes leafFall{
-
-      0%{
-        transform:
-          translate3d(0,-10vh,0)
-          rotate(0deg)
-          scale(1);
-
-        opacity:0;
-      }
-
-      10%{
-        opacity:0.65;
-      }
-
-      20%{
-        transform:
-          translate3d(25px,15vh,0)
-          rotate(80deg)
-          scale(1.02);
-      }
-
-      40%{
-        transform:
-          translate3d(-35px,38vh,0)
-          rotate(160deg)
-          scale(0.96);
-      }
-
-      60%{
-        transform:
-          translate3d(40px,62vh,0)
-          rotate(240deg)
-          scale(1.04);
-      }
-
-      80%{
-        transform:
-          translate3d(-28px,88vh,0)
-          rotate(320deg)
-          scale(0.98);
-      }
-
-      100%{
-        transform:
-          translate3d(18px,120vh,0)
-          rotate(400deg)
-          scale(1);
-
-        opacity:0;
-      }
-    }
-
-    /* ======================================================
-       GLASS BUBBLES
-       ====================================================== */
-
-    .bubble{
-
-      position:fixed;
-
-      border-radius:50%;
-
-      pointer-events:none;
-
-      z-index:2;
-
-      background:
-      radial-gradient(
-        circle at 30% 30%,
-        rgba(255,255,255,0.50),
-        rgba(255,255,255,0.08)
-      );
-
-      border:
-      1px solid rgba(255,255,255,0.16);
-
-      box-shadow:
-        inset 0 0 14px rgba(255,255,255,0.24),
-        0 0 20px rgba(255,255,255,0.10);
-
-      opacity:0;
-
-      will-change:
-      transform,
-      opacity;
-    }
-
-    @keyframes bubbleFloat{
-
-      0%{
-        transform:
-          translate3d(0,0,0)
-          scale(0.7);
-
-        opacity:0;
-      }
-
-      10%{
-        opacity:0.92;
-      }
-
-      50%{
-        transform:
-          translate3d(
-            calc(var(--drift) * 0.5),
-            -40vh,
-            0
-          )
-          scale(1);
-      }
-
-      100%{
-        transform:
-          translate3d(
-            var(--drift),
-            -92vh,
-            0
-          )
-          scale(1.12);
-
-        opacity:0.85;
-      }
-    }
-
-    @keyframes bubblePop{
-
-      0%{
-        transform:scale(1);
-        opacity:1;
-      }
-
-      40%{
-        transform:scale(1.28);
-        opacity:0.95;
-      }
-
-      100%{
-        transform:scale(1.95);
-        opacity:0;
-      }
-    }
-
-    /* ======================================================
-       APP
-       ====================================================== */
-
-    .app{
-
-      width:100%;
-      max-width:430px;
-
-      margin:0 auto;
-
-      padding:
-      env(safe-area-inset-top)
-      18px
-      env(safe-area-inset-bottom);
-
-      position:relative;
-      z-index:5;
-    }
-
-    .top-logo{
-
-      width:120px;
-
-      margin:0 auto;
-
-      margin-top:4px;
-      margin-bottom:-10px;
-    }
-
-    .hero{
-
-      display:flex;
-      justify-content:center;
-      align-items:center;
-
-      margin-top:-8px;
-      margin-bottom:-10px;
-    }
-
-    .hero-title{
-
-      width:100%;
-      max-width:360px;
-
-      filter:
-      drop-shadow(0 10px 25px rgba(0,0,0,0.45));
-    }
-
-    .glass-card{
-
-      width:100%;
-
-      margin-top:8px;
-
-      padding:24px 18px;
-
-      border-radius:34px;
-
-      background:
-      rgba(255,255,255,0.12);
-
-      border:
-      1px solid rgba(255,255,255,0.18);
-
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-
-      box-shadow:
-      0 12px 40px rgba(0,0,0,0.22);
-    }
-
-    .card-title{
-
-      text-align:center;
-
-      font-size:28px;
-
-      margin-bottom:12px;
-    }
-
-    .card-subtitle{
-
-      text-align:center;
-
-      line-height:1.7;
-
-      font-size:15px;
-
-      margin-bottom:24px;
-    }
-
-    .input-group{
-
-      position:relative;
-
-      margin-bottom:18px;
-    }
-
-    .input-icon{
-
-      position:absolute;
-
-      top:50%;
-      left:18px;
-
-      transform:translateY(-50%);
-    }
-
-    input{
-
-      width:100%;
-
-      border:none;
-      outline:none;
-
-      border-radius:22px;
-
-      padding:
-      18px
-      18px
-      18px
-      52px;
-
-      background:
-      rgba(255,255,255,0.14);
-
-      color:white;
-
-      font-size:16px;
-
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
-    }
-
-    input::placeholder{
-      color:rgba(255,255,255,0.75);
-    }
-
-    button{
-
-      width:100%;
-
-      border:none;
-
-      border-radius:24px;
-
-      padding:18px;
-
-      background:
-      linear-gradient(
-        135deg,
-        rgba(255,255,255,0.25),
-        rgba(255,255,255,0.14)
-      );
-
-      color:white;
-
-      font-size:18px;
-      font-weight:700;
-
-      cursor:pointer;
-
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
-
-      transition:0.25s ease;
-    }
-
-    button:active{
-      transform:scale(0.98);
-    }
-
-    .footer{
-
-      margin-top:36px;
-      margin-bottom:30px;
-
-      text-align:center;
-    }
-
-    .footer-text{
-
-      font-size:14px;
-
-      line-height:1.7;
-
-      margin-bottom:18px;
-    }
-
-    .footer-logo{
-
-      display:flex;
-      justify-content:center;
-    }
-
-    .footer-logo img{
-      width:120px;
-    }
-
-  </style>
+</style>
 
 </head>
 
 <body>
 
-  <!-- ======================================================
-       BACKGROUND
-       ====================================================== -->
+<div class="bg-image"></div>
+<div class="bg-overlay"></div>
 
-  <div class="bg-image"></div>
+<div class="leaf leaf1">🌿</div>
+<div class="leaf leaf2">🍃</div>
+<div class="leaf leaf3">🌱</div>
 
-  <div class="bg-overlay"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
 
-  <!-- ======================================================
-       GLITTERS
-       ====================================================== -->
+<img
+  src="https://lh3.googleusercontent.com/d/1Kc5JoNj4O95QRgxGsc8odeGW845JWNrI"
+  class="macaw-overlay"
+  alt="Macaw"
+/>
 
-  <div class="glitter-layer">
-
-    <div class="glitter" style="top:12%; left:18%; animation-duration:7s; animation-delay:1s;"></div>
-    <div class="glitter" style="top:22%; left:74%; animation-duration:9s; animation-delay:2s;"></div>
-    <div class="glitter" style="top:34%; left:48%; animation-duration:8s; animation-delay:0s;"></div>
-    <div class="glitter" style="top:52%; left:82%; animation-duration:10s; animation-delay:4s;"></div>
-    <div class="glitter" style="top:66%; left:28%; animation-duration:11s; animation-delay:3s;"></div>
-    <div class="glitter" style="top:74%; left:62%; animation-duration:8s; animation-delay:5s;"></div>
-    <div class="glitter" style="top:16%; left:56%; animation-duration:12s; animation-delay:2s;"></div>
-    <div class="glitter" style="top:42%; left:14%; animation-duration:9s; animation-delay:6s;"></div>
-
-  </div>
-
-  <!-- ======================================================
-       MACAW
-       ====================================================== -->
+<div class="app">
 
   <img
-    src="https://lh3.googleusercontent.com/d/1Kc5JoNj4O95QRgxGsc8odeGW845JWNrI"
-    class="macaw-overlay"
-    alt="Macaw"
+    src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
+    class="top-logo"
+    alt="Top Logo"
   >
 
-  <!-- ======================================================
-       LEAVES
-       ====================================================== -->
-
-  <div class="leaf leaf1">🌿</div>
-  <div class="leaf leaf2">🍃</div>
-  <div class="leaf leaf3">🌱</div>
-
-  <!-- ======================================================
-       APP
-       ====================================================== -->
-
-  <div class="app">
+  <section class="hero">
 
     <img
-      src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
-      class="top-logo"
-      alt="Top Logo"
+      src="https://lh3.googleusercontent.com/d/1220_kk_C4yBBZkoplEHs8qFWuouAdrCh"
+      class="hero-title"
+      alt="Rainforest Falls"
     >
 
-    <section class="hero">
+  </section>
 
-      <img
-        src="https://lh3.googleusercontent.com/d/1220_kk_C4yBBZkoplEHs8qFWuouAdrCh"
-        class="hero-title"
-        alt="Rainforest Falls"
+  <div class="glass-card">
+
+    <div class="card-title">
+      👋 Welcome Parent
+    </div>
+
+    <div class="card-subtitle">
+      Enter your registered phone number below
+    </div>
+
+    <div class="input-group">
+
+      <div class="input-icon">
+        📞
+      </div>
+
+      <input
+        type="tel"
+        inputmode="numeric"
+        autocomplete="tel"
+        id="phone"
+        placeholder="Phone Number"
+        maxlength="10"
       >
-
-    </section>
-
-    <div class="glass-card">
-
-      <div class="card-title">
-        👋 Welcome Parent
-      </div>
-
-      <div class="card-subtitle">
-        Enter your registered phone number below
-      </div>
-
-      <div class="input-group">
-
-        <div class="input-icon">
-          📞
-        </div>
-
-        <input
-          type="text"
-          placeholder="Phone Number"
-        >
-
-      </div>
-
-      <button>
-        🌴 Search 🌴
-      </button>
 
     </div>
 
-    <div class="footer">
+    <button id="searchButton">
+      🌴 Search 🌴
+    </button>
 
-      <div class="footer-text">
-        🌿 Rainforest Falls Kids Carnival ✨<br>
-        Adventure, friendship & unforgettable memories 💚
+    <div
+      class="loading-container"
+      id="loadingContainer"
+    >
+
+      <div
+        class="loading-text"
+        id="loadingText"
+      >
+        🌿 Searching the rainforest...
       </div>
 
-      <div class="footer-logo">
+      <div class="progress-bar">
 
-        <img
-          src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
-          alt="Footer Logo"
-        >
+        <div
+          class="progress-fill"
+          id="progressFill"
+        ></div>
 
       </div>
+
+    </div>
+
+    <div class="error" id="error"></div>
+
+    <div class="results" id="results"></div>
+
+  </div>
+
+  <div class="footer">
+
+    <div class="footer-text">
+      🌿 Rainforest Falls Kids Carnival ✨<br>
+      Adventure, friendship & unforgettable memories 💚
+    </div>
+
+    <div class="footer-logo">
+
+      <img
+        src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
+        alt="Footer Logo"
+      >
 
     </div>
 
   </div>
 
-  <!-- ======================================================
-       BUBBLES
-       ====================================================== -->
+</div>
 
-  <script>
+<script>
 
-    const activeBubbles = [];
+/* ======================================================
+   GOOGLE SHEET API
+====================================================== */
 
-    const MIN_BUBBLES = 1;
-    const MAX_BUBBLES = 2;
+const SHEET_URL =
+"https://script.google.com/macros/s/AKfycbz9g9Y2FGPw88OGdxuyCAurCaZNM-iShkSGvpXlhYzRowzg_pcH1BIe6aZjiRQ3XZSbOA/exec";
 
-    function createBubble(){
+/* ======================================================
+   EMOJIS
+====================================================== */
 
-      if(activeBubbles.length >= MAX_BUBBLES){
-        return;
-      }
+const rainforestEmojis = [
+  "🦜","🐒","🦋","🌿","🐸",
+  "🍃","🦎","🌺","🐯","🪴",
+  "🦁","🌈","🐍","🦚"
+];
 
-      const bubble =
-      document.createElement("div");
+function randomEmoji(){
 
-      bubble.className = "bubble";
+  return rainforestEmojis[
+    Math.floor(
+      Math.random() *
+      rainforestEmojis.length
+    )
+  ];
+}
 
-      const size =
-      26 + Math.random() * 36;
+/* ======================================================
+   SEARCH LOCK
+====================================================== */
 
-      bubble.style.width =
-      size + "px";
+let isSearching = false;
 
-      bubble.style.height =
-      size + "px";
+/* ======================================================
+   INPUT FILTER
+====================================================== */
 
-      bubble.style.left =
-      Math.random() * window.innerWidth + "px";
+document
+.getElementById("phone")
+.addEventListener("input", function(){
 
-      bubble.style.top =
-      (window.innerHeight + 50) + "px";
+  this.value =
+  this.value.replace(/[^0-9]/g, "");
 
-      bubble.style.setProperty(
-        "--drift",
-        (Math.random() * 220 - 110) + "px"
-      );
+});
 
-      const duration =
-      14 + Math.random() * 8;
+/* ======================================================
+   SEARCH FUNCTION
+====================================================== */
 
-      bubble.style.animation =
-      `bubbleFloat ${duration}s linear forwards`;
+async function searchStudents(){
 
-      bubble.style.opacity =
-      0.24 + Math.random() * 0.32;
+  if(isSearching){
+    return;
+  }
 
-      document.body.appendChild(
-        bubble
-      );
+  isSearching = true;
 
-      activeBubbles.push(bubble);
+  const button =
+  document.getElementById(
+    "searchButton"
+  );
 
-      setTimeout(() => {
+  button.disabled = true;
 
-        bubble.style.animation =
-        "bubblePop 0.6s ease-out forwards";
+  const phone =
+  document
+  .getElementById("phone")
+  .value
+  .trim();
 
-      }, duration * 1000 * 0.92);
+  const phoneRegex =
+  /^[0-9]{10}$/;
 
-      setTimeout(() => {
+  if(!phoneRegex.test(phone)){
 
-        bubble.remove();
+    document.getElementById("error").innerHTML =
+    "⚠️ Please enter a valid 10-digit phone number.";
 
-        const index =
-        activeBubbles.indexOf(bubble);
+    button.disabled = false;
 
-        if(index > -1){
-          activeBubbles.splice(index,1);
-        }
+    isSearching = false;
 
-      }, duration * 1000 + 1500);
+    return;
+  }
+
+  const loadingContainer =
+  document.getElementById(
+    "loadingContainer"
+  );
+
+  const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+  const loadingText =
+  document.getElementById(
+    "loadingText"
+  );
+
+  const error =
+  document.getElementById(
+    "error"
+  );
+
+  const results =
+  document.getElementById(
+    "results"
+  );
+
+  loadingContainer.style.display =
+  "block";
+
+  progressFill.style.width =
+  "0%";
+
+  error.innerHTML = "";
+  results.innerHTML = "";
+
+  let progress = 0;
+
+  const loadingMessages = [
+    "🌿 Searching the rainforest...",
+    "🦜 Calling the jungle guides...",
+    "🍃 Looking for your campers...",
+    "🐒 Exploring the waterfall trails...",
+    "🌈 Almost there..."
+  ];
+
+  let messageIndex = 0;
+
+  const interval = setInterval(() => {
+
+    progress += 8;
+
+    if(progress > 92){
+      progress = 92;
     }
 
-    for(let i = 0; i < MIN_BUBBLES; i++){
+    progressFill.style.width =
+    progress + "%";
 
-      setTimeout(() => {
+    if(progress % 20 === 0){
 
-        createBubble();
+      messageIndex++;
 
-      }, i * 800);
-    }
-
-    setInterval(() => {
-
-      if(activeBubbles.length < MIN_BUBBLES){
-
-        createBubble();
-
-      }else if(
-        activeBubbles.length < MAX_BUBBLES &&
-        Math.random() > 0.72
+      if(
+        loadingMessages[messageIndex]
       ){
 
-        createBubble();
+        loadingText.innerHTML =
+        loadingMessages[
+          messageIndex
+        ];
+      }
+    }
+
+  },180);
+
+  try{
+
+    const controller =
+    new AbortController();
+
+    const timeout =
+    setTimeout(() => {
+
+      controller.abort();
+
+    },15000);
+
+    const response =
+    await fetch(
+
+      `${SHEET_URL}?phone=${encodeURIComponent(phone)}&t=${Date.now()}`,
+
+      {
+        signal:controller.signal
       }
 
-    }, 4200);
+    );
+
+    clearTimeout(timeout);
+
+    if(!response.ok){
+
+      throw new Error(
+        "Network response failed"
+      );
+    }
+
+    const data =
+    await response.json();
+
+    clearInterval(interval);
+
+    progressFill.style.width =
+    "100%";
+
+    const matchedStudents =
+    data;
+
+    results.innerHTML = "";
+
+    if(matchedStudents.length === 0){
+
+      error.innerHTML =
+      "🌧️ No campers were found with this phone number.";
+
+      return;
+    }
+
+    matchedStudents.forEach(student => {
+
+      const card =
+      document.createElement("div");
+
+      card.className =
+      "student-card";
+
+      card.innerHTML = `
+
+        <div class="student-name">
+          ${randomEmoji()} ${student.NAME}
+        </div>
+
+        <div class="info-box">
+
+          <div class="info-label">
+            🚩 TEAM
+          </div>
+
+          <div class="info-value">
+            ${student.TEAM}
+          </div>
+
+        </div>
+
+        <div class="info-box">
+
+          <div class="info-label">
+            👥 CREW
+          </div>
+
+          <div class="info-value">
+            ${student.CREW}
+          </div>
+
+        </div>
+
+        <div class="info-box">
+
+          <div class="info-label">
+            🎤 LEADER
+          </div>
+
+          <div class="info-value">
+            ${student.LEADER}
+          </div>
+
+        </div>
+
+        <div class="info-box">
+
+          <div class="info-label">
+            🚌 PICKUP
+          </div>
+
+          <div class="info-value">
+            ${student.PICKUP}
+          </div>
+
+        </div>
+
+      `;
+
+      results.appendChild(card);
+
+    });
+
+    celebrate();
+
+  }
+
+  catch(err){
+
+    console.error(err);
+
+    error.innerHTML =
+    "🌧️ Lost connection to the rainforest trails.";
+
+  }
+
+  finally{
+
+    clearInterval(interval);
+
+    setTimeout(() => {
+
+      loadingContainer.style.display =
+      "none";
+
+      button.disabled = false;
+
+      isSearching = false;
+
+    },500);
+  }
+}
+
 /* ======================================================
-   TOUCH GLITTER TRAIL
-   ====================================================== */
+   BUTTON CLICK
+====================================================== */
+
+document
+.getElementById("searchButton")
+.addEventListener("click", searchStudents);
+
+/* ======================================================
+   ENTER KEY
+====================================================== */
+
+document
+.getElementById("phone")
+.addEventListener("keydown", function(event){
+
+  if(event.key === "Enter"){
+    searchStudents();
+  }
+
+});
+
+/* ======================================================
+   TOUCH STARS
+====================================================== */
+
+let activeStars = 0;
+const MAX_STARS = 80;
 
 function createTouchStar(x, y){
+
+  if(activeStars >= MAX_STARS){
+    return;
+  }
+
+  activeStars++;
 
   const star =
   document.createElement("div");
 
-  star.className = "touch-star";
+  star.className =
+  "touch-star";
 
-  /*
-    Random color variation
-  */
+  star.style.left =
+  x + "px";
 
-  const randomType =
-  Math.random();
-
-  if(randomType > 0.66){
-
-    star.classList.add("gold");
-
-  }else if(randomType > 0.33){
-
-    star.classList.add("blue");
-  }
-
-  /*
-    Position
-  */
-
-  star.style.left = x + "px";
-  star.style.top = y + "px";
-
-  /*
-    Random movement
-  */
+  star.style.top =
+  y + "px";
 
   const driftX =
-  (Math.random() * 60 - 30) + "px";
+  (Math.random() * 50 - 25) + "px";
 
   const driftY =
-  (Math.random() * 60 - 30) + "px";
+  (Math.random() * 50 - 25) + "px";
 
   star.style.setProperty(
     "--drift-x",
@@ -1079,42 +1298,21 @@ function createTouchStar(x, y){
     driftY
   );
 
-  /*
-    Random size
-  */
-
-  const scale =
-  0.7 + Math.random() * 1;
-
-  /*
-    Random duration
-  */
-
   const duration =
-  700 + Math.random() * 600;
+  700 + Math.random() * 500;
 
   star.style.animation =
   `touchStarAnim ${duration}ms ease-out forwards`;
 
-  star.style.transform =
-  `translate(-50%,-50%) scale(${scale})`;
-
   document.body.appendChild(star);
-
-  /*
-    Cleanup
-  */
 
   setTimeout(() => {
 
     star.remove();
+    activeStars--;
 
   }, duration + 100);
 }
-
-/* ======================================================
-   TOUCH SUPPORT
-   ====================================================== */
 
 let lastTouchTime = 0;
 
@@ -1122,11 +1320,7 @@ document.addEventListener("touchmove", (e) => {
 
   const now = Date.now();
 
-  /*
-    Performance throttle
-  */
-
-  if(now - lastTouchTime < 28){
+  if(now - lastTouchTime < 35){
     return;
   }
 
@@ -1135,28 +1329,20 @@ document.addEventListener("touchmove", (e) => {
   const touch =
   e.touches[0];
 
-  /*
-    Multiple stars
-  */
-
-  for(let i = 0; i < 3; i++){
+  for(let i = 0; i < 2; i++){
 
     createTouchStar(
 
       touch.clientX +
-      (Math.random() * 24 - 12),
+      (Math.random() * 18 - 9),
 
       touch.clientY +
-      (Math.random() * 24 - 12)
+      (Math.random() * 18 - 9)
 
     );
   }
 
 }, { passive:true });
-
-/* ======================================================
-   MOUSE SUPPORT
-   ====================================================== */
 
 let lastMouseTime = 0;
 
@@ -1164,7 +1350,7 @@ document.addEventListener("mousemove", (e) => {
 
   const now = Date.now();
 
-  if(now - lastMouseTime < 35){
+  if(now - lastMouseTime < 40){
     return;
   }
 
@@ -1178,7 +1364,112 @@ document.addEventListener("mousemove", (e) => {
   );
 
 });
-  </script>
+
+/* ======================================================
+   CELEBRATION
+====================================================== */
+
+function celebrate(){
+
+  const emojis = [
+    "✨","🌿","🍃","🦋","🌈"
+  ];
+
+  const centerX =
+  window.innerWidth / 2;
+
+  const centerY =
+  window.innerHeight * 0.42;
+
+  for(let i = 0; i < 18; i++){
+
+    const particle =
+    document.createElement("div");
+
+    particle.innerHTML =
+    emojis[
+      Math.floor(
+        Math.random() *
+        emojis.length
+      )
+    ];
+
+    particle.style.position =
+    "fixed";
+
+    particle.style.left =
+    centerX + "px";
+
+    particle.style.top =
+    centerY + "px";
+
+    particle.style.fontSize =
+    (18 + Math.random() * 10)
+    + "px";
+
+    particle.style.pointerEvents =
+    "none";
+
+    particle.style.zIndex =
+    "9999";
+
+    particle.style.opacity =
+    "0";
+
+    particle.style.transition =
+    "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease";
+
+    document.body.appendChild(
+      particle
+    );
+
+    const angle =
+    Math.random() *
+    Math.PI * 2;
+
+    const distance =
+    80 + Math.random() * 140;
+
+    const x =
+    Math.cos(angle) *
+    distance;
+
+    const y =
+    Math.sin(angle) *
+    distance;
+
+    setTimeout(() => {
+
+      particle.style.opacity =
+      "1";
+
+      particle.style.transform = `
+        translate(${x}px, ${y}px)
+        scale(1.4)
+        rotate(${Math.random()*120-60}deg)
+      `;
+
+    },30);
+
+    setTimeout(() => {
+
+      particle.style.opacity =
+      "0";
+
+      particle.style.transform +=
+      " scale(0.6)";
+
+    },1800);
+
+    setTimeout(() => {
+
+      particle.remove();
+
+    },3000);
+  }
+}
+
+</script>
 
 </body>
 </html>

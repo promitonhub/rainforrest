@@ -123,190 +123,6 @@
 
       pointer-events:none;
     }
-
-    /* ======================================================
-       CANOPY SUNLIGHT GLOW
-       ====================================================== */
-
-    /*
-      This is NOT visible beams anymore.
-
-      Instead:
-      soft rainforest canopy glow
-      moving sunlight patches
-      humid atmospheric lighting
-    */
-
-    .canopy-light{
-
-      position:fixed;
-      inset:0;
-
-      overflow:hidden;
-
-      pointer-events:none;
-
-      z-index:-40;
-    }
-
-    .light-patch{
-
-      position:absolute;
-
-      border-radius:50%;
-
-      filter:blur(90px);
-
-      mix-blend-mode:screen;
-
-      opacity:0.18;
-
-      will-change:
-      transform,
-      opacity;
-    }
-
-    .light1{
-
-      width:320px;
-      height:320px;
-
-      top:-60px;
-      left:-40px;
-
-      background:
-      radial-gradient(
-        circle,
-        rgba(255,245,180,0.42),
-        rgba(255,255,255,0.02) 70%
-      );
-
-      animation:
-      canopyMove1 14s ease-in-out infinite;
-    }
-
-    .light2{
-
-      width:420px;
-      height:420px;
-
-      top:10%;
-      right:-140px;
-
-      background:
-      radial-gradient(
-        circle,
-        rgba(255,240,160,0.28),
-        rgba(255,255,255,0.01) 70%
-      );
-
-      animation:
-      canopyMove2 18s ease-in-out infinite;
-    }
-
-    .light3{
-
-      width:280px;
-      height:280px;
-
-      bottom:12%;
-      left:12%;
-
-      background:
-      radial-gradient(
-        circle,
-        rgba(255,255,210,0.18),
-        rgba(255,255,255,0.01) 70%
-      );
-
-      animation:
-      canopyMove3 16s ease-in-out infinite;
-    }
-
-    @keyframes canopyMove1{
-
-      0%{
-        transform:
-        translateX(0px)
-        translateY(0px)
-        scale(1);
-
-        opacity:0.18;
-      }
-
-      50%{
-        transform:
-        translateX(40px)
-        translateY(20px)
-        scale(1.08);
-
-        opacity:0.28;
-      }
-
-      100%{
-        transform:
-        translateX(0px)
-        translateY(0px)
-        scale(1);
-
-        opacity:0.18;
-      }
-    }
-
-    @keyframes canopyMove2{
-
-      0%{
-        transform:
-        translateX(0px)
-        translateY(0px);
-
-        opacity:0.12;
-      }
-
-      50%{
-        transform:
-        translateX(-50px)
-        translateY(24px);
-
-        opacity:0.24;
-      }
-
-      100%{
-        transform:
-        translateX(0px)
-        translateY(0px);
-
-        opacity:0.12;
-      }
-    }
-
-    @keyframes canopyMove3{
-
-      0%{
-        transform:
-        translateX(0px)
-        scale(1);
-
-        opacity:0.10;
-      }
-
-      50%{
-        transform:
-        translateX(26px)
-        scale(1.12);
-
-        opacity:0.18;
-      }
-
-      100%{
-        transform:
-        translateX(0px)
-        scale(1);
-
-        opacity:0.10;
-      }
-    }
-
     /* ======================================================
        GLITTER PARTICLES
        ====================================================== */
@@ -804,18 +620,6 @@
   <div class="bg-overlay"></div>
 
   <!-- ======================================================
-       CANOPY LIGHT GLOW
-       ====================================================== -->
-
-  <div class="canopy-light">
-
-    <div class="light-patch light1"></div>
-    <div class="light-patch light2"></div>
-    <div class="light-patch light3"></div>
-
-  </div>
-
-  <!-- ======================================================
        GLITTERS
        ====================================================== -->
 
@@ -930,8 +734,8 @@
       REDUCED BUBBLE COUNT
     */
 
-    const MIN_BUBBLES = 4;
-    const MAX_BUBBLES = 9;
+    const MIN_BUBBLES = 1;
+    const MAX_BUBBLES = 3;
 
     function createBubble(){
 

@@ -85,7 +85,7 @@
 
       background-image:
       url('https://lh3.googleusercontent.com/d/1AmXZ8Q1VhdUH6cLrOir6QdhDpgACb4Z8=w2000');
-      
+
       background-size:cover;
       background-position:center center;
       background-repeat:no-repeat;
@@ -118,6 +118,141 @@
 
       pointer-events:none;
     }
+    /* ======================================================
+   TOUCH TRAIL STARS
+   ====================================================== */
+
+.touch-star{
+
+  position:fixed;
+
+  width:14px;
+  height:14px;
+
+  pointer-events:none;
+
+  z-index:9999;
+
+  opacity:0;
+
+  transform:
+    translate(-50%,-50%);
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/*
+  STAR ICON
+*/
+
+.touch-star::before{
+
+  content:"✦";
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:white;
+
+  font-size:14px;
+
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.95),
+    0 0 12px rgba(255,255,255,0.75),
+    0 0 20px rgba(255,255,255,0.45);
+}
+
+/*
+  GOLD VARIATION
+*/
+
+.touch-star.gold::before{
+
+  color:#fff6c7;
+
+  text-shadow:
+    0 0 6px rgba(255,245,180,0.95),
+    0 0 14px rgba(255,230,120,0.75),
+    0 0 22px rgba(255,220,90,0.42);
+}
+
+/*
+  BLUE VARIATION
+*/
+
+.touch-star.blue::before{
+
+  color:#dff8ff;
+
+  text-shadow:
+    0 0 6px rgba(190,240,255,0.95),
+    0 0 14px rgba(120,220,255,0.75),
+    0 0 22px rgba(100,200,255,0.42);
+}
+
+/*
+  STAR ANIMATION
+*/
+
+@keyframes touchStarAnim{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(0.2)
+      rotate(0deg);
+
+  }
+
+  18%{
+
+    opacity:1;
+
+    transform:
+      translate(-50%,-50%)
+      scale(1.5)
+      rotate(90deg);
+
+  }
+
+  60%{
+
+    opacity:0.85;
+
+    transform:
+      translate(
+        calc(-50% + var(--drift-x)),
+        calc(-50% + var(--drift-y))
+      )
+      scale(0.9)
+      rotate(220deg);
+
+  }
+
+  100%{
+
+    opacity:0;
+
+    transform:
+      translate(
+        calc(-50% + (var(--drift-x) * 1.8)),
+        calc(-50% + (var(--drift-y) * 1.8))
+      )
+      scale(0.2)
+      rotate(360deg);
+
+  }
+}
 
     /* ======================================================
        GLITTER PARTICLES
@@ -667,141 +802,7 @@
     .footer-logo img{
       width:120px;
     }
-/* ======================================================
-   TOUCH TRAIL STARS
-   ====================================================== */
 
-.touch-star{
-
-  position:fixed;
-
-  width:14px;
-  height:14px;
-
-  pointer-events:none;
-
-  z-index:9999;
-
-  opacity:0;
-
-  transform:
-    translate(-50%,-50%);
-
-  will-change:
-    transform,
-    opacity;
-}
-
-/*
-  STAR ICON
-*/
-
-.touch-star::before{
-
-  content:"✦";
-
-  position:absolute;
-
-  inset:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:white;
-
-  font-size:14px;
-
-  text-shadow:
-    0 0 6px rgba(255,255,255,0.95),
-    0 0 12px rgba(255,255,255,0.75),
-    0 0 20px rgba(255,255,255,0.45);
-}
-
-/*
-  GOLD VARIATION
-*/
-
-.touch-star.gold::before{
-
-  color:#fff6c7;
-
-  text-shadow:
-    0 0 6px rgba(255,245,180,0.95),
-    0 0 14px rgba(255,230,120,0.75),
-    0 0 22px rgba(255,220,90,0.42);
-}
-
-/*
-  BLUE VARIATION
-*/
-
-.touch-star.blue::before{
-
-  color:#dff8ff;
-
-  text-shadow:
-    0 0 6px rgba(190,240,255,0.95),
-    0 0 14px rgba(120,220,255,0.75),
-    0 0 22px rgba(100,200,255,0.42);
-}
-
-/*
-  STAR ANIMATION
-*/
-
-@keyframes touchStarAnim{
-
-  0%{
-
-    opacity:0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(0.2)
-      rotate(0deg);
-
-  }
-
-  18%{
-
-    opacity:1;
-
-    transform:
-      translate(-50%,-50%)
-      scale(1.5)
-      rotate(90deg);
-
-  }
-
-  60%{
-
-    opacity:0.85;
-
-    transform:
-      translate(
-        calc(-50% + var(--drift-x)),
-        calc(-50% + var(--drift-y))
-      )
-      scale(0.9)
-      rotate(220deg);
-
-  }
-
-  100%{
-
-    opacity:0;
-
-    transform:
-      translate(
-        calc(-50% + (var(--drift-x) * 1.8)),
-        calc(-50% + (var(--drift-y) * 1.8))
-      )
-      scale(0.2)
-      rotate(360deg);
-
-  }
-}
   </style>
 
 </head>
@@ -925,595 +926,259 @@
   <!-- ======================================================
        BUBBLES
        ====================================================== -->
-<script>
 
-  /* ======================================================
-     GOOGLE APPS SCRIPT URL
-     ====================================================== */
+  <script>
 
-  const SCRIPT_URL =
-  "YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL";
+    const activeBubbles = [];
 
-  /* ======================================================
-     ELEMENTS
-     ====================================================== */
+    const MIN_BUBBLES = 1;
+    const MAX_BUBBLES = 2;
 
-  const searchButton =
-  document.querySelector("button");
+    function createBubble(){
 
-  const phoneInput =
-  document.querySelector("input");
-
-  /*
-    RESULT CARD
-  */
-
-  let resultCard =
-  null;
-
-  /*
-    PREVENT DOUBLE SEARCH
-  */
-
-  let isSearching =
-  false;
-
-  /* ======================================================
-     CREATE RESULT CARD
-     ====================================================== */
-
-  function createResultCard(data){
-
-    /*
-      REMOVE OLD RESULT
-    */
-
-    const existing =
-    document.querySelector(".result-card");
-
-    if(existing){
-      existing.remove();
-    }
-
-    /*
-      CREATE CARD
-    */
-
-    resultCard =
-    document.createElement("div");
-
-    resultCard.className =
-    "glass-card result-card";
-
-    resultCard.style.marginTop =
-    "18px";
-
-    resultCard.style.animation =
-    "fadeUp 0.5s ease";
-
-    resultCard.innerHTML = `
-
-      <div
-        style="
-          text-align:center;
-          font-size:26px;
-          margin-bottom:18px;
-        "
-      >
-        🌴 Camper Found
-      </div>
-
-      <div
-        style="
-          display:flex;
-          flex-direction:column;
-          gap:14px;
-          font-size:16px;
-          line-height:1.6;
-        "
-      >
-
-        <div>
-          <strong>👦 Name:</strong><br>
-          ${data.name || "-"}
-        </div>
-
-        <div>
-          <strong>🏕 Group:</strong><br>
-          ${data.group || "-"}
-        </div>
-
-        <div>
-          <strong>📞 Phone:</strong><br>
-          ${data.phone || "-"}
-        </div>
-
-        <div>
-          <strong>🚌 Bus:</strong><br>
-          ${data.bus || "-"}
-        </div>
-
-      </div>
-
-    `;
-
-    /*
-      APPEND
-    */
-
-    document
-    .querySelector(".app")
-    .appendChild(resultCard);
-  }
-
-  /* ======================================================
-     NO RESULT
-     ====================================================== */
-
-  function showNoResult(){
-
-    const existing =
-    document.querySelector(".result-card");
-
-    if(existing){
-      existing.remove();
-    }
-
-    resultCard =
-    document.createElement("div");
-
-    resultCard.className =
-    "glass-card result-card";
-
-    resultCard.style.marginTop =
-    "18px";
-
-    resultCard.innerHTML = `
-
-      <div
-        style="
-          text-align:center;
-          font-size:24px;
-          line-height:1.6;
-        "
-      >
-        🌿 No camper found
-      </div>
-
-    `;
-
-    document
-    .querySelector(".app")
-    .appendChild(resultCard);
-  }
-
-  /* ======================================================
-     SEARCH FUNCTION
-     ====================================================== */
-
-  async function searchCamper(){
-
-    /*
-      PREVENT MULTIPLE CLICKS
-    */
-
-    if(isSearching){
-      return;
-    }
-
-    const phone =
-    phoneInput.value.trim();
-
-    /*
-      VALIDATION
-    */
-
-    if(phone === ""){
-
-      alert(
-        "Please enter a phone number 🌿"
-      );
-
-      return;
-    }
-
-    /*
-      SEARCH START
-    */
-
-    isSearching = true;
-
-    searchButton.disabled = true;
-
-    const originalText =
-    searchButton.innerHTML;
-
-    searchButton.innerHTML =
-    "Searching ✨";
-
-    try{
-
-      /*
-        FETCH FROM APPS SCRIPT
-      */
-
-      const response =
-      await fetch(
-
-        `${SCRIPT_URL}?phone=${encodeURIComponent(phone)}`
-
-      );
-
-      const data =
-      await response.json();
-
-      /*
-        SUCCESS
-      */
-
-      if(data.success){
-
-        createResultCard(data);
-
-      }else{
-
-        showNoResult();
+      if(activeBubbles.length >= MAX_BUBBLES){
+        return;
       }
 
-    }catch(error){
+      const bubble =
+      document.createElement("div");
 
-      console.error(error);
+      bubble.className = "bubble";
 
-      alert(
-        "Search failed 🌿"
+      const size =
+      26 + Math.random() * 36;
+
+      bubble.style.width =
+      size + "px";
+
+      bubble.style.height =
+      size + "px";
+
+      bubble.style.left =
+      Math.random() * window.innerWidth + "px";
+
+      bubble.style.top =
+      (window.innerHeight + 50) + "px";
+
+      bubble.style.setProperty(
+        "--drift",
+        (Math.random() * 220 - 110) + "px"
       );
 
-    }finally{
-
-      /*
-        RESTORE BUTTON
-      */
-
-      isSearching = false;
-
-      searchButton.disabled = false;
-
-      searchButton.innerHTML =
-      originalText;
-    }
-  }
-
-  /* ======================================================
-     BUTTON CLICK
-     ====================================================== */
-
-  searchButton.addEventListener(
-
-    "click",
-
-    searchCamper
-
-  );
-
-  /* ======================================================
-     ENTER KEY SUPPORT
-     ====================================================== */
-
-  phoneInput.addEventListener(
-
-    "keypress",
-
-    function(e){
-
-      if(e.key === "Enter"){
-
-        searchCamper();
-      }
-
-    }
-
-  );
-
-  /* ======================================================
-     BUBBLES
-     ====================================================== */
-
-  const activeBubbles = [];
-
-  const MIN_BUBBLES = 1;
-  const MAX_BUBBLES = 2;
-
-  function createBubble(){
-
-    if(activeBubbles.length >= MAX_BUBBLES){
-      return;
-    }
-
-    const bubble =
-    document.createElement("div");
-
-    bubble.className =
-    "bubble";
-
-    const size =
-    26 + Math.random() * 36;
-
-    bubble.style.width =
-    size + "px";
-
-    bubble.style.height =
-    size + "px";
-
-    bubble.style.left =
-    Math.random() * window.innerWidth + "px";
-
-    bubble.style.top =
-    (window.innerHeight + 50) + "px";
-
-    bubble.style.setProperty(
-
-      "--drift",
-
-      (Math.random() * 220 - 110) + "px"
-    );
-
-    const duration =
-    14 + Math.random() * 8;
-
-    bubble.style.animation =
-    `bubbleFloat ${duration}s linear forwards`;
-
-    bubble.style.opacity =
-    0.24 + Math.random() * 0.32;
-
-    document.body.appendChild(
-      bubble
-    );
-
-    activeBubbles.push(bubble);
-
-    /*
-      POP
-    */
-
-    setTimeout(() => {
+      const duration =
+      14 + Math.random() * 8;
 
       bubble.style.animation =
-      "bubblePop 0.6s ease-out forwards";
+      `bubbleFloat ${duration}s linear forwards`;
 
-    }, duration * 1000 * 0.92);
+      bubble.style.opacity =
+      0.24 + Math.random() * 0.32;
 
-    /*
-      REMOVE
-    */
-
-    setTimeout(() => {
-
-      bubble.remove();
-
-      const index =
-      activeBubbles.indexOf(bubble);
-
-      if(index > -1){
-        activeBubbles.splice(index,1);
-      }
-
-    }, duration * 1000 + 1500);
-  }
-
-  /*
-    INITIAL BUBBLES
-  */
-
-  for(let i = 0; i < MIN_BUBBLES; i++){
-
-    setTimeout(() => {
-
-      createBubble();
-
-    }, i * 800);
-  }
-
-  /*
-    CONTINUOUS BUBBLES
-  */
-
-  setInterval(() => {
-
-    if(activeBubbles.length < MIN_BUBBLES){
-
-      createBubble();
-
-    }else if(
-
-      activeBubbles.length < MAX_BUBBLES &&
-      Math.random() > 0.72
-
-    ){
-
-      createBubble();
-    }
-
-  }, 4200);
-
-  /* ======================================================
-     TOUCH TRAIL STARS
-     ====================================================== */
-
-  function createTouchStar(x, y){
-
-    const star =
-    document.createElement("div");
-
-    star.className =
-    "touch-star";
-
-    /*
-      RANDOM COLOR
-    */
-
-    const randomType =
-    Math.random();
-
-    if(randomType > 0.66){
-
-      star.classList.add("gold");
-
-    }else if(randomType > 0.33){
-
-      star.classList.add("blue");
-    }
-
-    /*
-      POSITION
-    */
-
-    star.style.left =
-    x + "px";
-
-    star.style.top =
-    y + "px";
-
-    /*
-      DRIFT
-    */
-
-    const driftX =
-    (Math.random() * 60 - 30) + "px";
-
-    const driftY =
-    (Math.random() * 60 - 30) + "px";
-
-    star.style.setProperty(
-      "--drift-x",
-      driftX
-    );
-
-    star.style.setProperty(
-      "--drift-y",
-      driftY
-    );
-
-    /*
-      RANDOM SCALE
-    */
-
-    const scale =
-    0.7 + Math.random() * 1;
-
-    /*
-      RANDOM DURATION
-    */
-
-    const duration =
-    700 + Math.random() * 600;
-
-    star.style.animation =
-    `touchStarAnim ${duration}ms ease-out forwards`;
-
-    star.style.transform =
-    `translate(-50%,-50%) scale(${scale})`;
-
-    document.body.appendChild(
-      star
-    );
-
-    /*
-      CLEANUP
-    */
-
-    setTimeout(() => {
-
-      star.remove();
-
-    }, duration + 100);
-  }
-
-  /* ======================================================
-     TOUCH EVENTS
-     ====================================================== */
-
-  let lastTouchTime = 0;
-
-  document.addEventListener(
-
-    "touchmove",
-
-    (e) => {
-
-      const now =
-      Date.now();
-
-      /*
-        THROTTLE
-      */
-
-      if(now - lastTouchTime < 28){
-        return;
-      }
-
-      lastTouchTime =
-      now;
-
-      const touch =
-      e.touches[0];
-
-      /*
-        CREATE MULTIPLE STARS
-      */
-
-      for(let i = 0; i < 3; i++){
-
-        createTouchStar(
-
-          touch.clientX +
-          (Math.random() * 24 - 12),
-
-          touch.clientY +
-          (Math.random() * 24 - 12)
-
-        );
-      }
-
-    },
-
-    { passive:true }
-
-  );
-
-  /* ======================================================
-     MOUSE SUPPORT
-     ====================================================== */
-
-  let lastMouseTime = 0;
-
-  document.addEventListener(
-
-    "mousemove",
-
-    (e) => {
-
-      const now =
-      Date.now();
-
-      if(now - lastMouseTime < 35){
-        return;
-      }
-
-      lastMouseTime =
-      now;
-
-      createTouchStar(
-
-        e.clientX,
-        e.clientY
-
+      document.body.appendChild(
+        bubble
       );
 
+      activeBubbles.push(bubble);
+
+      setTimeout(() => {
+
+        bubble.style.animation =
+        "bubblePop 0.6s ease-out forwards";
+
+      }, duration * 1000 * 0.92);
+
+      setTimeout(() => {
+
+        bubble.remove();
+
+        const index =
+        activeBubbles.indexOf(bubble);
+
+        if(index > -1){
+          activeBubbles.splice(index,1);
+        }
+
+      }, duration * 1000 + 1500);
     }
+
+    for(let i = 0; i < MIN_BUBBLES; i++){
+
+      setTimeout(() => {
+
+        createBubble();
+
+      }, i * 800);
+    }
+
+    setInterval(() => {
+
+      if(activeBubbles.length < MIN_BUBBLES){
+
+        createBubble();
+
+      }else if(
+        activeBubbles.length < MAX_BUBBLES &&
+        Math.random() > 0.72
+      ){
+
+        createBubble();
+      }
+
+    }, 4200);
+/* ======================================================
+   TOUCH GLITTER TRAIL
+   ====================================================== */
+
+function createTouchStar(x, y){
+
+  const star =
+  document.createElement("div");
+
+  star.className = "touch-star";
+
+  /*
+    Random color variation
+  */
+
+  const randomType =
+  Math.random();
+
+  if(randomType > 0.66){
+
+    star.classList.add("gold");
+
+  }else if(randomType > 0.33){
+
+    star.classList.add("blue");
+  }
+
+  /*
+    Position
+  */
+
+  star.style.left = x + "px";
+  star.style.top = y + "px";
+
+  /*
+    Random movement
+  */
+
+  const driftX =
+  (Math.random() * 60 - 30) + "px";
+
+  const driftY =
+  (Math.random() * 60 - 30) + "px";
+
+  star.style.setProperty(
+    "--drift-x",
+    driftX
+  );
+
+  star.style.setProperty(
+    "--drift-y",
+    driftY
+  );
+
+  /*
+    Random size
+  */
+
+  const scale =
+  0.7 + Math.random() * 1;
+
+  /*
+    Random duration
+  */
+
+  const duration =
+  700 + Math.random() * 600;
+
+  star.style.animation =
+  `touchStarAnim ${duration}ms ease-out forwards`;
+
+  star.style.transform =
+  `translate(-50%,-50%) scale(${scale})`;
+
+  document.body.appendChild(star);
+
+  /*
+    Cleanup
+  */
+
+  setTimeout(() => {
+
+    star.remove();
+
+  }, duration + 100);
+}
+
+/* ======================================================
+   TOUCH SUPPORT
+   ====================================================== */
+
+let lastTouchTime = 0;
+
+document.addEventListener("touchmove", (e) => {
+
+  const now = Date.now();
+
+  /*
+    Performance throttle
+  */
+
+  if(now - lastTouchTime < 28){
+    return;
+  }
+
+  lastTouchTime = now;
+
+  const touch =
+  e.touches[0];
+
+  /*
+    Multiple stars
+  */
+
+  for(let i = 0; i < 3; i++){
+
+    createTouchStar(
+
+      touch.clientX +
+      (Math.random() * 24 - 12),
+
+      touch.clientY +
+      (Math.random() * 24 - 12)
+
+    );
+  }
+
+}, { passive:true });
+
+/* ======================================================
+   MOUSE SUPPORT
+   ====================================================== */
+
+let lastMouseTime = 0;
+
+document.addEventListener("mousemove", (e) => {
+
+  const now = Date.now();
+
+  if(now - lastMouseTime < 35){
+    return;
+  }
+
+  lastMouseTime = now;
+
+  createTouchStar(
+
+    e.clientX,
+    e.clientY
 
   );
 
-</script>
+});
+  </script>
+
 </body>
 </html>

@@ -1,72 +1,20 @@
 <!DOCTYPE html>
-<!--
-  ==========================================================
-  DOCUMENT TYPE DECLARATION
-  ==========================================================
-
-  This tells the browser that this document uses HTML5.
-
-  Without this line:
-  - Some browsers may enter compatibility mode.
-  - Layouts can behave inconsistently.
-  - Modern CSS features may partially fail.
-
-  Always keep this as the FIRST line in your HTML.
--->
-
 <html lang="en">
-<!--
-  lang="en"
-  Helps:
-  - Accessibility tools
-  - Search engines
-  - Translation systems
-  - Screen readers
--->
 
 <head>
 
-  <!-- Character encoding -->
   <meta charset="UTF-8">
 
-  <!--
-    Viewport settings are CRITICAL for mobile responsiveness.
-
-    width=device-width
-    = makes page width equal to device width.
-
-    initial-scale=1.0
-    = prevents zoom weirdness on first load.
-
-    viewport-fit=cover
-    = allows content to extend into modern phone safe areas
-      like iPhone notches.
-  -->
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <!-- Browser tab title -->
   <title>RAINFOREST FALLS 🌿</title>
 
-  <!--
-    PERFORMANCE OPTIMIZATION
-
-    preconnect tells browser:
-    "We will soon need resources from this domain."
-
-    This speeds up font loading.
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!--
-    Google Font Import
-
-    Fredoka is a rounded playful font.
-    Great for carnival / kids UI.
-  -->
   <link
     href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
@@ -74,46 +22,17 @@
 
   <style>
 
-    /*
-      ==========================================================
-      GLOBAL RESET
-      ==========================================================
-
-      Different browsers add their own spacing.
-      Resetting everything gives consistency.
-    */
-
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-
-      /*
-        Removes ugly blue tap highlight on mobile.
-      */
       -webkit-tap-highlight-color:transparent;
     }
 
-    /*
-      HTML ROOT SETTINGS
-    */
     html{
-
       width:100%;
-
-      /*
-        Prevents accidental sideways scrolling.
-      */
       overflow-x:hidden;
-
-      /*
-        Enables smooth anchor scrolling.
-      */
       scroll-behavior:smooth;
-
-      /*
-        Prevents iOS random text zooming.
-      */
       -webkit-text-size-adjust:100%;
     }
 
@@ -127,29 +46,16 @@
 
       position:relative;
 
-      /* Main font */
       font-family:'Fredoka', sans-serif;
 
       color:white;
 
-      /*
-        Pure black fallback background.
-        Useful while image loads.
-      */
       background:#000;
 
-      /*
-        Keeps background visually fixed.
-      */
       background-attachment:fixed;
 
-      /* Better mobile scrolling */
       -webkit-overflow-scrolling:touch;
 
-      /*
-        Global text shadow.
-        Helps readability on bright backgrounds.
-      */
       text-shadow:
       0 2px 12px rgba(0,0,0,0.40);
     }
@@ -158,21 +64,6 @@
       display:block;
       max-width:100%;
     }
-
-    /*
-      ==========================================================
-      FIXED BACKGROUND IMAGE SYSTEM
-      ==========================================================
-
-      Instead of applying background image directly to body,
-      we use a dedicated fixed div.
-
-      WHY?
-      - smoother animations
-      - better mobile performance
-      - avoids repaint issues
-      - easier overlay layering
-    */
 
     .bg-image{
 
@@ -183,8 +74,8 @@
       height:100lvh;
 
       background-image:
-      url('https://lh3.googleusercontent.com/d/1wlFgIEOZX_cAw480D_DeZwt1XyHopqV0=w2000');
-        
+      url('https://lh3.googleusercontent.com/d/1VXu4QTjcT-9VyQxGehvKQhiG9Y6OUsgC');
+
       background-size:cover;
       background-position:center center;
       background-repeat:no-repeat;
@@ -193,27 +84,12 @@
 
       pointer-events:none;
 
-      /*
-        translate3d hack forces GPU rendering.
-        This improves animation smoothness.
-      */
       transform:
       translate3d(0,0,0);
-
-      -webkit-transform:
-      translate3d(0,0,0);
-
-      backface-visibility:hidden;
-      -webkit-backface-visibility:hidden;
 
       will-change:transform;
     }
 
-    /*
-      Dark overlay layer.
-
-      This helps text remain readable.
-    */
     .bg-overlay{
 
       position:fixed;
@@ -226,7 +102,7 @@
       linear-gradient(
         to bottom,
         rgba(0,0,0,0.10),
-        rgba(0,0,0,0.50)
+        rgba(0,0,0,0.52)
       );
 
       z-index:-29;
@@ -234,9 +110,6 @@
       pointer-events:none;
     }
 
-    /*
-      GPU acceleration helpers.
-    */
     .app,
     .glass-card,
     .hero,
@@ -244,29 +117,15 @@
 
       transform:
       translateZ(0);
-
-      -webkit-transform:
-      translateZ(0);
     }
 
-    /*
-      MAIN APP WRAPPER
-    */
     .app{
 
       width:100%;
-
-      /*
-        Mobile-first max width.
-        Prevents app from becoming too wide.
-      */
       max-width:430px;
 
       margin:0 auto;
 
-      /*
-        env() automatically respects phone safe areas.
-      */
       padding:
       env(safe-area-inset-top)
       18px
@@ -277,7 +136,7 @@
     }
 
     /* =========================================================
-       FLOATING LEAF PARTICLES
+       LEAVES
        ========================================================= */
 
     .leaf{
@@ -298,135 +157,165 @@
       animation-iteration-count:infinite;
     }
 
-    /*
-      Each leaf has different:
-      - starting position
-      - duration
-      - delay
-
-      This creates natural randomness.
-    */
-
     .leaf1{
       left:8%;
-      animation-duration:12s;
+      animation-duration:13s;
+      animation-delay:0s;
     }
 
     .leaf2{
       left:72%;
-      animation-duration:16s;
+      animation-duration:17s;
       animation-delay:2s;
     }
 
     .leaf3{
       left:45%;
-      animation-duration:20s;
-      animation-delay:4s;
+      animation-duration:21s;
+      animation-delay:5s;
     }
 
-    /*
-      KEYFRAME ANIMATION
-
-      Moves leaf from top to bottom.
-    */
     @keyframes leafFall{
 
       0%{
         transform:
-        translate3d(0,-10vh,0)
-        rotate(0deg);
+          translate3d(0,-10vh,0)
+          rotate(0deg)
+          scale(1);
+
+        opacity:0;
+      }
+
+      10%{
+        opacity:0.65;
+      }
+
+      20%{
+        transform:
+          translate3d(25px,15vh,0)
+          rotate(80deg)
+          scale(1.02);
+      }
+
+      40%{
+        transform:
+          translate3d(-35px,38vh,0)
+          rotate(160deg)
+          scale(0.96);
+      }
+
+      60%{
+        transform:
+          translate3d(40px,62vh,0)
+          rotate(240deg)
+          scale(1.04);
+      }
+
+      80%{
+        transform:
+          translate3d(-28px,88vh,0)
+          rotate(320deg)
+          scale(0.98);
       }
 
       100%{
         transform:
-        translate3d(-10px,120vh,0)
-        rotate(360deg);
+          translate3d(18px,120vh,0)
+          rotate(400deg)
+          scale(1);
+
+        opacity:0;
       }
     }
 
     /* =========================================================
-       GLASSMORPHIC FLOATING ORBS
+       GLASS BUBBLES
        ========================================================= */
 
-    .orb{
+    .bubble{
 
       position:fixed;
 
       border-radius:50%;
 
-      background:
-      rgba(255,255,255,0.08);
-
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
+      pointer-events:none;
 
       z-index:1;
-      pointer-events:none;
+
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+
+      background:
+      radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,0.35),
+        rgba(255,255,255,0.08)
+      );
+
+      border:
+      1px solid rgba(255,255,255,0.12);
+
+      box-shadow:
+        inset 0 0 10px rgba(255,255,255,0.18),
+        0 0 12px rgba(255,255,255,0.06);
+
+      opacity:0;
+
+      will-change:
+      transform,
+      opacity;
     }
 
-    /*
-      Orbs create depth.
-      They slowly drift around.
-    */
+    @keyframes bubbleFloat{
 
-    .orb1{
-      width:140px;
-      height:140px;
-      top:15%;
-      left:-40px;
-      animation:orbMove1 18s ease-in-out infinite;
+      0%{
+        transform:
+          translate3d(0,0,0)
+          scale(0.7);
+
+        opacity:0;
+      }
+
+      10%{
+        opacity:0.85;
+      }
+
+      50%{
+        transform:
+          translate3d(
+            calc(var(--drift) * 0.5),
+            -40vh,
+            0
+          )
+          scale(1);
+      }
+
+      100%{
+        transform:
+          translate3d(
+            var(--drift),
+            -90vh,
+            0
+          )
+          scale(1.25);
+
+        opacity:0;
+      }
     }
 
-    .orb2{
-      width:110px;
-      height:110px;
-      top:50%;
-      right:-35px;
-      animation:orbMove2 22s ease-in-out infinite;
+    @keyframes bubblePop{
+
+      0%{
+        transform:scale(1);
+        opacity:1;
+      }
+
+      100%{
+        transform:scale(1.8);
+        opacity:0;
+      }
     }
 
-    .orb3{
-      width:180px;
-      height:180px;
-      bottom:5%;
-      left:20%;
-      animation:orbMove3 26s ease-in-out infinite;
-    }
-
-    /*
-      Organic floating movement.
-    */
-    @keyframes orbMove1{
-      0%{transform:translate(0px,0px);}
-      25%{transform:translate(30px,40px);}
-      50%{transform:translate(70px,-20px);}
-      75%{transform:translate(20px,30px);}
-      100%{transform:translate(0px,0px);}
-    }
-
-    @keyframes orbMove2{
-      0%{transform:translate(0px,0px);}
-      25%{transform:translate(-50px,30px);}
-      50%{transform:translate(-20px,-40px);}
-      75%{transform:translate(-60px,10px);}
-      100%{transform:translate(0px,0px);}
-    }
-
-    @keyframes orbMove3{
-      0%{transform:translate(0px,0px);}
-      25%{transform:translate(40px,-30px);}
-      50%{transform:translate(-30px,-50px);}
-      75%{transform:translate(20px,20px);}
-      100%{transform:translate(0px,0px);}
-    }
-
-    /* =========================================================
-       ENTRANCE ANIMATIONS
-       ========================================================= */
-
-    /*
-      Fade upward reveal animation.
-    */
     @keyframes textReveal{
 
       0%{
@@ -444,9 +333,6 @@
       }
     }
 
-    /*
-      Card slide animation.
-    */
     @keyframes cardReveal{
 
       0%{
@@ -460,9 +346,6 @@
       }
     }
 
-    /*
-      Gentle glowing pulse.
-    */
     @keyframes buttonGlow{
 
       0%{
@@ -478,21 +361,12 @@
       }
     }
 
-    /*
-      Scale pulse effect.
-    */
     @keyframes pulse{
 
       0%{transform:scale(1);}
       50%{transform:scale(1.05);}
       100%{transform:scale(1);}
     }
-
-    /*
-      ==========================================================
-      TOP LOGO
-      ==========================================================
-    */
 
     .top-logo{
 
@@ -505,10 +379,6 @@
 
       animation:pulse 4s ease-in-out infinite;
     }
-
-    /* =========================================================
-       HERO SECTION
-       ========================================================= */
 
     .hero{
 
@@ -540,10 +410,6 @@
       drop-shadow(0 10px 25px rgba(0,0,0,0.45));
     }
 
-    /* =========================================================
-       MAIN GLASS CARD
-       ========================================================= */
-
     .glass-card{
 
       width:100%;
@@ -554,9 +420,6 @@
 
       border-radius:34px;
 
-      /*
-        Glassmorphism effect.
-      */
       background:
       rgba(255,255,255,0.12);
 
@@ -586,10 +449,6 @@
       margin-bottom:24px;
     }
 
-    /* =========================================================
-       INPUT SYSTEM
-       ========================================================= */
-
     .input-group{
 
       position:relative;
@@ -599,9 +458,6 @@
       animation:textReveal 1.4s ease;
     }
 
-    /*
-      Phone emoji icon positioning.
-    */
     .input-icon{
 
       position:absolute;
@@ -644,9 +500,6 @@
       color:rgba(255,255,255,0.75);
     }
 
-    /*
-      Input focus feedback.
-    */
     input:focus{
 
       background:
@@ -654,10 +507,6 @@
 
       transform:scale(1.01);
     }
-
-    /* =========================================================
-       BUTTON STYLING
-       ========================================================= */
 
     button{
 
@@ -693,145 +542,9 @@
       textReveal 1.8s ease;
     }
 
-    /*
-      Gives tactile feel on tap.
-    */
     button:active{
       transform:scale(0.98);
     }
-
-    /*
-      Disabled state while loading.
-
-      Prevents:
-      - duplicate API calls
-      - duplicate cards
-      - accidental spam requests
-    */
-    button:disabled{
-      opacity:0.7;
-      cursor:not-allowed;
-    }
-
-    /* =========================================================
-       LOADING SYSTEM
-       ========================================================= */
-
-    .loading-container{
-
-      display:none;
-
-      margin-top:24px;
-
-      animation:textReveal 0.5s ease;
-    }
-
-    .loading-text{
-      text-align:center;
-      margin-bottom:12px;
-      font-size:15px;
-    }
-
-    .progress-bar{
-
-      width:100%;
-      height:14px;
-
-      background:
-      rgba(255,255,255,0.12);
-
-      border-radius:999px;
-
-      overflow:hidden;
-    }
-
-    .progress-fill{
-
-      width:0%;
-      height:100%;
-
-      border-radius:999px;
-
-      background:
-      linear-gradient(
-        90deg,
-        #6eff8f,
-        #c2ffcf
-      );
-
-      transition:width 0.25s linear;
-    }
-
-    /* =========================================================
-       RESULTS SECTION
-       ========================================================= */
-
-    .results{
-      margin-top:24px;
-    }
-
-    .student-card{
-
-      background:
-      rgba(255,255,255,0.12);
-
-      border:
-      1px solid rgba(255,255,255,0.16);
-
-      border-radius:28px;
-
-      padding:18px;
-
-      margin-bottom:18px;
-
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-
-      animation:cardReveal 0.5s ease;
-    }
-
-    .student-name{
-      font-size:24px;
-      margin-bottom:14px;
-      text-align:center;
-    }
-
-    .info-box{
-
-      background:
-      rgba(255,255,255,0.10);
-
-      border-radius:18px;
-
-      padding:14px;
-
-      margin-bottom:10px;
-    }
-
-    .info-label{
-      font-size:12px;
-      opacity:0.80;
-      margin-bottom:4px;
-    }
-
-    .info-value{
-      font-size:18px;
-      font-weight:600;
-    }
-
-    /* =========================================================
-       ERROR MESSAGE
-       ========================================================= */
-
-    .error{
-      text-align:center;
-      margin-top:18px;
-      color:#ffd7d7;
-    }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
 
     .footer{
 
@@ -865,36 +578,22 @@
 
 <body>
 
-  <!--
-    ==========================================================
-    BACKGROUND VISUAL LAYERS
-    ==========================================================
-  -->
-
   <div class="bg-image"></div>
   <div class="bg-overlay"></div>
 
-  <!-- Floating decorative particles -->
+  <!-- Leaves -->
   <div class="leaf leaf1">🌿</div>
   <div class="leaf leaf2">🍃</div>
   <div class="leaf leaf3">🌱</div>
 
-  <!-- Floating glowing circles -->
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-
-  <!-- Main app wrapper -->
   <div class="app">
 
-    <!-- Top branding logo -->
     <img
       src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
       class="top-logo"
       alt="Top Logo"
     >
 
-    <!-- HERO SECTION -->
     <section class="hero">
 
       <img
@@ -905,18 +604,16 @@
 
     </section>
 
-    <!-- Main glass card -->
     <div class="glass-card">
 
       <div class="card-title">
-       👋 Welcome Parent
+        👋 Welcome Parent
       </div>
 
       <div class="card-subtitle">
         Enter your registered phone number below
       </div>
 
-      <!-- INPUT FIELD -->
       <div class="input-group">
 
         <div class="input-icon">
@@ -925,52 +622,17 @@
 
         <input
           type="text"
-          id="phone"
           placeholder="Phone Number"
         >
 
       </div>
 
-      <!--
-        onclick triggers JavaScript function.
-      -->
-      <button id="searchButton" onclick="searchStudents()">
+      <button>
         🌴 Search 🌴
       </button>
 
-      <!-- Loading section -->
-      <div
-        class="loading-container"
-        id="loadingContainer"
-      >
-
-        <div
-          class="loading-text"
-          id="loadingText"
-        >
-          🌿 Searching the rainforest...
-        </div>
-
-        <div class="progress-bar">
-
-          <div
-            class="progress-fill"
-            id="progressFill"
-          ></div>
-
-        </div>
-
-      </div>
-
-      <!-- Error message container -->
-      <div class="error" id="error"></div>
-
-      <!-- Dynamic results injected here -->
-      <div class="results" id="results"></div>
-
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
 
       <div class="footer-text">
@@ -995,566 +657,112 @@
 
     /*
       ==========================================================
-      GOOGLE APPS SCRIPT ENDPOINT
-      ==========================================================
-
-      Your frontend sends requests to this URL.
-
-      This Apps Script acts like a backend API.
-
-      Example:
-      ?phone=9876543210
-
-      Apps Script searches Google Sheet and returns JSON.
-    */
-
-    const SHEET_URL =
-    "https://script.google.com/macros/s/AKfycbz9g9Y2FGPw88OGdxuyCAurCaZNM-iShkSGvpXlhYzRowzg_pcH1BIe6aZjiRQ3XZSbOA/exec";
-
-    /*
-      Random emojis for dynamic student cards.
-    */
-    const rainforestEmojis = [
-      "🦜","🐒","🦋","🌿","🐸",
-      "🍃","🦎","🌺","🐯","🪴",
-      "🦁","🌈","🐍","🦚"
-    ];
-
-    /*
-      GLOBAL LOCK VARIABLE
-
-      This prevents:
-      - double clicking
-      - duplicate requests
-      - duplicate results
-      - race conditions
-    */
-    let isSearching = false;
-
-    /*
-      Returns a random emoji.
-    */
-    function randomEmoji(){
-
-      return rainforestEmojis[
-        Math.floor(
-          Math.random() *
-          rainforestEmojis.length
-        )
-      ];
-    }
-
-    /*
-      ==========================================================
-      MAIN SEARCH FUNCTION
+      CONTROLLED CINEMATIC BUBBLES
       ==========================================================
     */
 
-    async function searchStudents(){
+    const activeBubbles = [];
 
-      /*
-        SAFETY CHECK
+    const MIN_BUBBLES = 7;
+    const MAX_BUBBLES = 20;
 
-        If search already running:
-        stop immediately.
-      */
-      if(isSearching){
+    function createBubble(){
+
+      if(activeBubbles.length >= MAX_BUBBLES){
         return;
       }
 
-      isSearching = true;
+      const bubble =
+      document.createElement("div");
 
-      /*
-        Grab button reference.
-      */
-      const button =
-      document.getElementById(
-        "searchButton"
+      bubble.className = "bubble";
+
+      const size =
+      10 + Math.random() * 28;
+
+      bubble.style.width =
+      size + "px";
+
+      bubble.style.height =
+      size + "px";
+
+      bubble.style.left =
+      Math.random() * window.innerWidth + "px";
+
+      bubble.style.top =
+      (window.innerHeight + 50) + "px";
+
+      bubble.style.setProperty(
+        "--drift",
+        (Math.random() * 240 - 120) + "px"
       );
 
-      /*
-        Disable button while loading.
-      */
-      button.disabled = true;
+      const duration =
+      10 + Math.random() * 10;
 
-      /*
-        Read phone input.
+      bubble.style.animation =
+      `bubbleFloat ${duration}s linear forwards`;
 
-        trim()
-        removes accidental spaces.
-      */
-      const phone =
-      document
-      .getElementById("phone")
-      .value
-      .trim()
-      .toLowerCase();
+      bubble.style.opacity =
+      0.25 + Math.random() * 0.45;
 
-      /*
-        ======================================================
-        PHONE VALIDATION
-        ======================================================
-
-        This prevents unnecessary API requests.
-
-        Why validation matters:
-        - reduces server load
-        - improves user experience
-        - prevents accidental empty searches
-        - prevents malformed queries
-
-        Regex Explanation:
-
-        ^       = start of string
-        [0-9]   = only numbers allowed
-        {10}    = exactly 10 digits
-        $       = end of string
-
-        So this only accepts:
-        9876543210
-
-        and rejects:
-        98765
-        abc123
-        98-765
-      */
-
-      const phoneRegex = /^[0-9]{10}$/;
-
-      if(!phoneRegex.test(phone)){
-
-        document.getElementById("error").innerHTML =
-        "⚠️ Please enter a valid 10-digit phone number.";
-
-        button.disabled = false;
-
-        isSearching = false;
-
-        return;
-      }
-
-      /*
-        Grab all required DOM elements.
-      */
-      const loadingContainer =
-      document.getElementById(
-        "loadingContainer"
+      document.body.appendChild(
+        bubble
       );
 
-      const progressFill =
-      document.getElementById(
-        "progressFill"
-      );
+      activeBubbles.push(bubble);
 
-      const loadingText =
-      document.getElementById(
-        "loadingText"
-      );
+      const shouldPop =
+      Math.random() > 0.72;
 
-      const error =
-      document.getElementById(
-        "error"
-      );
-
-      const results =
-      document.getElementById(
-        "results"
-      );
-
-      /*
-        Reset UI state.
-      */
-      loadingContainer.style.display =
-      "block";
-
-      progressFill.style.width =
-      "0%";
-
-      error.innerHTML = "";
-      results.innerHTML = "";
-
-      /*
-        Fake progress system.
-
-        Makes app feel responsive.
-      */
-      let progress = 0;
-
-      const loadingMessages = [
-        "🌿 Searching the rainforest...",
-        "🦜 Calling the jungle guides...",
-        "🍃 Looking for your campers...",
-        "🐒 Exploring the waterfall trails...",
-        "🌈 Almost there..."
-      ];
-
-      let messageIndex = 0;
-
-      loadingText.innerHTML =
-      loadingMessages[0];
-
-      /*
-        setInterval repeatedly runs code.
-
-        Here:
-        every 180 milliseconds.
-      */
-      const interval = setInterval(() => {
-
-        progress += 8;
-
-        /*
-          Prevents progress from reaching 100%
-          before actual fetch completes.
-        */
-        if(progress > 92){
-          progress = 92;
-        }
-
-        progressFill.style.width =
-        progress + "%";
-
-        /*
-          Rotate loading messages.
-        */
-        if(progress % 20 === 0){
-
-          messageIndex++;
-
-          if(
-            loadingMessages[messageIndex]
-          ){
-
-            loadingText.innerHTML =
-            loadingMessages[
-              messageIndex
-            ];
-          }
-        }
-
-      },180);
-
-      try{
-
-        /*
-          ======================================================
-          API REQUEST
-          ======================================================
-
-          encodeURIComponent protects special characters.
-
-          Example:
-          + becomes %2B
-        */
-
-        const response =
-        await fetch(
-          `${SHEET_URL}?phone=${encodeURIComponent(phone)}`
-        );
-
-        /*
-          Convert response into JSON.
-        */
-        const data =
-        await response.json();
-
-        /*
-          Stop fake progress loop.
-        */
-        clearInterval(interval);
-
-        progressFill.style.width =
-        "100%";
-
-        const matchedStudents = data;
-
-        results.innerHTML = "";
-
-        /*
-          If no students found.
-        */
-        if(matchedStudents.length === 0){
-
-          error.innerHTML =
-          "🌧️ No campers were found with this phone number.";
-
-          return;
-        }
-
-        /*
-          LOOP THROUGH RESULTS
-        */
-        matchedStudents.forEach(student => {
-
-          /*
-            Create new div element.
-          */
-          const card =
-          document.createElement("div");
-
-          card.className =
-          "student-card";
-
-          /*
-            Template literal.
-
-            Allows:
-            ${dynamicVariables}
-          */
-          card.innerHTML = `
-
-            <div class="student-name">
-              ${randomEmoji()} ${student.NAME}
-            </div>
-
-            <div class="info-box">
-
-              <div class="info-label">
-                🚩 TEAM
-              </div>
-
-              <div class="info-value">
-                ${student.TEAM}
-              </div>
-
-            </div>
-
-            <div class="info-box">
-
-              <div class="info-label">
-                👥 CREW
-              </div>
-
-              <div class="info-value">
-                ${student.CREW}
-              </div>
-
-            </div>
-
-            <div class="info-box">
-
-              <div class="info-label">
-                🎤 LEADER
-              </div>
-
-              <div class="info-value">
-                ${student.LEADER}
-              </div>
-
-            </div>
-
-            <div class="info-box">
-
-              <div class="info-label">
-                🚌 PICKUP
-              </div>
-
-              <div class="info-value">
-                ${student.PICKUP}
-              </div>
-
-            </div>
-
-          `;
-
-          /*
-            Inject card into results container.
-          */
-          results.appendChild(card);
-
-        });
-
-        /*
-          Trigger celebration effect.
-        */
-        celebrate();
-
-      }
-
-      catch(err){
-
-        /*
-          Network failure handler.
-        */
-        error.innerHTML =
-        "🌧️ Lost connection to the rainforest trails.";
-
-        console.error(err);
-
-      }
-
-      finally{
-
-        /*
-          finally ALWAYS runs.
-
-          Even if error happens.
-        */
-
-        clearInterval(interval);
+      if(shouldPop){
 
         setTimeout(() => {
 
-          loadingContainer.style.display =
-          "none";
+          bubble.style.animation =
+          "bubblePop 0.45s ease-out forwards";
 
-          button.disabled = false;
-
-          isSearching = false;
-
-        },500);
+        }, duration * 1000 * 0.88);
       }
+
+      setTimeout(() => {
+
+        bubble.remove();
+
+        const index =
+        activeBubbles.indexOf(bubble);
+
+        if(index > -1){
+          activeBubbles.splice(index,1);
+        }
+
+      }, duration * 1000 + 1000);
     }
 
-    /*
-      ==========================================================
-      CELEBRATION PARTICLE EFFECT
-      ==========================================================
-    */
+    for(let i = 0; i < MIN_BUBBLES; i++){
 
-    function celebrate(){
+      setTimeout(() => {
 
-      const emojis = [
-        "✨","🌿","🍃","🦋","🌈"
-      ];
+        createBubble();
 
-      const centerX =
-      window.innerWidth / 2;
-
-      const centerY =
-      window.innerHeight * 0.42;
-
-      /*
-        Create 18 particles.
-      */
-      for(let i = 0; i < 18; i++){
-
-        const particle =
-        document.createElement("div");
-
-        particle.innerHTML =
-        emojis[
-          Math.floor(
-            Math.random() *
-            emojis.length
-          )
-        ];
-
-        /*
-          Dynamic inline styling.
-        */
-        particle.style.position =
-        "fixed";
-
-        particle.style.left =
-        centerX + "px";
-
-        particle.style.top =
-        centerY + "px";
-
-        particle.style.fontSize =
-        (18 + Math.random() * 10)
-        + "px";
-
-        particle.style.pointerEvents =
-        "none";
-
-        particle.style.zIndex =
-        "9999";
-
-        particle.style.opacity =
-        "0";
-
-        particle.style.transition =
-        "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease";
-
-        document.body.appendChild(
-          particle
-        );
-
-        /*
-          Random explosion direction.
-        */
-        const angle =
-        Math.random() *
-        Math.PI * 2;
-
-        const distance =
-        80 + Math.random() * 140;
-
-        const x =
-        Math.cos(angle) *
-        distance;
-
-        const y =
-        Math.sin(angle) *
-        distance;
-
-        /*
-          Animate outward.
-        */
-        setTimeout(() => {
-
-          particle.style.opacity =
-          "1";
-
-          particle.style.transform = `
-            translate(${x}px, ${y}px)
-            scale(1.4)
-            rotate(${Math.random()*120-60}deg)
-          `;
-
-        },30);
-
-        /* Fade out */
-        setTimeout(() => {
-
-          particle.style.opacity =
-          "0";
-
-          particle.style.transform +=
-          " scale(0.6)";
-
-        },1800);
-
-        /* Remove from DOM */
-        setTimeout(() => {
-          particle.remove();
-        },3000);
-      }
+      }, i * 400);
     }
 
-  
+    setInterval(() => {
 
-    /*
-      ==========================================================
-      ENTER KEY SUPPORT
-      ==========================================================
+      if(activeBubbles.length < MIN_BUBBLES){
 
-      This allows users to press ENTER instead of tapping button.
+        createBubble();
 
-      Better UX especially for:
-      - desktop users
-      - laptop users
-      - power users
-      - external keyboard users on mobile/tablet
-    */
+      }else if(
+        activeBubbles.length < MAX_BUBBLES &&
+        Math.random() > 0.65
+      ){
 
-    document
-    .getElementById("phone")
-    .addEventListener("keypress", function(event){
-
-      /*
-        Detect Enter key.
-      */
-      if(event.key === "Enter"){
-
-        /*
-          Trigger same search function.
-        */
-        searchStudents();
+        createBubble();
       }
-    });
+
+    }, 1200);
 
   </script>
 

@@ -667,7 +667,141 @@
     .footer-logo img{
       width:120px;
     }
+/* ======================================================
+   TOUCH TRAIL STARS
+   ====================================================== */
 
+.touch-star{
+
+  position:fixed;
+
+  width:14px;
+  height:14px;
+
+  pointer-events:none;
+
+  z-index:9999;
+
+  opacity:0;
+
+  transform:
+    translate(-50%,-50%);
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/*
+  STAR ICON
+*/
+
+.touch-star::before{
+
+  content:"✦";
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:white;
+
+  font-size:14px;
+
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.95),
+    0 0 12px rgba(255,255,255,0.75),
+    0 0 20px rgba(255,255,255,0.45);
+}
+
+/*
+  GOLD VARIATION
+*/
+
+.touch-star.gold::before{
+
+  color:#fff6c7;
+
+  text-shadow:
+    0 0 6px rgba(255,245,180,0.95),
+    0 0 14px rgba(255,230,120,0.75),
+    0 0 22px rgba(255,220,90,0.42);
+}
+
+/*
+  BLUE VARIATION
+*/
+
+.touch-star.blue::before{
+
+  color:#dff8ff;
+
+  text-shadow:
+    0 0 6px rgba(190,240,255,0.95),
+    0 0 14px rgba(120,220,255,0.75),
+    0 0 22px rgba(100,200,255,0.42);
+}
+
+/*
+  STAR ANIMATION
+*/
+
+@keyframes touchStarAnim{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(0.2)
+      rotate(0deg);
+
+  }
+
+  18%{
+
+    opacity:1;
+
+    transform:
+      translate(-50%,-50%)
+      scale(1.5)
+      rotate(90deg);
+
+  }
+
+  60%{
+
+    opacity:0.85;
+
+    transform:
+      translate(
+        calc(-50% + var(--drift-x)),
+        calc(-50% + var(--drift-y))
+      )
+      scale(0.9)
+      rotate(220deg);
+
+  }
+
+  100%{
+
+    opacity:0;
+
+    transform:
+      translate(
+        calc(-50% + (var(--drift-x) * 1.8)),
+        calc(-50% + (var(--drift-y) * 1.8))
+      )
+      scale(0.2)
+      rotate(360deg);
+
+  }
+}
   </style>
 
 </head>
@@ -792,106 +926,263 @@
        BUBBLES
        ====================================================== -->
 
-  <script>
+ <script>
 
-    const activeBubbles = [];
+  /* ======================================================
+     BUBBLES
+     ====================================================== */
 
-    const MIN_BUBBLES = 1;
-    const MAX_BUBBLES = 2;
+  const activeBubbles = [];
 
-    function createBubble(){
+  const MIN_BUBBLES = 1;
+  const MAX_BUBBLES = 2;
 
-      if(activeBubbles.length >= MAX_BUBBLES){
-        return;
-      }
+  function createBubble(){
 
-      const bubble =
-      document.createElement("div");
+    if(activeBubbles.length >= MAX_BUBBLES){
+      return;
+    }
 
-      bubble.className = "bubble";
+    const bubble =
+    document.createElement("div");
 
-      const size =
-      26 + Math.random() * 36;
+    bubble.className = "bubble";
 
-      bubble.style.width =
-      size + "px";
+    const size =
+    26 + Math.random() * 36;
 
-      bubble.style.height =
-      size + "px";
+    bubble.style.width =
+    size + "px";
 
-      bubble.style.left =
-      Math.random() * window.innerWidth + "px";
+    bubble.style.height =
+    size + "px";
 
-      bubble.style.top =
-      (window.innerHeight + 50) + "px";
+    bubble.style.left =
+    Math.random() * window.innerWidth + "px";
 
-      bubble.style.setProperty(
-        "--drift",
-        (Math.random() * 220 - 110) + "px"
-      );
+    bubble.style.top =
+    (window.innerHeight + 50) + "px";
 
-      const duration =
-      14 + Math.random() * 8;
+    bubble.style.setProperty(
+      "--drift",
+      (Math.random() * 220 - 110) + "px"
+    );
+
+    const duration =
+    14 + Math.random() * 8;
+
+    bubble.style.animation =
+    `bubbleFloat ${duration}s linear forwards`;
+
+    bubble.style.opacity =
+    0.24 + Math.random() * 0.32;
+
+    document.body.appendChild(
+      bubble
+    );
+
+    activeBubbles.push(bubble);
+
+    setTimeout(() => {
 
       bubble.style.animation =
-      `bubbleFloat ${duration}s linear forwards`;
+      "bubblePop 0.6s ease-out forwards";
 
-      bubble.style.opacity =
-      0.24 + Math.random() * 0.32;
+    }, duration * 1000 * 0.92);
 
-      document.body.appendChild(
-        bubble
-      );
+    setTimeout(() => {
 
-      activeBubbles.push(bubble);
+      bubble.remove();
 
-      setTimeout(() => {
+      const index =
+      activeBubbles.indexOf(bubble);
 
-        bubble.style.animation =
-        "bubblePop 0.6s ease-out forwards";
-
-      }, duration * 1000 * 0.92);
-
-      setTimeout(() => {
-
-        bubble.remove();
-
-        const index =
-        activeBubbles.indexOf(bubble);
-
-        if(index > -1){
-          activeBubbles.splice(index,1);
-        }
-
-      }, duration * 1000 + 1500);
-    }
-
-    for(let i = 0; i < MIN_BUBBLES; i++){
-
-      setTimeout(() => {
-
-        createBubble();
-
-      }, i * 800);
-    }
-
-    setInterval(() => {
-
-      if(activeBubbles.length < MIN_BUBBLES){
-
-        createBubble();
-
-      }else if(
-        activeBubbles.length < MAX_BUBBLES &&
-        Math.random() > 0.72
-      ){
-
-        createBubble();
+      if(index > -1){
+        activeBubbles.splice(index,1);
       }
 
-    }, 4200);
+    }, duration * 1000 + 1500);
+  }
 
-  </script>
+  for(let i = 0; i < MIN_BUBBLES; i++){
 
+    setTimeout(() => {
+
+      createBubble();
+
+    }, i * 800);
+  }
+
+  setInterval(() => {
+
+    if(activeBubbles.length < MIN_BUBBLES){
+
+      createBubble();
+
+    }else if(
+      activeBubbles.length < MAX_BUBBLES &&
+      Math.random() > 0.72
+    ){
+
+      createBubble();
+    }
+
+  }, 4200);
+
+  /* ======================================================
+     TOUCH GLITTER TRAIL
+     ====================================================== */
+
+  function createTouchStar(x, y){
+
+    const star =
+    document.createElement("div");
+
+    star.className = "touch-star";
+
+    /*
+      Random color variation
+    */
+
+    const randomType =
+    Math.random();
+
+    if(randomType > 0.66){
+
+      star.classList.add("gold");
+
+    }else if(randomType > 0.33){
+
+      star.classList.add("blue");
+    }
+
+    /*
+      Position
+    */
+
+    star.style.left = x + "px";
+    star.style.top = y + "px";
+
+    /*
+      Random movement
+    */
+
+    const driftX =
+    (Math.random() * 60 - 30) + "px";
+
+    const driftY =
+    (Math.random() * 60 - 30) + "px";
+
+    star.style.setProperty(
+      "--drift-x",
+      driftX
+    );
+
+    star.style.setProperty(
+      "--drift-y",
+      driftY
+    );
+
+    /*
+      Random size
+    */
+
+    const scale =
+    0.7 + Math.random() * 1;
+
+    /*
+      Random duration
+    */
+
+    const duration =
+    700 + Math.random() * 600;
+
+    star.style.animation =
+    `touchStarAnim ${duration}ms ease-out forwards`;
+
+    star.style.transform =
+    `translate(-50%,-50%) scale(${scale})`;
+
+    document.body.appendChild(star);
+
+    /*
+      Cleanup
+    */
+
+    setTimeout(() => {
+
+      star.remove();
+
+    }, duration + 100);
+  }
+
+  /* ======================================================
+     TOUCH SUPPORT
+     ====================================================== */
+
+  let lastTouchTime = 0;
+
+  document.addEventListener("touchmove", (e) => {
+
+    const now = Date.now();
+
+    /*
+      Performance throttle
+    */
+
+    if(now - lastTouchTime < 28){
+      return;
+    }
+
+    lastTouchTime = now;
+
+    const touch =
+    e.touches[0];
+
+    /*
+      Multiple stars
+    */
+
+    for(let i = 0; i < 3; i++){
+
+      createTouchStar(
+
+        touch.clientX +
+        (Math.random() * 24 - 12),
+
+        touch.clientY +
+        (Math.random() * 24 - 12)
+
+      );
+    }
+
+  }, { passive:true });
+
+  /* ======================================================
+     MOUSE SUPPORT
+     ====================================================== */
+
+  let lastMouseTime = 0;
+
+  document.addEventListener("mousemove", (e) => {
+
+    const now = Date.now();
+
+    if(now - lastMouseTime < 35){
+      return;
+    }
+
+    lastMouseTime = now;
+
+    createTouchStar(
+
+      e.clientX,
+      e.clientY
+
+    );
+
+  });
+
+</script>
 </body>
 </html>

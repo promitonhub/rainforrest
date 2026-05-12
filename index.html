@@ -93,11 +93,6 @@
       z-index:-70;
 
       pointer-events:none;
-
-      transform:
-      translate3d(0,0,0);
-
-      will-change:transform;
     }
 
     /* ======================================================
@@ -123,6 +118,7 @@
 
       pointer-events:none;
     }
+
     /* ======================================================
        GLITTER PARTICLES
        ====================================================== */
@@ -216,6 +212,76 @@
         transform:
           scale(0.2)
           rotate(360deg);
+      }
+    }
+
+    /* ======================================================
+       FLOATING MACAW
+       ====================================================== */
+
+    .macaw-overlay{
+
+      position:fixed;
+
+      left:-55px;
+      top:10%;
+
+      width:240px;
+
+      z-index:8;
+
+      pointer-events:none;
+
+      will-change:
+        transform;
+
+      filter:
+        drop-shadow(0 16px 28px rgba(0,0,0,0.38));
+
+      animation:
+        macawFloat 7s ease-in-out infinite;
+    }
+
+    @keyframes macawFloat{
+
+      0%{
+
+        transform:
+          translateY(0px)
+          rotate(0deg);
+
+      }
+
+      25%{
+
+        transform:
+          translateY(-8px)
+          rotate(-1deg);
+
+      }
+
+      50%{
+
+        transform:
+          translateY(5px)
+          rotate(1deg);
+
+      }
+
+      75%{
+
+        transform:
+          translateY(-5px)
+          rotate(-0.5deg);
+
+      }
+
+      100%{
+
+        transform:
+          translateY(0px)
+          rotate(0deg);
+
       }
     }
 
@@ -325,9 +391,6 @@
       pointer-events:none;
 
       z-index:2;
-
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
 
       background:
       radial-gradient(
@@ -626,22 +689,25 @@
   <div class="glitter-layer">
 
     <div class="glitter" style="top:12%; left:18%; animation-duration:7s; animation-delay:1s;"></div>
-
     <div class="glitter" style="top:22%; left:74%; animation-duration:9s; animation-delay:2s;"></div>
-
     <div class="glitter" style="top:34%; left:48%; animation-duration:8s; animation-delay:0s;"></div>
-
     <div class="glitter" style="top:52%; left:82%; animation-duration:10s; animation-delay:4s;"></div>
-
     <div class="glitter" style="top:66%; left:28%; animation-duration:11s; animation-delay:3s;"></div>
-
     <div class="glitter" style="top:74%; left:62%; animation-duration:8s; animation-delay:5s;"></div>
-
     <div class="glitter" style="top:16%; left:56%; animation-duration:12s; animation-delay:2s;"></div>
-
     <div class="glitter" style="top:42%; left:14%; animation-duration:9s; animation-delay:6s;"></div>
 
   </div>
+
+  <!-- ======================================================
+       MACAW
+       ====================================================== -->
+
+  <img
+    src="https://lh3.googleusercontent.com/d/1Kc5JoNj4O95QRgxGsc8odeGW845JWNrI"
+    class="macaw-overlay"
+    alt="Macaw"
+  >
 
   <!-- ======================================================
        LEAVES
@@ -730,12 +796,8 @@
 
     const activeBubbles = [];
 
-    /*
-      REDUCED BUBBLE COUNT
-    */
-
     const MIN_BUBBLES = 1;
-    const MAX_BUBBLES = 3;
+    const MAX_BUBBLES = 2;
 
     function createBubble(){
 
@@ -783,10 +845,6 @@
 
       activeBubbles.push(bubble);
 
-      /*
-        ALL POP
-      */
-
       setTimeout(() => {
 
         bubble.style.animation =
@@ -808,10 +866,6 @@
       }, duration * 1000 + 1500);
     }
 
-    /*
-      INITIAL
-    */
-
     for(let i = 0; i < MIN_BUBBLES; i++){
 
       setTimeout(() => {
@@ -820,10 +874,6 @@
 
       }, i * 800);
     }
-
-    /*
-      CONTINUOUS
-    */
 
     setInterval(() => {
 
@@ -839,7 +889,7 @@
         createBubble();
       }
 
-    }, 2200);
+    }, 4200);
 
   </script>
 

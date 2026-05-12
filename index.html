@@ -93,7 +93,7 @@
       background-position:center center;
       background-repeat:no-repeat;
 
-      z-index:-50;
+      z-index:-60;
 
       pointer-events:none;
 
@@ -118,11 +118,11 @@
       background:
       linear-gradient(
         to bottom,
-        rgba(0,0,0,0.06),
-        rgba(0,0,0,0.54)
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.52)
       );
 
-      z-index:-45;
+      z-index:-55;
 
       pointer-events:none;
     }
@@ -140,7 +140,7 @@
 
       pointer-events:none;
 
-      z-index:-20;
+      z-index:-30;
     }
 
     .ray{
@@ -347,6 +347,189 @@
     }
 
     /* ======================================================
+       GLITTER SHIMMER
+       ====================================================== */
+
+    .glitter-layer{
+
+      position:fixed;
+      inset:0;
+
+      pointer-events:none;
+
+      overflow:hidden;
+
+      z-index:-25;
+
+      background-image:
+
+        radial-gradient(
+          circle at 12% 22%,
+          rgba(255,255,255,0.18) 0px,
+          rgba(255,255,255,0.00) 3px
+        ),
+
+        radial-gradient(
+          circle at 72% 18%,
+          rgba(255,255,255,0.14) 0px,
+          rgba(255,255,255,0.00) 4px
+        ),
+
+        radial-gradient(
+          circle at 38% 44%,
+          rgba(255,255,255,0.12) 0px,
+          rgba(255,255,255,0.00) 3px
+        ),
+
+        radial-gradient(
+          circle at 82% 62%,
+          rgba(255,255,255,0.14) 0px,
+          rgba(255,255,255,0.00) 5px
+        ),
+
+        radial-gradient(
+          circle at 18% 76%,
+          rgba(255,255,255,0.12) 0px,
+          rgba(255,255,255,0.00) 4px
+        ),
+
+        radial-gradient(
+          circle at 62% 82%,
+          rgba(255,255,255,0.14) 0px,
+          rgba(255,255,255,0.00) 3px
+        );
+
+      opacity:0.18;
+
+      animation:
+        glitterPulse 8s ease-in-out infinite,
+        glitterShift 18s linear infinite;
+    }
+
+    .glitter-layer::before{
+
+      content:"";
+
+      position:absolute;
+      inset:0;
+
+      background-image:
+
+        radial-gradient(
+          circle at 22% 18%,
+          rgba(255,255,220,0.22) 0px,
+          transparent 8px
+        ),
+
+        radial-gradient(
+          circle at 64% 34%,
+          rgba(255,255,255,0.18) 0px,
+          transparent 10px
+        ),
+
+        radial-gradient(
+          circle at 78% 74%,
+          rgba(255,255,220,0.20) 0px,
+          transparent 8px
+        );
+
+      filter:blur(10px);
+
+      opacity:0.12;
+
+      animation:
+        glitterTwinkle 6s ease-in-out infinite;
+    }
+
+    @keyframes glitterPulse{
+
+      0%{
+        opacity:0.08;
+      }
+
+      20%{
+        opacity:0.16;
+      }
+
+      40%{
+        opacity:0.10;
+      }
+
+      60%{
+        opacity:0.22;
+      }
+
+      80%{
+        opacity:0.12;
+      }
+
+      100%{
+        opacity:0.08;
+      }
+    }
+
+    @keyframes glitterShift{
+
+      0%{
+        transform:
+          translateX(0px)
+          translateY(0px)
+          scale(1);
+      }
+
+      25%{
+        transform:
+          translateX(4px)
+          translateY(-3px)
+          scale(1.01);
+      }
+
+      50%{
+        transform:
+          translateX(-5px)
+          translateY(2px)
+          scale(1.015);
+      }
+
+      75%{
+        transform:
+          translateX(3px)
+          translateY(-2px)
+          scale(1.01);
+      }
+
+      100%{
+        transform:
+          translateX(0px)
+          translateY(0px)
+          scale(1);
+      }
+    }
+
+    @keyframes glitterTwinkle{
+
+      0%{
+        opacity:0.06;
+      }
+
+      25%{
+        opacity:0.14;
+      }
+
+      50%{
+        opacity:0.08;
+      }
+
+      75%{
+        opacity:0.18;
+      }
+
+      100%{
+        opacity:0.06;
+      }
+    }
+
+    /* ======================================================
        FLOATING LEAVES
        ====================================================== */
 
@@ -533,7 +716,7 @@
     }
 
     /* ======================================================
-       MAIN APP WRAPPER
+       APP
        ====================================================== */
 
     .app{
@@ -552,10 +735,6 @@
       z-index:5;
     }
 
-    /* ======================================================
-       TOP LOGO
-       ====================================================== */
-
     .top-logo{
 
       width:120px;
@@ -565,10 +744,6 @@
       margin-top:4px;
       margin-bottom:-10px;
     }
-
-    /* ======================================================
-       HERO SECTION
-       ====================================================== */
 
     .hero{
 
@@ -588,10 +763,6 @@
       filter:
       drop-shadow(0 10px 25px rgba(0,0,0,0.45));
     }
-
-    /* ======================================================
-       GLASS CARD
-       ====================================================== */
 
     .glass-card{
 
@@ -635,10 +806,6 @@
 
       margin-bottom:24px;
     }
-
-    /* ======================================================
-       INPUT FIELD
-       ====================================================== */
 
     .input-group{
 
@@ -687,10 +854,6 @@
       color:rgba(255,255,255,0.75);
     }
 
-    /* ======================================================
-       BUTTON
-       ====================================================== */
-
     button{
 
       width:100%;
@@ -724,10 +887,6 @@
     button:active{
       transform:scale(0.98);
     }
-
-    /* ======================================================
-       FOOTER
-       ====================================================== */
 
     .footer{
 
@@ -763,7 +922,7 @@
 <body>
 
   <!-- ======================================================
-       BACKGROUND
+       BACKGROUND LAYERS
        ====================================================== -->
 
   <div class="bg-image"></div>
@@ -784,7 +943,13 @@
   </div>
 
   <!-- ======================================================
-       FLOATING LEAVES
+       GLITTER SHIMMER
+       ====================================================== -->
+
+  <div class="glitter-layer"></div>
+
+  <!-- ======================================================
+       LEAVES
        ====================================================== -->
 
   <div class="leaf leaf1">🌿</div>
@@ -797,15 +962,11 @@
 
   <div class="app">
 
-    <!-- LOGO -->
-
     <img
       src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
       class="top-logo"
       alt="Top Logo"
     >
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -817,8 +978,6 @@
 
     </section>
 
-    <!-- MAIN CARD -->
-
     <div class="glass-card">
 
       <div class="card-title">
@@ -828,8 +987,6 @@
       <div class="card-subtitle">
         Enter your registered phone number below
       </div>
-
-      <!-- INPUT -->
 
       <div class="input-group">
 
@@ -844,15 +1001,11 @@
 
       </div>
 
-      <!-- BUTTON -->
-
       <button>
         🌴 Search 🌴
       </button>
 
     </div>
-
-    <!-- FOOTER -->
 
     <div class="footer">
 
@@ -929,7 +1082,7 @@
       );
 
       /*
-        LONGER FLOAT DURATION
+        LONG FLOAT
       */
 
       const duration =
@@ -990,7 +1143,7 @@
     }
 
     /*
-      CONTINUOUS ECOSYSTEM
+      CONTINUOUS BUBBLE ECOSYSTEM
     */
 
     setInterval(() => {

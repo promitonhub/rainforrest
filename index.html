@@ -10,6 +10,11 @@
   content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 />
 
+<meta
+  name="theme-color"
+  content="#0b0f0b"
+/>
+
 <title>RAINFOREST FALLS 🌿</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +56,7 @@ body{
 
   position:relative;
 
-  font-family:'Fredoka', sans-serif;
+  font-family:'Fredoka',sans-serif;
 
   color:white;
 
@@ -59,13 +64,46 @@ body{
 
   -webkit-overflow-scrolling:touch;
 
+  overscroll-behavior-y:contain;
+
   text-shadow:
   0 2px 12px rgba(0,0,0,0.40);
 }
 
+/* ======================================================
+   NON SELECTABLE
+====================================================== */
+
+.top-logo,
+.hero-title,
+.footer-logo img,
+.macaw-overlay,
+button,
+.student-card,
+.info-box,
+.card-title,
+.card-subtitle,
+.footer,
+.leaf,
+.orb,
+.bg-image{
+
+  -webkit-user-select:none;
+  user-select:none;
+
+  -webkit-touch-callout:none;
+
+  -webkit-user-drag:none;
+}
+
 img{
-  display:block;
-  max-width:100%;
+
+  -webkit-user-select:none;
+  user-select:none;
+
+  -webkit-user-drag:none;
+
+  pointer-events:none;
 }
 
 /* ======================================================
@@ -84,16 +122,10 @@ img{
   url('./ChatGppPT Image May 9, 2026, 10_52_48 PM (1).png');
 
   background-size:cover;
-  background-position:center center;
+  background-position:center;
   background-repeat:no-repeat;
 
   z-index:-30;
-
-  pointer-events:none;
-
-  transform:translate3d(0,0,0);
-
-  will-change:transform;
 }
 
 .bg-overlay{
@@ -101,23 +133,31 @@ img{
   position:fixed;
   inset:0;
 
-  width:100%;
-  height:100dvh;
-
   background:
   linear-gradient(
     to bottom,
-    rgba(0,0,0,0.10),
-    rgba(0,0,0,0.50)
+    rgba(0,0,0,0.12),
+    rgba(0,0,0,0.55)
   );
 
   z-index:-29;
+}
+
+#fireflies{
+
+  position:fixed;
+  inset:0;
+
+  width:100%;
+  height:100%;
 
   pointer-events:none;
+
+  z-index:-5;
 }
 
 /* ======================================================
-   APP WRAPPER
+   APP
 ====================================================== */
 
 .app{
@@ -137,7 +177,7 @@ img{
 }
 
 /* ======================================================
-   MACAW
+   DECOR
 ====================================================== */
 
 .macaw-overlay{
@@ -151,17 +191,11 @@ img{
 
   z-index:12;
 
-  pointer-events:none;
-
-  will-change:transform;
-
   filter:
-  drop-shadow(0 16px 28px rgba(0,0,0,0.38));
+  drop-shadow(
+    0 16px 28px rgba(0,0,0,0.38)
+  );
 }
-
-/* ======================================================
-   LEAVES
-====================================================== */
 
 .leaf{
 
@@ -173,26 +207,12 @@ img{
 
   opacity:0.60;
 
-  pointer-events:none;
-
   z-index:1;
 }
 
-.leaf1{
-  left:8%;
-}
-
-.leaf2{
-  left:72%;
-}
-
-.leaf3{
-  left:45%;
-}
-
-/* ======================================================
-   ORBS
-====================================================== */
+.leaf1{ left:8%; }
+.leaf2{ left:72%; }
+.leaf3{ left:45%; }
 
 .orb{
 
@@ -204,11 +224,8 @@ img{
   rgba(255,255,255,0.08);
 
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
 
   z-index:1;
-
-  pointer-events:none;
 }
 
 .orb1{
@@ -233,10 +250,10 @@ img{
 }
 
 /* ======================================================
-   REDUCED MOTION SUPPORT
+   REDUCED MOTION
 ====================================================== */
 
-@media (prefers-reduced-motion: no-preference){
+@media (prefers-reduced-motion:no-preference){
 
   .macaw-overlay{
     animation:
@@ -278,21 +295,9 @@ img{
     orbMove3 26s ease-in-out infinite;
   }
 
-  .top-logo{
+  .glass-card::before{
     animation:
-    pulse 4s ease-in-out infinite;
-  }
-
-  .hero-title{
-    animation:
-    pulse 5s ease-in-out infinite,
-    textReveal 1.2s ease;
-  }
-
-  button{
-    animation:
-    buttonGlow 3s infinite,
-    textReveal 1.8s ease;
+    shimmerSweep 8s linear infinite;
   }
 
 }
@@ -305,32 +310,17 @@ img{
 
   0%{
     transform:
-    translateY(0px)
-    rotate(0deg);
-  }
-
-  25%{
-    transform:
-    translateY(-8px)
-    rotate(-1deg);
+    translateY(0px);
   }
 
   50%{
     transform:
-    translateY(5px)
-    rotate(1deg);
-  }
-
-  75%{
-    transform:
-    translateY(-5px)
-    rotate(-0.5deg);
+    translateY(-10px);
   }
 
   100%{
     transform:
-    translateY(0px)
-    rotate(0deg);
+    translateY(0px);
   }
 }
 
@@ -338,51 +328,80 @@ img{
 
   0%{
     transform:
-    translate3d(0,-10vh,0)
+    translateY(-10vh)
     rotate(0deg);
   }
 
   100%{
     transform:
-    translate3d(-10px,120vh,0)
+    translateY(120vh)
     rotate(360deg);
   }
 }
 
 @keyframes orbMove1{
 
-  0%{transform:translate(0px,0px);}
-  25%{transform:translate(30px,40px);}
-  50%{transform:translate(70px,-20px);}
-  75%{transform:translate(20px,30px);}
-  100%{transform:translate(0px,0px);}
+  0%{
+    transform:translate(0,0);
+  }
+
+  50%{
+    transform:translate(60px,-20px);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
 }
 
 @keyframes orbMove2{
 
-  0%{transform:translate(0px,0px);}
-  25%{transform:translate(-50px,30px);}
-  50%{transform:translate(-20px,-40px);}
-  75%{transform:translate(-60px,10px);}
-  100%{transform:translate(0px,0px);}
+  0%{
+    transform:translate(0,0);
+  }
+
+  50%{
+    transform:translate(-50px,20px);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
 }
 
 @keyframes orbMove3{
 
-  0%{transform:translate(0px,0px);}
-  25%{transform:translate(40px,-30px);}
-  50%{transform:translate(-30px,-50px);}
-  75%{transform:translate(20px,20px);}
-  100%{transform:translate(0px,0px);}
+  0%{
+    transform:translate(0,0);
+  }
+
+  50%{
+    transform:translate(30px,-30px);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
 }
 
-@keyframes textReveal{
+@keyframes shimmerSweep{
+
+  0%{
+    left:-140%;
+  }
+
+  100%{
+    left:180%;
+  }
+}
+
+@keyframes cardReveal{
 
   0%{
     opacity:0;
     transform:
-    translateY(25px)
-    scale(0.96);
+    translateY(30px)
+    scale(0.98);
   }
 
   100%{
@@ -393,44 +412,55 @@ img{
   }
 }
 
-@keyframes cardReveal{
+@keyframes touchStarAnim{
 
   0%{
     opacity:0;
-    transform:translateY(40px);
+
+    transform:
+    translate(-50%,-50%)
+    scale(0.2);
+  }
+
+  20%{
+    opacity:1;
+
+    transform:
+    translate(-50%,-50%)
+    scale(1.3);
   }
 
   100%{
-    opacity:1;
-    transform:translateY(0px);
+    opacity:0;
+
+    transform:
+    translate(
+      calc(-50% + var(--drift-x)),
+      calc(-50% + var(--drift-y))
+    )
+    scale(0.2);
   }
 }
 
-@keyframes buttonGlow{
+@keyframes softErrorFlash{
 
   0%{
-    box-shadow:0 0 0px rgba(255,255,255,0);
+    box-shadow:0 0 0 rgba(255,0,0,0);
   }
 
-  50%{
+  30%{
     box-shadow:
-    0 0 22px rgba(255,255,255,0.20);
+    0 0 0 3px rgba(255,80,80,0.18),
+    0 0 24px rgba(255,80,80,0.18);
   }
 
   100%{
-    box-shadow:0 0 0px rgba(255,255,255,0);
+    box-shadow:0 0 0 rgba(255,0,0,0);
   }
-}
-
-@keyframes pulse{
-
-  0%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-  100%{transform:scale(1);}
 }
 
 /* ======================================================
-   LOGO
+   HEADER
 ====================================================== */
 
 .top-logo{
@@ -439,25 +469,15 @@ img{
 
   margin:0 auto;
 
-  margin-top:4px;
   margin-bottom:-10px;
 }
-
-/* ======================================================
-   HERO
-====================================================== */
 
 .hero{
 
   display:flex;
-  flex-direction:column;
-
   justify-content:center;
   align-items:center;
 
-  text-align:center;
-
-  margin-top:-8px;
   margin-bottom:-10px;
 }
 
@@ -467,7 +487,9 @@ img{
   max-width:360px;
 
   filter:
-  drop-shadow(0 10px 25px rgba(0,0,0,0.45));
+  drop-shadow(
+    0 10px 25px rgba(0,0,0,0.45)
+  );
 }
 
 /* ======================================================
@@ -475,6 +497,10 @@ img{
 ====================================================== */
 
 .glass-card{
+
+  position:relative;
+
+  overflow:hidden;
 
   width:100%;
 
@@ -491,13 +517,36 @@ img{
   1px solid rgba(255,255,255,0.18);
 
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
 
   box-shadow:
   0 12px 40px rgba(0,0,0,0.20);
+}
 
-  animation:
-  cardReveal 1.2s ease;
+.glass-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-140%;
+
+  width:80%;
+  height:100%;
+
+  background:
+  linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0.05) 35%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0.05) 65%,
+    transparent 100%
+  );
+
+  transform:skewX(-20deg);
+
+  pointer-events:none;
 }
 
 .card-title{
@@ -528,20 +577,48 @@ img{
 
   position:relative;
 
-  margin-bottom:18px;
+  overflow:hidden;
 
-  animation:
-  textReveal 1.4s ease;
+  margin-bottom:18px;
+}
+
+.input-inner{
+  position:relative;
+}
+
+.input-fill{
+
+  position:absolute;
+
+  inset:0;
+
+  width:0%;
+
+  border-radius:22px;
+
+  background:
+  linear-gradient(
+    90deg,
+    rgba(125,255,143,0.18),
+    rgba(125,255,143,0.06)
+  );
+
+  transition:
+  width 0.25s ease;
+
+  pointer-events:none;
 }
 
 .input-icon{
 
   position:absolute;
 
-  top:24px;
+  top:50%;
   left:18px;
 
   transform:translateY(-50%);
+
+  z-index:2;
 }
 
 input{
@@ -569,6 +646,10 @@ input{
   backdrop-filter:blur(8px);
 
   transition:0.25s ease;
+
+  position:relative;
+
+  z-index:1;
 }
 
 input::placeholder{
@@ -580,58 +661,21 @@ input:focus{
   background:
   rgba(255,255,255,0.20);
 
-  transform:scale(1.01);
+  box-shadow:
+  0 0 0 3px rgba(125,255,143,0.15),
+  0 0 24px rgba(125,255,143,0.18);
+
+  border:
+  1px solid rgba(125,255,143,0.28);
+}
+
+.input-error{
+  animation:
+  softErrorFlash 1.8s ease;
 }
 
 /* ======================================================
-   DIGIT PROGRESS
-====================================================== */
-
-.digit-progress{
-
-  width:100%;
-  height:8px;
-
-  margin-top:10px;
-
-  border-radius:999px;
-
-  overflow:hidden;
-
-  background:
-  rgba(255,255,255,0.12);
-}
-
-.digit-fill{
-
-  width:0%;
-  height:100%;
-
-  border-radius:999px;
-
-  transition:0.2s ease;
-
-  background:
-  linear-gradient(
-    90deg,
-    #7dff8f,
-    #d8ffe1
-  );
-}
-
-.digit-count{
-
-  margin-top:6px;
-
-  text-align:right;
-
-  font-size:12px;
-
-  opacity:0.75;
-}
-
-/* ======================================================
-   BUTTON
+   BUTTONS
 ====================================================== */
 
 button{
@@ -656,24 +700,19 @@ button{
   font-size:18px;
   font-weight:700;
 
-  cursor:pointer;
-
   backdrop-filter:blur(8px);
 
-  transition:0.25s ease;
+  transition:
+  transform 0.25s ease,
+  box-shadow 0.25s ease;
 }
 
 button:active{
   transform:scale(0.98);
 }
 
-button:disabled{
-  opacity:0.7;
-  cursor:not-allowed;
-}
-
 /* ======================================================
-   OFFLINE WARNING
+   OFFLINE
 ====================================================== */
 
 .offline-warning{
@@ -708,9 +747,6 @@ button:disabled{
   display:none;
 
   margin-top:24px;
-
-  animation:
-  textReveal 0.5s ease;
 }
 
 .loading-text{
@@ -757,12 +793,27 @@ button:disabled{
 ====================================================== */
 
 .results{
+
   margin-top:24px;
+
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+
+  scroll-snap-type:y proximity;
+
+  -webkit-overflow-scrolling:touch;
 }
 
 .student-card{
 
   position:relative;
+
+  overflow:hidden;
+
+  scroll-snap-align:start;
+
+  scroll-margin-top:18px;
 
   background:
   rgba(255,255,255,0.12);
@@ -774,41 +825,47 @@ button:disabled{
 
   padding:20px;
 
-  margin-bottom:22px;
-
   backdrop-filter:blur(10px);
 
   animation:
   cardReveal 0.5s ease;
 
-  overflow:hidden;
+  animation-fill-mode:forwards;
+
+  transition:
+  transform 0.35s ease,
+  box-shadow 0.35s ease;
 }
 
-.student-card::before,
-.student-card::after{
+.student-card::before{
 
   content:"";
 
   position:absolute;
 
-  width:34px;
-  height:34px;
+  inset:0;
 
-  background:#000;
+  border-radius:28px;
 
-  border-radius:50%;
+  pointer-events:none;
 
-  top:50%;
+  border:
+  1px solid rgba(255,255,255,0.08);
 
-  transform:translateY(-50%);
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,255,255,0.04),
+    transparent 30%
+  );
 }
 
-.student-card::before{
-  left:-17px;
-}
+.student-card:active{
 
-.student-card::after{
-  right:-17px;
+  transform:scale(0.985);
+
+  box-shadow:
+  0 8px 24px rgba(0,0,0,0.22);
 }
 
 .student-name{
@@ -887,9 +944,6 @@ button:disabled{
   margin-bottom:30px;
 
   text-align:center;
-
-  animation:
-  textReveal 2s ease;
 }
 
 .footer-text{
@@ -913,7 +967,7 @@ button:disabled{
 }
 
 /* ======================================================
-   TOUCH STARS
+   TOUCH GLITTER
 ====================================================== */
 
 .touch-star{
@@ -935,7 +989,6 @@ button:disabled{
   content:"✦";
 
   position:absolute;
-
   inset:0;
 
   display:flex;
@@ -952,242 +1005,167 @@ button:disabled{
   0 0 18px rgba(255,255,255,0.5);
 }
 
-@keyframes touchStarAnim{
-
-  0%{
-
-    opacity:0;
-
-    transform:
-    translate(-50%,-50%)
-    scale(0.2)
-    rotate(0deg);
-  }
-
-  20%{
-
-    opacity:1;
-
-    transform:
-    translate(-50%,-50%)
-    scale(1.4)
-    rotate(90deg);
-  }
-
-  60%{
-
-    opacity:0.85;
-
-    transform:
-    translate(
-      calc(-50% + var(--drift-x)),
-      calc(-50% + var(--drift-y))
-    )
-    scale(0.9)
-    rotate(220deg);
-  }
-
-  100%{
-
-    opacity:0;
-
-    transform:
-    translate(
-      calc(-50% + (var(--drift-x) * 1.8)),
-      calc(-50% + (var(--drift-y) * 1.8))
-    )
-    scale(0.2)
-    rotate(360deg);
-  }
-}
-
 </style>
 
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-
 <div class="bg-image"></div>
 <div class="bg-overlay"></div>
 
-<!-- LEAVES -->
+<canvas id="fireflies"></canvas>
 
 <div class="leaf leaf1">🌿</div>
 <div class="leaf leaf2">🍃</div>
 <div class="leaf leaf3">🌱</div>
 
-<!-- ORBS -->
-
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
-
-<!-- MACAW -->
 
 <img
   src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
   class="macaw-overlay"
   alt="Macaw"
+  draggable="false"
 />
 
 <div class="app">
 
-  <!-- TOP LOGO -->
+<img
+  src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
+  class="top-logo"
+  draggable="false"
+/>
 
-  <img
-    src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
-    class="top-logo"
-    alt="Top Logo"
-  >
+<section class="hero">
 
-  <!-- HERO -->
+<img
+  src="./Layer 2.png"
+  class="hero-title"
+  draggable="false"
+/>
 
-  <section class="hero">
+</section>
 
-    <img
-      src="./Layer 2.png"
-      class="hero-title"
-      alt="Rainforest Falls"
-    >
+<div class="glass-card">
 
-  </section>
+<div class="card-title">
+👋 Welcome Parent
+</div>
 
-  <!-- MAIN CARD -->
+<div class="card-subtitle">
+Enter your registered phone number below
+</div>
 
-  <div class="glass-card">
+<div class="input-group">
 
-    <div class="card-title">
-      👋 Welcome Parent
-    </div>
+<div class="input-inner">
 
-    <div class="card-subtitle">
-      Enter your registered phone number below
-    </div>
+<div
+  class="input-fill"
+  id="inputFill"
+></div>
 
-    <div class="input-group">
+<div class="input-icon">
+📞
+</div>
 
-      <div class="input-icon">
-        📞
-      </div>
+<input
+  type="tel"
+  inputmode="numeric"
+  autocomplete="tel"
+  id="phone"
+  placeholder="Phone Number"
+  maxlength="10"
+/>
 
-      <input
-        type="tel"
-        inputmode="numeric"
-        autocomplete="tel"
-        id="phone"
-        placeholder="Phone Number"
-        maxlength="10"
-      >
+</div>
 
-      <div class="digit-progress">
+</div>
 
-        <div
-          class="digit-fill"
-          id="digitFill"
-        ></div>
+<button id="searchButton">
+🌴 Search 🌴
+</button>
 
-      </div>
+<div
+  class="offline-warning"
+  id="offlineWarning"
+>
+⚠️ You appear to be offline.
+</div>
 
-      <div
-        class="digit-count"
-        id="digitCount"
-      >
-        0 / 10 digits
-      </div>
+<div
+  class="loading-container"
+  id="loadingContainer"
+>
 
-    </div>
+<div
+  class="loading-text"
+  id="loadingText"
+>
+🌿 Searching the rainforest...
+</div>
 
-    <button id="searchButton">
-      🌴 Search 🌴
-    </button>
+<div class="progress-bar">
 
-    <div
-      class="offline-warning"
-      id="offlineWarning"
-    >
-      ⚠️ You appear to be offline. Please check your internet connection.
-    </div>
+<div
+  class="progress-fill"
+  id="progressFill"
+></div>
 
-    <!-- LOADING -->
+</div>
 
-    <div
-      class="loading-container"
-      id="loadingContainer"
-    >
+</div>
 
-      <div
-        class="loading-text"
-        id="loadingText"
-      >
-        🌿 Searching the rainforest...
-      </div>
+<div
+  class="error"
+  id="error"
+  role="status"
+  aria-live="polite"
+></div>
 
-      <div class="progress-bar">
+<div
+  class="results"
+  id="results"
+  role="status"
+  aria-live="polite"
+></div>
 
-        <div
-          class="progress-fill"
-          id="progressFill"
-        ></div>
+</div>
 
-      </div>
+<div class="footer">
 
-    </div>
+<div class="footer-text">
+🌿 Rainforest Falls Kids Carnival ✨<br>
+Adventure, friendship & unforgettable memories 💚
+</div>
 
-    <!-- ERROR -->
+<div class="footer-logo">
 
-    <div
-      class="error"
-      id="error"
-      role="status"
-      aria-live="polite"
-    ></div>
+<img
+  src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
+  draggable="false"
+/>
 
-    <!-- RESULTS -->
+</div>
 
-    <div
-      class="results"
-      id="results"
-      role="status"
-      aria-live="polite"
-    ></div>
-
-  </div>
-
-  <!-- FOOTER -->
-
-  <div class="footer">
-
-    <div class="footer-text">
-      🌿 Rainforest Falls Kids Carnival ✨<br>
-      Adventure, friendship & unforgettable memories 💚
-    </div>
-
-    <div class="footer-logo">
-
-      <img
-        src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
-        alt="Footer Logo"
-      >
-
-    </div>
-
-  </div>
+</div>
 
 </div>
 
 <script>
 
 /* ======================================================
-   GOOGLE SHEET API
+   API
 ====================================================== */
 
 const SHEET_URL =
 "https://script.google.com/macros/s/AKfycbz9g9Y2FGPw88OGdxuyCAurCaZNM-iShkSGvpXlhYzRowzg_pcH1BIe6aZjiRQ3XZSbOA/exec";
 
 /* ======================================================
-   SAFE HTML ESCAPE
+   SAFE HTML
 ====================================================== */
 
 function safe(s){
@@ -1208,7 +1186,7 @@ function safe(s){
 }
 
 /* ======================================================
-   EMOJIS
+   RANDOM EMOJI
 ====================================================== */
 
 const rainforestEmojis = [
@@ -1241,34 +1219,45 @@ let lastSearchTime = 0;
 const SEARCH_COOLDOWN = 3000;
 
 /* ======================================================
-   INPUT FILTER
+   INPUT
 ====================================================== */
 
-document
-.getElementById("phone")
-.addEventListener("input", function(){
+const phoneInput =
+document.getElementById("phone");
 
-  this.value =
-  this.value.replace(/[^0-9]/g, "");
+phoneInput.addEventListener(
+  "input",
+  function(){
 
-  document.getElementById(
-    "error"
-  ).innerHTML = "";
+    this.value =
+    this.value.replace(/[^0-9]/g,"");
 
-  const length =
-  this.value.length;
+    document.getElementById(
+      "error"
+    ).innerHTML = "";
 
-  document.getElementById(
-    "digitCount"
-  ).innerHTML =
-  `${length} / 10 digits`;
+    document.getElementById(
+      "inputFill"
+    ).style.width =
+    `${this.value.length * 10}%`;
 
-  document.getElementById(
-    "digitFill"
-  ).style.width =
-  `${length * 10}%`;
+  }
+);
 
-});
+phoneInput.addEventListener(
+  "keydown",
+  function(event){
+
+    document.getElementById(
+      "error"
+    ).innerHTML = "";
+
+    if(event.key === "Enter"){
+      searchStudents();
+    }
+
+  }
+);
 
 /* ======================================================
    ONLINE STATUS
@@ -1282,17 +1271,13 @@ function updateOnlineStatus(){
   );
 
   if(navigator.onLine){
-
     warning.style.display =
     "none";
-
   }
 
   else{
-
     warning.style.display =
     "block";
-
   }
 
 }
@@ -1310,7 +1295,28 @@ window.addEventListener(
 updateOnlineStatus();
 
 /* ======================================================
-   SEARCH FUNCTION
+   INPUT ERROR
+====================================================== */
+
+function triggerInputError(){
+
+  const input =
+  document.getElementById("phone");
+
+  input.classList.remove(
+    "input-error"
+  );
+
+  void input.offsetWidth;
+
+  input.classList.add(
+    "input-error"
+  );
+
+}
+
+/* ======================================================
+   SEARCH
 ====================================================== */
 
 async function searchStudents(){
@@ -1325,7 +1331,7 @@ async function searchStudents(){
     document.getElementById(
       "error"
     ).innerHTML =
-    "⏳ Please wait a moment before searching again.";
+    "⏳ Please wait before searching again.";
 
     return;
   }
@@ -1346,27 +1352,17 @@ async function searchStudents(){
   button.disabled = true;
 
   const phone =
-  document
-  .getElementById("phone")
-  .value
-  .trim();
+  phoneInput.value.trim();
 
-  const phoneRegex =
-  /^[0-9]{10}$/;
+  const error =
+  document.getElementById(
+    "error"
+  );
 
-  if(!phoneRegex.test(phone)){
-
-    document.getElementById(
-      "error"
-    ).innerHTML =
-    "⚠️ Please enter a valid 10-digit phone number.";
-
-    button.disabled = false;
-
-    isSearching = false;
-
-    return;
-  }
+  const results =
+  document.getElementById(
+    "results"
+  );
 
   const loadingContainer =
   document.getElementById(
@@ -1383,17 +1379,23 @@ async function searchStudents(){
     "loadingText"
   );
 
-  const error =
-  document.getElementById(
-    "error"
-  );
+  if(!/^[0-9]{10}$/.test(phone)){
 
-  const results =
-  document.getElementById(
-    "results"
-  );
+    triggerInputError();
+
+    error.innerHTML =
+    "⚠️ Enter a valid 10-digit number.";
+
+    button.disabled = false;
+
+    isSearching = false;
+
+    return;
+  }
 
   if(!navigator.onLine){
+
+    triggerInputError();
 
     error.innerHTML =
     "⚠️ No internet connection detected.";
@@ -1411,9 +1413,8 @@ async function searchStudents(){
   progressFill.style.width =
   "0%";
 
-  error.innerHTML = "";
-
   results.innerHTML = "";
+  error.innerHTML = "";
 
   let progress = 0;
 
@@ -1485,39 +1486,41 @@ async function searchStudents(){
     clearTimeout(timeout);
 
     if(!response.ok){
-
-      throw new Error(
-        "Network response failed"
-      );
-
+      throw new Error();
     }
 
-    const data =
+    const matchedStudents =
     await response.json();
 
     progressFill.style.width =
     "100%";
 
-    const matchedStudents =
-    data;
-
-    results.innerHTML = "";
-
     if(matchedStudents.length === 0){
 
+      triggerInputError();
+
       error.innerHTML =
-      "🌧️ No entries were found with this phone number.";
+      "🌧️ No entries found.";
 
       return;
     }
 
-    matchedStudents.forEach(student => {
+    matchedStudents.forEach((student,index) => {
 
       const card =
       document.createElement("div");
 
       card.className =
       "student-card";
+
+      card.style.animationDelay =
+      `${index * 120}ms`;
+
+      card.style.opacity = "0";
+
+      setTimeout(() => {
+        card.style.opacity = "1";
+      },50);
 
       card.innerHTML = `
 
@@ -1603,22 +1606,13 @@ async function searchStudents(){
 
         results.innerHTML = "";
 
-        document.getElementById(
-          "phone"
-        ).value = "";
+        phoneInput.value = "";
 
         document.getElementById(
-          "digitFill"
+          "inputFill"
         ).style.width = "0%";
 
-        document.getElementById(
-          "digitCount"
-        ).innerHTML =
-        "0 / 10 digits";
-
-        document.getElementById(
-          "phone"
-        ).focus();
+        phoneInput.focus();
 
       }
     );
@@ -1637,7 +1631,7 @@ async function searchStudents(){
 
   catch(err){
 
-    console.error(err);
+    triggerInputError();
 
     error.innerHTML =
     "🌧️ Lost connection to the rainforest trails.";
@@ -1664,7 +1658,18 @@ async function searchStudents(){
 }
 
 /* ======================================================
-   SHARE FUNCTION
+   SEARCH BUTTON
+====================================================== */
+
+document
+.getElementById("searchButton")
+.addEventListener(
+  "click",
+  searchStudents
+);
+
+/* ======================================================
+   SHARE
 ====================================================== */
 
 async function shareStudentCard(button){
@@ -1713,42 +1718,14 @@ async function shareStudentCard(button){
 }
 
 /* ======================================================
-   BUTTON CLICK
-====================================================== */
-
-document
-.getElementById("searchButton")
-.addEventListener(
-  "click",
-  searchStudents
-);
-
-/* ======================================================
-   ENTER KEY
-====================================================== */
-
-document
-.getElementById("phone")
-.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-      searchStudents();
-    }
-
-  }
-);
-
-/* ======================================================
-   TOUCH STARS
+   TOUCH GLITTER
 ====================================================== */
 
 let activeStars = 0;
 
 const MAX_STARS = 70;
 
-function createTouchStar(x, y){
+function createTouchStar(x,y){
 
   if(activeStars >= MAX_STARS){
     return;
@@ -1769,10 +1746,12 @@ function createTouchStar(x, y){
   y + "px";
 
   const driftX =
-  (Math.random() * 50 - 25) + "px";
+  (Math.random() * 50 - 25)
+  + "px";
 
   const driftY =
-  (Math.random() * 50 - 25) + "px";
+  (Math.random() * 50 - 25)
+  + "px";
 
   star.style.setProperty(
     "--drift-x",
@@ -1798,7 +1777,7 @@ function createTouchStar(x, y){
 
     activeStars--;
 
-  }, duration + 100);
+  },duration + 100);
 
 }
 
@@ -1837,38 +1816,14 @@ document.addEventListener(
   { passive:true }
 );
 
-let lastMouseTime = 0;
-
-document.addEventListener(
-  "mousemove",
-  (e) => {
-
-    const now = Date.now();
-
-    if(now - lastMouseTime < 40){
-      return;
-    }
-
-    lastMouseTime = now;
-
-    createTouchStar(
-      e.clientX,
-      e.clientY
-    );
-
-  }
-);
-
 /* ======================================================
-   CELEBRATION
+   CONFETTI
 ====================================================== */
 
 function celebrate(){
 
   const emojis = [
-
     "✨","🌿","🍃","🦋","🌈"
-
   ];
 
   const centerX =
@@ -1952,9 +1907,6 @@ function celebrate(){
       particle.style.opacity =
       "0";
 
-      particle.style.transform +=
-      " scale(0.6)";
-
     },1800);
 
     setTimeout(() => {
@@ -1966,6 +1918,131 @@ function celebrate(){
   }
 
 }
+
+/* ======================================================
+   FIREFLIES
+====================================================== */
+
+const fireflyCanvas =
+document.getElementById("fireflies");
+
+const fireflyCtx =
+fireflyCanvas.getContext("2d");
+
+let fireflies = [];
+
+function resizeFireflies(){
+
+  fireflyCanvas.width =
+  window.innerWidth;
+
+  fireflyCanvas.height =
+  window.innerHeight;
+
+}
+
+window.addEventListener(
+  "resize",
+  resizeFireflies
+);
+
+resizeFireflies();
+
+for(let i = 0; i < 14; i++){
+
+  fireflies.push({
+
+    x:
+    Math.random() *
+    fireflyCanvas.width,
+
+    y:
+    Math.random() *
+    fireflyCanvas.height,
+
+    r:
+    1 + Math.random() * 3,
+
+    dx:
+    (Math.random() - 0.5) * 0.18,
+
+    dy:
+    (Math.random() - 0.5) * 0.18,
+
+    pulse:
+    Math.random() * Math.PI * 2,
+
+    speed:
+    0.01 + Math.random() * 0.02
+
+  });
+
+}
+
+function animateFireflies(){
+
+  fireflyCtx.clearRect(
+    0,
+    0,
+    fireflyCanvas.width,
+    fireflyCanvas.height
+  );
+
+  fireflies.forEach(f => {
+
+    f.x += f.dx;
+    f.y += f.dy;
+
+    f.pulse += f.speed;
+
+    if(
+      f.x < -20 ||
+      f.x > fireflyCanvas.width + 20
+    ){
+      f.dx *= -1;
+    }
+
+    if(
+      f.y < -20 ||
+      f.y > fireflyCanvas.height + 20
+    ){
+      f.dy *= -1;
+    }
+
+    const glow =
+    0.45 +
+    Math.sin(f.pulse) * 0.25;
+
+    fireflyCtx.beginPath();
+
+    fireflyCtx.arc(
+      f.x,
+      f.y,
+      f.r,
+      0,
+      Math.PI * 2
+    );
+
+    fireflyCtx.fillStyle =
+    `rgba(220,255,160,${glow})`;
+
+    fireflyCtx.shadowBlur =
+    18;
+
+    fireflyCtx.shadowColor =
+    "rgba(220,255,160,0.7)";
+
+    fireflyCtx.fill();
+
+  });
+
+  requestAnimationFrame(
+    animateFireflies
+  );
+
+}
+
+animateFireflies();
 
 </script>
 

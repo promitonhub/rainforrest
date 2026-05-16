@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
+
+<meta charset="UTF-8">
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -10,6 +13,7 @@
 <title>RAINFOREST FALLS 🌿</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
@@ -38,14 +42,21 @@ html{
 }
 
 body{
+
   width:100%;
   min-height:100vh;
+
   overflow-x:hidden;
   overflow-y:auto;
+
   position:relative;
-  font-family:'Fredoka',sans-serif;
+
+  font-family:'Fredoka', sans-serif;
+
   color:white;
+
   background:#000;
+
   -webkit-overflow-scrolling:touch;
 
   text-shadow:
@@ -62,8 +73,10 @@ img{
 ====================================================== */
 
 .bg-image{
+
   position:fixed;
   inset:0;
+
   width:100vw;
   height:100dvh;
 
@@ -75,15 +88,19 @@ img{
   background-repeat:no-repeat;
 
   z-index:-30;
+
   pointer-events:none;
 
   transform:translate3d(0,0,0);
+
   will-change:transform;
 }
 
 .bg-overlay{
+
   position:fixed;
   inset:0;
+
   width:100%;
   height:100dvh;
 
@@ -95,6 +112,7 @@ img{
   );
 
   z-index:-29;
+
   pointer-events:none;
 }
 
@@ -103,8 +121,10 @@ img{
 ====================================================== */
 
 .app{
+
   width:100%;
   max-width:430px;
+
   margin:0 auto;
 
   padding:
@@ -121,19 +141,22 @@ img{
 ====================================================== */
 
 .macaw-overlay{
+
   position:fixed;
+
   left:-32px;
   top:22%;
+
   width:165px;
+
   z-index:12;
+
   pointer-events:none;
 
   will-change:transform;
 
   filter:
-  drop-shadow(
-    0 16px 28px rgba(0,0,0,0.38)
-  );
+  drop-shadow(0 16px 28px rgba(0,0,0,0.38));
 }
 
 /* ======================================================
@@ -141,13 +164,17 @@ img{
 ====================================================== */
 
 .leaf{
+
   position:fixed;
+
   top:-10vh;
 
   font-size:24px;
+
   opacity:0.60;
 
   pointer-events:none;
+
   z-index:1;
 }
 
@@ -168,6 +195,7 @@ img{
 ====================================================== */
 
 .orb{
+
   position:fixed;
 
   border-radius:50%;
@@ -179,6 +207,7 @@ img{
   -webkit-backdrop-filter:blur(12px);
 
   z-index:1;
+
   pointer-events:none;
 }
 
@@ -322,71 +351,29 @@ img{
 
 @keyframes orbMove1{
 
-  0%{
-    transform:translate(0px,0px);
-  }
-
-  25%{
-    transform:translate(30px,40px);
-  }
-
-  50%{
-    transform:translate(70px,-20px);
-  }
-
-  75%{
-    transform:translate(20px,30px);
-  }
-
-  100%{
-    transform:translate(0px,0px);
-  }
+  0%{transform:translate(0px,0px);}
+  25%{transform:translate(30px,40px);}
+  50%{transform:translate(70px,-20px);}
+  75%{transform:translate(20px,30px);}
+  100%{transform:translate(0px,0px);}
 }
 
 @keyframes orbMove2{
 
-  0%{
-    transform:translate(0px,0px);
-  }
-
-  25%{
-    transform:translate(-50px,30px);
-  }
-
-  50%{
-    transform:translate(-20px,-40px);
-  }
-
-  75%{
-    transform:translate(-60px,10px);
-  }
-
-  100%{
-    transform:translate(0px,0px);
-  }
+  0%{transform:translate(0px,0px);}
+  25%{transform:translate(-50px,30px);}
+  50%{transform:translate(-20px,-40px);}
+  75%{transform:translate(-60px,10px);}
+  100%{transform:translate(0px,0px);}
 }
 
 @keyframes orbMove3{
 
-  0%{
-    transform:translate(0px,0px);
-  }
-
-  25%{
-    transform:translate(40px,-30px);
-  }
-
-  50%{
-    transform:translate(-30px,-50px);
-  }
-
-  75%{
-    transform:translate(20px,20px);
-  }
-
-  100%{
-    transform:translate(0px,0px);
-  }
+  0%{transform:translate(0px,0px);}
+  25%{transform:translate(40px,-30px);}
+  50%{transform:translate(-30px,-50px);}
+  75%{transform:translate(20px,20px);}
+  100%{transform:translate(0px,0px);}
 }
 
 @keyframes textReveal{
@@ -437,17 +424,9 @@ img{
 
 @keyframes pulse{
 
-  0%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.05);
-  }
-
-  100%{
-    transform:scale(1);
-  }
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
 }
 
 /* ======================================================
@@ -455,8 +434,11 @@ img{
 ====================================================== */
 
 .top-logo{
+
   width:120px;
+
   margin:0 auto;
+
   margin-top:4px;
   margin-bottom:-10px;
 }
@@ -466,8 +448,10 @@ img{
 ====================================================== */
 
 .hero{
+
   display:flex;
   flex-direction:column;
+
   justify-content:center;
   align-items:center;
 
@@ -478,13 +462,12 @@ img{
 }
 
 .hero-title{
+
   width:100%;
   max-width:360px;
 
   filter:
-  drop-shadow(
-    0 10px 25px rgba(0,0,0,0.45)
-  );
+  drop-shadow(0 10px 25px rgba(0,0,0,0.45));
 }
 
 /* ======================================================
@@ -492,7 +475,9 @@ img{
 ====================================================== */
 
 .glass-card{
+
   width:100%;
+
   margin-top:8px;
 
   padding:24px 18px;
@@ -516,15 +501,22 @@ img{
 }
 
 .card-title{
+
   text-align:center;
+
   font-size:28px;
+
   margin-bottom:12px;
 }
 
 .card-subtitle{
+
   text-align:center;
+
   line-height:1.7;
+
   font-size:15px;
+
   margin-bottom:24px;
 }
 
@@ -533,7 +525,9 @@ img{
 ====================================================== */
 
 .input-group{
+
   position:relative;
+
   margin-bottom:18px;
 
   animation:
@@ -541,13 +535,17 @@ img{
 }
 
 .input-icon{
+
   position:absolute;
+
   top:24px;
   left:18px;
+
   transform:translateY(-50%);
 }
 
 input{
+
   width:100%;
 
   border:none;
@@ -565,6 +563,7 @@ input{
   rgba(255,255,255,0.14);
 
   color:white;
+
   font-size:16px;
 
   backdrop-filter:blur(8px);
@@ -577,6 +576,7 @@ input::placeholder{
 }
 
 input:focus{
+
   background:
   rgba(255,255,255,0.20);
 
@@ -588,12 +588,14 @@ input:focus{
 ====================================================== */
 
 .digit-progress{
+
   width:100%;
   height:8px;
 
   margin-top:10px;
 
   border-radius:999px;
+
   overflow:hidden;
 
   background:
@@ -601,6 +603,7 @@ input:focus{
 }
 
 .digit-fill{
+
   width:0%;
   height:100%;
 
@@ -617,10 +620,13 @@ input:focus{
 }
 
 .digit-count{
+
   margin-top:6px;
+
   text-align:right;
 
   font-size:12px;
+
   opacity:0.75;
 }
 
@@ -629,9 +635,11 @@ input:focus{
 ====================================================== */
 
 button{
+
   width:100%;
 
   border:none;
+
   border-radius:24px;
 
   padding:18px;
@@ -644,6 +652,7 @@ button{
   );
 
   color:white;
+
   font-size:18px;
   font-weight:700;
 
@@ -668,9 +677,11 @@ button:disabled{
 ====================================================== */
 
 .offline-warning{
+
   display:none;
 
   margin-top:14px;
+
   padding:14px;
 
   border-radius:18px;
@@ -682,7 +693,9 @@ button:disabled{
   1px solid rgba(255,120,120,0.25);
 
   text-align:center;
+
   font-size:14px;
+
   color:#ffe3e3;
 }
 
@@ -691,7 +704,9 @@ button:disabled{
 ====================================================== */
 
 .loading-container{
+
   display:none;
+
   margin-top:24px;
 
   animation:
@@ -699,12 +714,16 @@ button:disabled{
 }
 
 .loading-text{
+
   text-align:center;
+
   margin-bottom:12px;
+
   font-size:15px;
 }
 
 .progress-bar{
+
   width:100%;
   height:14px;
 
@@ -712,10 +731,12 @@ button:disabled{
   rgba(255,255,255,0.12);
 
   border-radius:999px;
+
   overflow:hidden;
 }
 
 .progress-fill{
+
   width:0%;
   height:100%;
 
@@ -740,6 +761,7 @@ button:disabled{
 }
 
 .student-card{
+
   position:relative;
 
   background:
@@ -751,6 +773,7 @@ button:disabled{
   border-radius:28px;
 
   padding:20px;
+
   margin-bottom:22px;
 
   backdrop-filter:blur(10px);
@@ -776,6 +799,7 @@ button:disabled{
   border-radius:50%;
 
   top:50%;
+
   transform:translateY(-50%);
 }
 
@@ -788,12 +812,16 @@ button:disabled{
 }
 
 .student-name{
+
   font-size:24px;
+
   margin-bottom:14px;
+
   text-align:center;
 }
 
 .ticket-divider{
+
   width:100%;
 
   border-top:
@@ -804,23 +832,30 @@ button:disabled{
 }
 
 .info-box{
+
   background:
   rgba(255,255,255,0.10);
 
   border-radius:18px;
 
   padding:14px;
+
   margin-bottom:10px;
 }
 
 .info-label{
+
   font-size:12px;
+
   opacity:0.80;
+
   margin-bottom:4px;
 }
 
 .info-value{
+
   font-size:18px;
+
   font-weight:600;
 }
 
@@ -834,8 +869,11 @@ button:disabled{
 ====================================================== */
 
 .error{
+
   text-align:center;
+
   margin-top:18px;
+
   color:#ffd7d7;
 }
 
@@ -844,8 +882,10 @@ button:disabled{
 ====================================================== */
 
 .footer{
+
   margin-top:36px;
   margin-bottom:30px;
+
   text-align:center;
 
   animation:
@@ -853,13 +893,18 @@ button:disabled{
 }
 
 .footer-text{
+
   font-size:14px;
+
   line-height:1.7;
+
   margin-bottom:18px;
 }
 
 .footer-logo{
+
   display:flex;
+
   justify-content:center;
 }
 
@@ -872,12 +917,14 @@ button:disabled{
 ====================================================== */
 
 .touch-star{
+
   position:fixed;
 
   width:10px;
   height:10px;
 
   pointer-events:none;
+
   z-index:9999;
 
   opacity:0;
@@ -888,6 +935,7 @@ button:disabled{
   content:"✦";
 
   position:absolute;
+
   inset:0;
 
   display:flex;
@@ -895,6 +943,7 @@ button:disabled{
   justify-content:center;
 
   color:white;
+
   font-size:12px;
 
   text-shadow:
@@ -906,6 +955,7 @@ button:disabled{
 @keyframes touchStarAnim{
 
   0%{
+
     opacity:0;
 
     transform:
@@ -915,6 +965,7 @@ button:disabled{
   }
 
   20%{
+
     opacity:1;
 
     transform:
@@ -924,6 +975,7 @@ button:disabled{
   }
 
   60%{
+
     opacity:0.85;
 
     transform:
@@ -936,6 +988,7 @@ button:disabled{
   }
 
   100%{
+
     opacity:0;
 
     transform:
@@ -949,20 +1002,29 @@ button:disabled{
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
+
 <div class="bg-image"></div>
 <div class="bg-overlay"></div>
+
+<!-- LEAVES -->
 
 <div class="leaf leaf1">🌿</div>
 <div class="leaf leaf2">🍃</div>
 <div class="leaf leaf3">🌱</div>
 
+<!-- ORBS -->
+
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
+
+<!-- MACAW -->
 
 <img
   src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
@@ -972,11 +1034,15 @@ button:disabled{
 
 <div class="app">
 
+  <!-- TOP LOGO -->
+
   <img
     src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
     class="top-logo"
     alt="Top Logo"
   >
+
+  <!-- HERO -->
 
   <section class="hero">
 
@@ -987,6 +1053,8 @@ button:disabled{
     >
 
   </section>
+
+  <!-- MAIN CARD -->
 
   <div class="glass-card">
 
@@ -1014,10 +1082,12 @@ button:disabled{
       >
 
       <div class="digit-progress">
+
         <div
           class="digit-fill"
           id="digitFill"
         ></div>
+
       </div>
 
       <div
@@ -1039,6 +1109,8 @@ button:disabled{
     >
       ⚠️ You appear to be offline. Please check your internet connection.
     </div>
+
+    <!-- LOADING -->
 
     <div
       class="loading-container"
@@ -1063,12 +1135,16 @@ button:disabled{
 
     </div>
 
+    <!-- ERROR -->
+
     <div
       class="error"
       id="error"
       role="status"
       aria-live="polite"
     ></div>
+
+    <!-- RESULTS -->
 
     <div
       class="results"
@@ -1078,6 +1154,8 @@ button:disabled{
     ></div>
 
   </div>
+
+  <!-- FOOTER -->
 
   <div class="footer">
 
@@ -1109,13 +1187,36 @@ const SHEET_URL =
 "https://script.google.com/macros/s/AKfycbz9g9Y2FGPw88OGdxuyCAurCaZNM-iShkSGvpXlhYzRowzg_pcH1BIe6aZjiRQ3XZSbOA/exec";
 
 /* ======================================================
+   SAFE HTML ESCAPE
+====================================================== */
+
+function safe(s){
+
+  return String(s).replace(
+
+    /[<>&"]/g,
+
+    c => ({
+      '<':'&lt;',
+      '>':'&gt;',
+      '&':'&amp;',
+      '"':'&quot;'
+    }[c])
+
+  );
+
+}
+
+/* ======================================================
    EMOJIS
 ====================================================== */
 
 const rainforestEmojis = [
+
   "🦜","🐒","🦋","🌿","🐸",
   "🍃","🦎","🌺","🐯","🪴",
   "🦁","🌈","🐍","🦚"
+
 ];
 
 function randomEmoji(){
@@ -1126,6 +1227,7 @@ function randomEmoji(){
       rainforestEmojis.length
     )
   ];
+
 }
 
 /* ======================================================
@@ -1180,10 +1282,17 @@ function updateOnlineStatus(){
   );
 
   if(navigator.onLine){
-    warning.style.display = "none";
+
+    warning.style.display =
+    "none";
+
   }
+
   else{
-    warning.style.display = "block";
+
+    warning.style.display =
+    "block";
+
   }
 
 }
@@ -1253,6 +1362,7 @@ async function searchStudents(){
     "⚠️ Please enter a valid 10-digit phone number.";
 
     button.disabled = false;
+
     isSearching = false;
 
     return;
@@ -1289,6 +1399,7 @@ async function searchStudents(){
     "⚠️ No internet connection detected.";
 
     button.disabled = false;
+
     isSearching = false;
 
     return;
@@ -1301,16 +1412,19 @@ async function searchStudents(){
   "0%";
 
   error.innerHTML = "";
+
   results.innerHTML = "";
 
   let progress = 0;
 
   const loadingMessages = [
+
     "🌿 Searching the rainforest...",
     "🦜 Calling the jungle guides...",
     "🍃 Looking for your campers...",
     "🐒 Exploring the waterfall trails...",
     "🌈 Almost there..."
+
   ];
 
   let messageIndex = 0;
@@ -1359,10 +1473,13 @@ async function searchStudents(){
 
     const response =
     await fetch(
+
       `${SHEET_URL}?phone=${encodeURIComponent(phone)}&t=${Date.now()}`,
+
       {
         signal:controller.signal
       }
+
     );
 
     clearTimeout(timeout);
@@ -1372,6 +1489,7 @@ async function searchStudents(){
       throw new Error(
         "Network response failed"
       );
+
     }
 
     const data =
@@ -1404,49 +1522,57 @@ async function searchStudents(){
       card.innerHTML = `
 
         <div class="student-name">
-          ${randomEmoji()} ${student.NAME}
+          ${randomEmoji()} ${safe(student.NAME)}
         </div>
 
         <div class="ticket-divider"></div>
 
         <div class="info-box">
+
           <div class="info-label">
             🚩 TEAM NAME
           </div>
 
           <div class="info-value">
-            ${student.TEAM}
+            ${safe(student.TEAM)}
           </div>
+
         </div>
 
         <div class="info-box">
+
           <div class="info-label">
             👥 CREW NO.
           </div>
 
           <div class="info-value">
-            ${student.CREW}
+            ${safe(student.CREW)}
           </div>
+
         </div>
 
         <div class="info-box">
+
           <div class="info-label">
             🎤 LEADER
           </div>
 
           <div class="info-value">
-            ${student.LEADER}
+            ${safe(student.LEADER)}
           </div>
+
         </div>
 
         <div class="info-box">
+
           <div class="info-label">
             🚌 PICKUP AT
           </div>
 
           <div class="info-value">
-            ${student.PICKUP}
+            ${safe(student.PICKUP)}
           </div>
+
         </div>
 
         <button
@@ -1515,6 +1641,7 @@ async function searchStudents(){
 
     error.innerHTML =
     "🌧️ Lost connection to the rainforest trails.";
+
   }
 
   finally{
@@ -1553,9 +1680,12 @@ async function shareStudentCard(button){
     if(navigator.share){
 
       await navigator.share({
+
         title:
         "Rainforest Falls Ticket",
+
         text:text
+
       });
 
     }
@@ -1692,11 +1822,13 @@ document.addEventListener(
     for(let i = 0; i < 2; i++){
 
       createTouchStar(
+
         touch.clientX +
         (Math.random() * 18 - 9),
 
         touch.clientY +
         (Math.random() * 18 - 9)
+
       );
 
     }
@@ -1734,7 +1866,9 @@ document.addEventListener(
 function celebrate(){
 
   const emojis = [
+
     "✨","🌿","🍃","🦋","🌈"
+
   ];
 
   const centerX =

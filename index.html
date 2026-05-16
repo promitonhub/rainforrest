@@ -1,93 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 />
+
 <title>RAINFOREST FALLS 🌿</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link
   href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
   rel="stylesheet"
 />
+
 <style>
+
+/* ======================================================
+   RESET
+====================================================== */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
+
 html{
   width:100%;
   overflow-x:hidden;
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
 }
-body
-  {
+
+body{
   width:100%;
   min-height:100vh;
   overflow-x:hidden;
   overflow-y:auto;
   position:relative;
-  font-family:'Fredoka', sans-serif;
+  font-family:'Fredoka',sans-serif;
   color:white;
   background:#000;
   -webkit-overflow-scrolling:touch;
+
   text-shadow:
   0 2px 12px rgba(0,0,0,0.40);
 }
-img
-  {
+
+img{
   display:block;
   max-width:100%;
 }
+
 /* ======================================================
    BACKGROUND
 ====================================================== */
+
 .bg-image{
   position:fixed;
   inset:0;
   width:100vw;
   height:100dvh;
+
   background-image:
   url('./ChatGppPT Image May 9, 2026, 10_52_48 PM (1).png');
+
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
+
   z-index:-30;
   pointer-events:none;
+
   transform:translate3d(0,0,0);
   will-change:transform;
 }
+
 .bg-overlay{
   position:fixed;
   inset:0;
   width:100%;
   height:100dvh;
+
   background:
   linear-gradient(
     to bottom,
     rgba(0,0,0,0.10),
     rgba(0,0,0,0.50)
   );
+
   z-index:-29;
   pointer-events:none;
 }
+
 /* ======================================================
    APP WRAPPER
 ====================================================== */
+
 .app{
   width:100%;
   max-width:430px;
   margin:0 auto;
+
   padding:
   env(safe-area-inset-top)
   18px
   env(safe-area-inset-bottom);
+
   position:relative;
   z-index:5;
 }
@@ -97,152 +121,283 @@ img
 ====================================================== */
 
 .macaw-overlay{
-
   position:fixed;
   left:-32px;
   top:22%;
   width:165px;
   z-index:12;
   pointer-events:none;
+
   will-change:transform;
+
   filter:
-  drop-shadow(0 16px 28px rgba(0,0,0,0.38));
-  animation:
-  macawFloat 17s ease-in-out infinite;
+  drop-shadow(
+    0 16px 28px rgba(0,0,0,0.38)
+  );
 }
-@keyframes macawFloat{
-  0%{
-    transform:
-    translateY(0px)
-    rotate(0deg);
-  }
-  25%{
-    transform:
-    translateY(-8px)
-    rotate(-1deg);
-  }
-  50%{
-    transform:
-    translateY(5px)
-    rotate(1deg);
-  }
-  75%{
-    transform:
-    translateY(-5px)
-    rotate(-0.5deg);
-  }
-  100%{
-    transform:
-    translateY(0px)
-    rotate(0deg);
-  }
-}
+
 /* ======================================================
    LEAVES
 ====================================================== */
+
 .leaf{
   position:fixed;
   top:-10vh;
+
   font-size:24px;
   opacity:0.60;
+
   pointer-events:none;
   z-index:1;
-  animation-name:leafFall;
-  animation-timing-function:linear;
-  animation-iteration-count:infinite;
 }
+
 .leaf1{
   left:8%;
-  animation-duration:12s;
 }
+
 .leaf2{
   left:72%;
-  animation-duration:16s;
-  animation-delay:2s;
 }
+
 .leaf3{
   left:45%;
-  animation-duration:20s;
-  animation-delay:4s;
 }
-@keyframes leafFall{
-  0%{
-    transform:
-    translate3d(0,-10vh,0)
-    rotate(0deg);
-  }
-  100%{
-    transform:
-    translate3d(-10px,120vh,0)
-    rotate(360deg);
-  }
-}
+
 /* ======================================================
    ORBS
 ====================================================== */
 
 .orb{
   position:fixed;
+
   border-radius:50%;
+
   background:
   rgba(255,255,255,0.08);
+
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
+
   z-index:1;
   pointer-events:none;
 }
+
 .orb1{
   width:100px;
   height:100px;
   top:15%;
   left:-40px;
-  animation:orbMove1 18s ease-in-out infinite;
 }
+
 .orb2{
   width:90px;
   height:90px;
   top:50%;
   right:-35px;
-  animation:orbMove2 22s ease-in-out infinite;
 }
+
 .orb3{
   width:70px;
   height:70px;
   bottom:5%;
   left:20%;
-  animation:orbMove3 26s ease-in-out infinite;
 }
-@keyframes orbMove1{
-  0%{transform:translate(0px,0px);}
-  25%{transform:translate(30px,40px);}
-  50%{transform:translate(70px,-20px);}
-  75%{transform:translate(20px,30px);}
-  100%{transform:translate(0px,0px);}
-}
-@keyframes orbMove2{
-  0%{transform:translate(0px,0px);}
-  25%{transform:translate(-50px,30px);}
-  50%{transform:translate(-20px,-40px);}
-  75%{transform:translate(-60px,10px);}
-  100%{transform:translate(0px,0px);}
-}
-@keyframes orbMove3{
-  0%{transform:translate(0px,0px);}
-  25%{transform:translate(40px,-30px);}
-  50%{transform:translate(-30px,-50px);}
-  75%{transform:translate(20px,20px);}
-  100%{transform:translate(0px,0px);}
-}
+
 /* ======================================================
-   ANIMATIONS
+   REDUCED MOTION SUPPORT
 ====================================================== */
+
+@media (prefers-reduced-motion: no-preference){
+
+  .macaw-overlay{
+    animation:
+    macawFloat 17s ease-in-out infinite;
+  }
+
+  .leaf{
+    animation-name:leafFall;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+
+  .leaf1{
+    animation-duration:12s;
+  }
+
+  .leaf2{
+    animation-duration:16s;
+    animation-delay:2s;
+  }
+
+  .leaf3{
+    animation-duration:20s;
+    animation-delay:4s;
+  }
+
+  .orb1{
+    animation:
+    orbMove1 18s ease-in-out infinite;
+  }
+
+  .orb2{
+    animation:
+    orbMove2 22s ease-in-out infinite;
+  }
+
+  .orb3{
+    animation:
+    orbMove3 26s ease-in-out infinite;
+  }
+
+  .top-logo{
+    animation:
+    pulse 4s ease-in-out infinite;
+  }
+
+  .hero-title{
+    animation:
+    pulse 5s ease-in-out infinite,
+    textReveal 1.2s ease;
+  }
+
+  button{
+    animation:
+    buttonGlow 3s infinite,
+    textReveal 1.8s ease;
+  }
+
+}
+
+/* ======================================================
+   KEYFRAMES
+====================================================== */
+
+@keyframes macawFloat{
+
+  0%{
+    transform:
+    translateY(0px)
+    rotate(0deg);
+  }
+
+  25%{
+    transform:
+    translateY(-8px)
+    rotate(-1deg);
+  }
+
+  50%{
+    transform:
+    translateY(5px)
+    rotate(1deg);
+  }
+
+  75%{
+    transform:
+    translateY(-5px)
+    rotate(-0.5deg);
+  }
+
+  100%{
+    transform:
+    translateY(0px)
+    rotate(0deg);
+  }
+}
+
+@keyframes leafFall{
+
+  0%{
+    transform:
+    translate3d(0,-10vh,0)
+    rotate(0deg);
+  }
+
+  100%{
+    transform:
+    translate3d(-10px,120vh,0)
+    rotate(360deg);
+  }
+}
+
+@keyframes orbMove1{
+
+  0%{
+    transform:translate(0px,0px);
+  }
+
+  25%{
+    transform:translate(30px,40px);
+  }
+
+  50%{
+    transform:translate(70px,-20px);
+  }
+
+  75%{
+    transform:translate(20px,30px);
+  }
+
+  100%{
+    transform:translate(0px,0px);
+  }
+}
+
+@keyframes orbMove2{
+
+  0%{
+    transform:translate(0px,0px);
+  }
+
+  25%{
+    transform:translate(-50px,30px);
+  }
+
+  50%{
+    transform:translate(-20px,-40px);
+  }
+
+  75%{
+    transform:translate(-60px,10px);
+  }
+
+  100%{
+    transform:translate(0px,0px);
+  }
+}
+
+@keyframes orbMove3{
+
+  0%{
+    transform:translate(0px,0px);
+  }
+
+  25%{
+    transform:translate(40px,-30px);
+  }
+
+  50%{
+    transform:translate(-30px,-50px);
+  }
+
+  75%{
+    transform:translate(20px,20px);
+  }
+
+  100%{
+    transform:translate(0px,0px);
+  }
+}
+
 @keyframes textReveal{
+
   0%{
     opacity:0;
     transform:
     translateY(25px)
     scale(0.96);
   }
+
   100%{
     opacity:1;
     transform:
@@ -250,368 +405,605 @@ img
     scale(1);
   }
 }
+
 @keyframes cardReveal{
+
   0%{
     opacity:0;
     transform:translateY(40px);
   }
+
   100%{
     opacity:1;
     transform:translateY(0px);
   }
 }
+
 @keyframes buttonGlow{
+
   0%{
     box-shadow:0 0 0px rgba(255,255,255,0);
   }
+
   50%{
-    box-shadow:0 0 22px rgba(255,255,255,0.20);
+    box-shadow:
+    0 0 22px rgba(255,255,255,0.20);
   }
+
   100%{
     box-shadow:0 0 0px rgba(255,255,255,0);
   }
 }
+
 @keyframes pulse{
 
-  0%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-  100%{transform:scale(1);}
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.05);
+  }
+
+  100%{
+    transform:scale(1);
+  }
 }
+
 /* ======================================================
    LOGO
 ====================================================== */
+
 .top-logo{
   width:120px;
   margin:0 auto;
   margin-top:4px;
   margin-bottom:-10px;
-  animation:pulse 4s ease-in-out infinite;
 }
+
 /* ======================================================
    HERO
 ====================================================== */
+
 .hero{
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+
   text-align:center;
+
   margin-top:-8px;
   margin-bottom:-10px;
 }
+
 .hero-title{
   width:100%;
   max-width:360px;
-  animation:
-  pulse 5s ease-in-out infinite,
-  textReveal 1.2s ease;
+
   filter:
-  drop-shadow(0 10px 25px rgba(0,0,0,0.45));
+  drop-shadow(
+    0 10px 25px rgba(0,0,0,0.45)
+  );
 }
+
 /* ======================================================
    GLASS CARD
 ====================================================== */
+
 .glass-card{
   width:100%;
   margin-top:8px;
+
   padding:24px 18px;
+
   border-radius:34px;
+
   background:
   rgba(255,255,255,0.12);
+
   border:
   1px solid rgba(255,255,255,0.18);
+
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
+
   box-shadow:
   0 12px 40px rgba(0,0,0,0.20);
+
   animation:
   cardReveal 1.2s ease;
 }
+
 .card-title{
   text-align:center;
   font-size:28px;
   margin-bottom:12px;
 }
+
 .card-subtitle{
   text-align:center;
   line-height:1.7;
   font-size:15px;
   margin-bottom:24px;
 }
+
 /* ======================================================
    INPUT
 ====================================================== */
+
 .input-group{
   position:relative;
   margin-bottom:18px;
-  animation:textReveal 1.4s ease;
+
+  animation:
+  textReveal 1.4s ease;
 }
+
 .input-icon{
   position:absolute;
-  top:50%;
+  top:24px;
   left:18px;
   transform:translateY(-50%);
 }
+
 input{
   width:100%;
+
   border:none;
   outline:none;
+
   border-radius:22px;
+
   padding:
   18px
   18px
   18px
   52px;
+
   background:
   rgba(255,255,255,0.14);
+
   color:white;
   font-size:16px;
+
   backdrop-filter:blur(8px);
+
   transition:0.25s ease;
 }
+
 input::placeholder{
   color:rgba(255,255,255,0.75);
 }
+
 input:focus{
   background:
   rgba(255,255,255,0.20);
+
   transform:scale(1.01);
 }
+
+/* ======================================================
+   DIGIT PROGRESS
+====================================================== */
+
+.digit-progress{
+  width:100%;
+  height:8px;
+
+  margin-top:10px;
+
+  border-radius:999px;
+  overflow:hidden;
+
+  background:
+  rgba(255,255,255,0.12);
+}
+
+.digit-fill{
+  width:0%;
+  height:100%;
+
+  border-radius:999px;
+
+  transition:0.2s ease;
+
+  background:
+  linear-gradient(
+    90deg,
+    #7dff8f,
+    #d8ffe1
+  );
+}
+
+.digit-count{
+  margin-top:6px;
+  text-align:right;
+
+  font-size:12px;
+  opacity:0.75;
+}
+
 /* ======================================================
    BUTTON
 ====================================================== */
 
 button{
   width:100%;
+
   border:none;
   border-radius:24px;
+
   padding:18px;
+
   background:
   linear-gradient(
     135deg,
     rgba(255,255,255,0.25),
     rgba(255,255,255,0.14)
   );
+
   color:white;
   font-size:18px;
   font-weight:700;
+
   cursor:pointer;
+
   backdrop-filter:blur(8px);
+
   transition:0.25s ease;
-  animation:
-  buttonGlow 3s infinite,
-  textReveal 1.8s ease;
 }
+
 button:active{
   transform:scale(0.98);
 }
+
 button:disabled{
   opacity:0.7;
   cursor:not-allowed;
 }
+
+/* ======================================================
+   OFFLINE WARNING
+====================================================== */
+
+.offline-warning{
+  display:none;
+
+  margin-top:14px;
+  padding:14px;
+
+  border-radius:18px;
+
+  background:
+  rgba(255,120,120,0.16);
+
+  border:
+  1px solid rgba(255,120,120,0.25);
+
+  text-align:center;
+  font-size:14px;
+  color:#ffe3e3;
+}
+
 /* ======================================================
    LOADING
 ====================================================== */
+
 .loading-container{
   display:none;
   margin-top:24px;
-  animation:textReveal 0.5s ease;
+
+  animation:
+  textReveal 0.5s ease;
 }
+
 .loading-text{
   text-align:center;
   margin-bottom:12px;
   font-size:15px;
 }
+
 .progress-bar{
   width:100%;
   height:14px;
+
   background:
   rgba(255,255,255,0.12);
+
   border-radius:999px;
   overflow:hidden;
 }
+
 .progress-fill{
   width:0%;
   height:100%;
+
   border-radius:999px;
+
   background:
   linear-gradient(
     90deg,
     #6eff8f,
     #c2ffcf
   );
+
   transition:width 0.25s linear;
 }
+
 /* ======================================================
    RESULTS
 ====================================================== */
+
 .results{
   margin-top:24px;
 }
+
 .student-card{
+  position:relative;
+
   background:
   rgba(255,255,255,0.12);
+
   border:
-  1px solid rgba(255,255,255,0.16);
+  2px dashed rgba(255,255,255,0.22);
+
   border-radius:28px;
-  padding:18px;
-  margin-bottom:18px;
+
+  padding:20px;
+  margin-bottom:22px;
+
   backdrop-filter:blur(10px);
-  animation:cardReveal 0.5s ease;
+
+  animation:
+  cardReveal 0.5s ease;
+
+  overflow:hidden;
 }
+
+.student-card::before,
+.student-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:34px;
+  height:34px;
+
+  background:#000;
+
+  border-radius:50%;
+
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.student-card::before{
+  left:-17px;
+}
+
+.student-card::after{
+  right:-17px;
+}
+
 .student-name{
   font-size:24px;
   margin-bottom:14px;
   text-align:center;
 }
+
+.ticket-divider{
+  width:100%;
+
+  border-top:
+  2px dashed rgba(255,255,255,0.20);
+
+  margin:
+  16px 0;
+}
+
 .info-box{
   background:
   rgba(255,255,255,0.10);
+
   border-radius:18px;
+
   padding:14px;
   margin-bottom:10px;
 }
+
 .info-label{
   font-size:12px;
   opacity:0.80;
   margin-bottom:4px;
 }
+
 .info-value{
   font-size:18px;
   font-weight:600;
 }
+
+.share-btn{
+  margin-top:14px;
+  font-size:15px;
+}
+
+/* ======================================================
+   ERROR
+====================================================== */
+
 .error{
   text-align:center;
   margin-top:18px;
   color:#ffd7d7;
 }
+
 /* ======================================================
    FOOTER
 ====================================================== */
+
 .footer{
   margin-top:36px;
   margin-bottom:30px;
   text-align:center;
-  animation:textReveal 2s ease;
+
+  animation:
+  textReveal 2s ease;
 }
+
 .footer-text{
   font-size:14px;
   line-height:1.7;
   margin-bottom:18px;
 }
+
 .footer-logo{
   display:flex;
   justify-content:center;
 }
+
 .footer-logo img{
   width:120px;
-  animation:pulse 5s ease-in-out infinite;
 }
+
 /* ======================================================
    TOUCH STARS
 ====================================================== */
 
 .touch-star{
   position:fixed;
+
   width:10px;
   height:10px;
+
   pointer-events:none;
   z-index:9999;
+
   opacity:0;
 }
+
 .touch-star::before{
+
   content:"✦";
+
   position:absolute;
   inset:0;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   color:white;
   font-size:12px;
+
   text-shadow:
-    0 0 6px rgba(255,255,255,0.9),
-    0 0 12px rgba(255,255,255,0.7),
-    0 0 18px rgba(255,255,255,0.5);
+  0 0 6px rgba(255,255,255,0.9),
+  0 0 12px rgba(255,255,255,0.7),
+  0 0 18px rgba(255,255,255,0.5);
 }
+
 @keyframes touchStarAnim{
+
   0%{
     opacity:0;
+
     transform:
-      translate(-50%,-50%)
-      scale(0.2)
-      rotate(0deg);
+    translate(-50%,-50%)
+    scale(0.2)
+    rotate(0deg);
   }
+
   20%{
     opacity:1;
 
     transform:
-      translate(-50%,-50%)
-      scale(1.4)
-      rotate(90deg);
+    translate(-50%,-50%)
+    scale(1.4)
+    rotate(90deg);
   }
+
   60%{
     opacity:0.85;
-    transform:
-      translate(
-        calc(-50% + var(--drift-x)),
-        calc(-50% + var(--drift-y))
-      )
-      scale(0.9)
-      rotate(220deg);
 
+    transform:
+    translate(
+      calc(-50% + var(--drift-x)),
+      calc(-50% + var(--drift-y))
+    )
+    scale(0.9)
+    rotate(220deg);
   }
+
   100%{
     opacity:0;
-    transform:
-      translate(
-        calc(-50% + (var(--drift-x) * 1.8)),
-        calc(-50% + (var(--drift-y) * 1.8))
-      )
-      scale(0.2)
-      rotate(360deg);
 
+    transform:
+    translate(
+      calc(-50% + (var(--drift-x) * 1.8)),
+      calc(-50% + (var(--drift-y) * 1.8))
+    )
+    scale(0.2)
+    rotate(360deg);
   }
 }
+
 </style>
 </head>
+
 <body>
+
 <div class="bg-image"></div>
 <div class="bg-overlay"></div>
+
 <div class="leaf leaf1">🌿</div>
 <div class="leaf leaf2">🍃</div>
 <div class="leaf leaf3">🌱</div>
+
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
+
 <img
   src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
   class="macaw-overlay"
   alt="Macaw"
 />
+
 <div class="app">
+
   <img
     src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
     class="top-logo"
     alt="Top Logo"
   >
+
   <section class="hero">
+
     <img
       src="./Layer 2.png"
       class="hero-title"
       alt="Rainforest Falls"
     >
+
   </section>
+
   <div class="glass-card">
+
     <div class="card-title">
       👋 Welcome Parent
     </div>
+
     <div class="card-subtitle">
       Enter your registered phone number below
     </div>
+
     <div class="input-group">
+
       <div class="input-icon">
         📞
       </div>
+
       <input
         type="tel"
         inputmode="numeric"
@@ -620,52 +1012,106 @@ button:disabled{
         placeholder="Phone Number"
         maxlength="10"
       >
+
+      <div class="digit-progress">
+        <div
+          class="digit-fill"
+          id="digitFill"
+        ></div>
+      </div>
+
+      <div
+        class="digit-count"
+        id="digitCount"
+      >
+        0 / 10 digits
+      </div>
+
     </div>
+
     <button id="searchButton">
       🌴 Search 🌴
     </button>
+
+    <div
+      class="offline-warning"
+      id="offlineWarning"
+    >
+      ⚠️ You appear to be offline. Please check your internet connection.
+    </div>
+
     <div
       class="loading-container"
       id="loadingContainer"
     >
+
       <div
         class="loading-text"
         id="loadingText"
       >
         🌿 Searching the rainforest...
       </div>
+
       <div class="progress-bar">
+
         <div
           class="progress-fill"
           id="progressFill"
         ></div>
+
       </div>
+
     </div>
-    <div class="error" id="error"></div>
-    <div class="results" id="results"></div>
+
+    <div
+      class="error"
+      id="error"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+    <div
+      class="results"
+      id="results"
+      role="status"
+      aria-live="polite"
+    ></div>
+
   </div>
+
   <div class="footer">
+
     <div class="footer-text">
       🌿 Rainforest Falls Kids Carnival ✨<br>
       Adventure, friendship & unforgettable memories 💚
     </div>
+
     <div class="footer-logo">
+
       <img
         src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
         alt="Footer Logo"
       >
+
     </div>
+
   </div>
+
 </div>
+
 <script>
+
 /* ======================================================
    GOOGLE SHEET API
 ====================================================== */
+
 const SHEET_URL =
 "https://script.google.com/macros/s/AKfycbz9g9Y2FGPw88OGdxuyCAurCaZNM-iShkSGvpXlhYzRowzg_pcH1BIe6aZjiRQ3XZSbOA/exec";
+
 /* ======================================================
    EMOJIS
 ====================================================== */
+
 const rainforestEmojis = [
   "🦜","🐒","🦋","🌿","🐸",
   "🍃","🦎","🌺","🐯","🪴",
@@ -673,6 +1119,7 @@ const rainforestEmojis = [
 ];
 
 function randomEmoji(){
+
   return rainforestEmojis[
     Math.floor(
       Math.random() *
@@ -680,74 +1127,184 @@ function randomEmoji(){
     )
   ];
 }
+
 /* ======================================================
-   SEARCH LOCK
+   SEARCH STATE
 ====================================================== */
+
 let isSearching = false;
+
+let lastSearchTime = 0;
+
+const SEARCH_COOLDOWN = 3000;
+
 /* ======================================================
    INPUT FILTER
 ====================================================== */
+
 document
 .getElementById("phone")
 .addEventListener("input", function(){
+
   this.value =
   this.value.replace(/[^0-9]/g, "");
+
+  document.getElementById(
+    "error"
+  ).innerHTML = "";
+
+  const length =
+  this.value.length;
+
+  document.getElementById(
+    "digitCount"
+  ).innerHTML =
+  `${length} / 10 digits`;
+
+  document.getElementById(
+    "digitFill"
+  ).style.width =
+  `${length * 10}%`;
+
 });
+
+/* ======================================================
+   ONLINE STATUS
+====================================================== */
+
+function updateOnlineStatus(){
+
+  const warning =
+  document.getElementById(
+    "offlineWarning"
+  );
+
+  if(navigator.onLine){
+    warning.style.display = "none";
+  }
+  else{
+    warning.style.display = "block";
+  }
+
+}
+
+window.addEventListener(
+  "online",
+  updateOnlineStatus
+);
+
+window.addEventListener(
+  "offline",
+  updateOnlineStatus
+);
+
+updateOnlineStatus();
+
 /* ======================================================
    SEARCH FUNCTION
-===================================================== */
+====================================================== */
+
 async function searchStudents(){
+
+  const now = Date.now();
+
+  if(
+    now - lastSearchTime <
+    SEARCH_COOLDOWN
+  ){
+
+    document.getElementById(
+      "error"
+    ).innerHTML =
+    "⏳ Please wait a moment before searching again.";
+
+    return;
+  }
+
+  lastSearchTime = now;
+
   if(isSearching){
     return;
   }
+
   isSearching = true;
 
   const button =
   document.getElementById(
     "searchButton"
   );
+
   button.disabled = true;
+
   const phone =
   document
   .getElementById("phone")
   .value
   .trim();
+
   const phoneRegex =
   /^[0-9]{10}$/;
+
   if(!phoneRegex.test(phone)){
-    document.getElementById("error").innerHTML =
+
+    document.getElementById(
+      "error"
+    ).innerHTML =
     "⚠️ Please enter a valid 10-digit phone number.";
+
     button.disabled = false;
     isSearching = false;
+
     return;
   }
+
   const loadingContainer =
   document.getElementById(
     "loadingContainer"
   );
+
   const progressFill =
   document.getElementById(
     "progressFill"
   );
+
   const loadingText =
   document.getElementById(
     "loadingText"
   );
+
   const error =
   document.getElementById(
     "error"
   );
+
   const results =
   document.getElementById(
     "results"
   );
+
+  if(!navigator.onLine){
+
+    error.innerHTML =
+    "⚠️ No internet connection detected.";
+
+    button.disabled = false;
+    isSearching = false;
+
+    return;
+  }
+
   loadingContainer.style.display =
   "block";
+
   progressFill.style.width =
   "0%";
+
   error.innerHTML = "";
   results.innerHTML = "";
+
   let progress = 0;
+
   const loadingMessages = [
     "🌿 Searching the rainforest...",
     "🦜 Calling the jungle guides...",
@@ -757,32 +1314,49 @@ async function searchStudents(){
   ];
 
   let messageIndex = 0;
+
   const interval = setInterval(() => {
+
     progress += 8;
+
     if(progress > 92){
       progress = 92;
     }
+
     progressFill.style.width =
     progress + "%";
+
     if(progress % 20 === 0){
+
       messageIndex++;
+
       if(
         loadingMessages[messageIndex]
       ){
+
         loadingText.innerHTML =
         loadingMessages[
           messageIndex
         ];
+
       }
+
     }
+
   },180);
+
   try{
+
     const controller =
     new AbortController();
+
     const timeout =
     setTimeout(() => {
+
       controller.abort();
+
     },15000);
+
     const response =
     await fetch(
       `${SHEET_URL}?phone=${encodeURIComponent(phone)}&t=${Date.now()}`,
@@ -790,186 +1364,390 @@ async function searchStudents(){
         signal:controller.signal
       }
     );
+
     clearTimeout(timeout);
+
     if(!response.ok){
+
       throw new Error(
         "Network response failed"
       );
     }
+
     const data =
     await response.json();
-    clearInterval(interval);
+
     progressFill.style.width =
     "100%";
+
     const matchedStudents =
     data;
+
     results.innerHTML = "";
+
     if(matchedStudents.length === 0){
+
       error.innerHTML =
       "🌧️ No entries were found with this phone number.";
+
       return;
     }
+
     matchedStudents.forEach(student => {
+
       const card =
       document.createElement("div");
+
       card.className =
       "student-card";
+
       card.innerHTML = `
+
         <div class="student-name">
           ${randomEmoji()} ${student.NAME}
         </div>
+
+        <div class="ticket-divider"></div>
+
         <div class="info-box">
           <div class="info-label">
             🚩 TEAM NAME
           </div>
+
           <div class="info-value">
             ${student.TEAM}
           </div>
         </div>
+
         <div class="info-box">
           <div class="info-label">
             👥 CREW NO.
           </div>
+
           <div class="info-value">
             ${student.CREW}
           </div>
         </div>
+
         <div class="info-box">
           <div class="info-label">
             🎤 LEADER
           </div>
+
           <div class="info-value">
             ${student.LEADER}
           </div>
         </div>
+
         <div class="info-box">
           <div class="info-label">
-            🚌 PICKUP At
+            🚌 PICKUP AT
           </div>
+
           <div class="info-value">
             ${student.PICKUP}
           </div>
         </div>
+
+        <button
+          class="share-btn"
+          onclick="shareStudentCard(this)"
+        >
+          📤 Share Ticket
+        </button>
+
       `;
+
       results.appendChild(card);
+
     });
+
+    const resetButton =
+    document.createElement("button");
+
+    resetButton.innerHTML =
+    "🔍 Search Again";
+
+    resetButton.style.marginTop =
+    "12px";
+
+    resetButton.addEventListener(
+      "click",
+      () => {
+
+        results.innerHTML = "";
+
+        document.getElementById(
+          "phone"
+        ).value = "";
+
+        document.getElementById(
+          "digitFill"
+        ).style.width = "0%";
+
+        document.getElementById(
+          "digitCount"
+        ).innerHTML =
+        "0 / 10 digits";
+
+        document.getElementById(
+          "phone"
+        ).focus();
+
+      }
+    );
+
+    results.appendChild(
+      resetButton
+    );
+
     celebrate();
+
+    if(navigator.vibrate){
+      navigator.vibrate(200);
+    }
+
   }
+
   catch(err){
+
     console.error(err);
+
     error.innerHTML =
     "🌧️ Lost connection to the rainforest trails.";
   }
+
   finally{
+
     clearInterval(interval);
+
     setTimeout(() => {
+
       loadingContainer.style.display =
       "none";
+
       button.disabled = false;
+
       isSearching = false;
+
     },500);
+
   }
+
 }
+
+/* ======================================================
+   SHARE FUNCTION
+====================================================== */
+
+async function shareStudentCard(button){
+
+  const card =
+  button.closest(".student-card");
+
+  const text =
+  card.innerText;
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share({
+        title:
+        "Rainforest Falls Ticket",
+        text:text
+      });
+
+    }
+
+    else{
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+      alert(
+        "Ticket copied to clipboard!"
+      );
+
+    }
+
+  }
+
+  catch(err){
+
+    console.error(err);
+
+  }
+
+}
+
 /* ======================================================
    BUTTON CLICK
 ====================================================== */
+
 document
 .getElementById("searchButton")
-.addEventListener("click", searchStudents);
+.addEventListener(
+  "click",
+  searchStudents
+);
+
 /* ======================================================
    ENTER KEY
 ====================================================== */
+
 document
 .getElementById("phone")
-.addEventListener("keydown", function(event){
-  if(event.key === "Enter"){
-    searchStudents();
+.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+      searchStudents();
+    }
+
   }
-});
+);
+
 /* ======================================================
    TOUCH STARS
 ====================================================== */
+
 let activeStars = 0;
+
 const MAX_STARS = 70;
+
 function createTouchStar(x, y){
+
   if(activeStars >= MAX_STARS){
     return;
   }
+
   activeStars++;
+
   const star =
   document.createElement("div");
+
   star.className =
   "touch-star";
+
   star.style.left =
   x + "px";
+
   star.style.top =
   y + "px";
+
   const driftX =
   (Math.random() * 50 - 25) + "px";
+
   const driftY =
   (Math.random() * 50 - 25) + "px";
+
   star.style.setProperty(
     "--drift-x",
     driftX
   );
+
   star.style.setProperty(
     "--drift-y",
     driftY
   );
+
   const duration =
   700 + Math.random() * 500;
+
   star.style.animation =
   `touchStarAnim ${duration}ms ease-out forwards`;
+
   document.body.appendChild(star);
+
   setTimeout(() => {
+
     star.remove();
+
     activeStars--;
+
   }, duration + 100);
+
 }
+
 let lastTouchTime = 0;
-document.addEventListener("touchmove", (e) => {
-  const now = Date.now();
-  if(now - lastTouchTime < 35){
-    return;
-  }
-  lastTouchTime = now;
-  const touch =
-  e.touches[0];
-  for(let i = 0; i < 2; i++){
-    createTouchStar(
-      touch.clientX +
-      (Math.random() * 18 - 9),
-      touch.clientY +
-      (Math.random() * 18 - 9)
-    );
-  }
-}, { passive:true });
+
+document.addEventListener(
+  "touchmove",
+  (e) => {
+
+    const now = Date.now();
+
+    if(now - lastTouchTime < 35){
+      return;
+    }
+
+    lastTouchTime = now;
+
+    const touch =
+    e.touches[0];
+
+    for(let i = 0; i < 2; i++){
+
+      createTouchStar(
+        touch.clientX +
+        (Math.random() * 18 - 9),
+
+        touch.clientY +
+        (Math.random() * 18 - 9)
+      );
+
+    }
+
+  },
+  { passive:true }
+);
+
 let lastMouseTime = 0;
-document.addEventListener("mousemove", (e) => {
-  const now = Date.now();
-  if(now - lastMouseTime < 40){
-    return;
+
+document.addEventListener(
+  "mousemove",
+  (e) => {
+
+    const now = Date.now();
+
+    if(now - lastMouseTime < 40){
+      return;
+    }
+
+    lastMouseTime = now;
+
+    createTouchStar(
+      e.clientX,
+      e.clientY
+    );
+
   }
-  lastMouseTime = now;
-  createTouchStar(
-    e.clientX,
-    e.clientY
-  );
-});
+);
+
 /* ======================================================
    CELEBRATION
 ====================================================== */
+
 function celebrate(){
+
   const emojis = [
     "✨","🌿","🍃","🦋","🌈"
   ];
+
   const centerX =
   window.innerWidth / 2;
+
   const centerY =
   window.innerHeight * 0.42;
+
   for(let i = 0; i < 18; i++){
+
     const particle =
     document.createElement("div");
+
     particle.innerHTML =
     emojis[
       Math.floor(
@@ -977,57 +1755,85 @@ function celebrate(){
         emojis.length
       )
     ];
+
     particle.style.position =
     "fixed";
+
     particle.style.left =
     centerX + "px";
+
     particle.style.top =
     centerY + "px";
+
     particle.style.fontSize =
     (18 + Math.random() * 10)
     + "px";
+
     particle.style.pointerEvents =
     "none";
+
     particle.style.zIndex =
     "9999";
+
     particle.style.opacity =
     "0";
+
     particle.style.transition =
     "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease";
+
     document.body.appendChild(
       particle
     );
+
     const angle =
     Math.random() *
     Math.PI * 2;
+
     const distance =
     80 + Math.random() * 140;
+
     const x =
     Math.cos(angle) *
     distance;
+
     const y =
     Math.sin(angle) *
     distance;
+
     setTimeout(() => {
+
       particle.style.opacity =
       "1";
+
       particle.style.transform = `
         translate(${x}px, ${y}px)
         scale(1.4)
         rotate(${Math.random()*120-60}deg)
       `;
+
     },30);
+
     setTimeout(() => {
+
       particle.style.opacity =
       "0";
+
       particle.style.transform +=
       " scale(0.6)";
+
     },1800);
+
     setTimeout(() => {
+
       particle.remove();
+
     },3000);
+
   }
+
 }
+
 </script>
+
 </body>
 </html>

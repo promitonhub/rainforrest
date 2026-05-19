@@ -401,9 +401,10 @@ input{
 
 @media (prefers-reduced-motion: no-preference){
 
-  .macaw-overlay{
+   .macaw-overlay{
     animation:
-    macawFloat 17s ease-in-out infinite;
+    macawEntrance 1.4s cubic-bezier(0.22,1,0.36,1) forwards,
+    macawFloat 17s ease-in-out infinite 1.5s;
   }
 
   .leaf{

@@ -426,61 +426,34 @@ input{
 ====================================================== */
 
 /* ======================================================
-   MACAW WRAPPER
-====================================================== */
-
-.macaw-wrapper{
-  position:fixed;
-
-  left:-90px;
-  top:22%;
-
-  z-index:12;
-
-  opacity:0;
-
-  transform:
-  translateX(-140px)
-  scale(0.85);
-
-  will-change:
-  transform,
-  opacity;
-
-  pointer-events:none;
-}
-
-@media (prefers-reduced-motion: no-preference){
-
-  .macaw-wrapper{
-    animation:
-    macawEntrance 1.4s cubic-bezier(0.22,1,0.36,1) forwards;
-  }
-
-}
-
-/* ======================================================
-   MACAW IMAGE
+   MACAW
 ====================================================== */
 
 .macaw-overlay{
+  position:fixed;
+
+  left:-32px;
+  top:22%;
+
   width:165px;
 
+  z-index:12;
+
   pointer-events:none;
+
+  will-change:transform;
 
   filter:
   drop-shadow(
     0 16px 28px rgba(0,0,0,0.38)
   );
-
-  will-change:transform;
 }
 
 @media (prefers-reduced-motion: no-preference){
 
   .macaw-overlay{
     animation:
-    macawFloat 17s ease-in-out infinite 1.5s;
+    macawFloat 17s ease-in-out infinite;
   }
 
 }
@@ -627,42 +600,40 @@ input{
    KEYFRAMES
 ====================================================== */
 
- @keyframes macawEntrance{
+@keyframes macawFloat{
 
   0%{
-    opacity:0;
-
     transform:
-    translateX(-140px)
-    scale(0.85);
+    translateY(0px)
+    rotate(0deg);
   }
 
-  55%{
-    opacity:1;
-
+  25%{
     transform:
-    translateX(18px)
-    scale(1.03);
+    translateY(-8px)
+    rotate(-1deg);
+  }
+
+  50%{
+    transform:
+    translateY(5px)
+    rotate(1deg);
   }
 
   75%{
-    opacity:1;
-
     transform:
-    translateX(-6px)
-    scale(0.99);
+    translateY(-5px)
+    rotate(-0.5deg);
   }
 
   100%{
-    opacity:1;
-
     transform:
-    translateX(0px)
-    scale(1);
+    translateY(0px)
+    rotate(0deg);
   }
 
 }
-@keyframes leafFall{
+  @keyframes leafFall{
 
   0%{
     transform:
@@ -1361,13 +1332,11 @@ button:disabled{
   <div class="skeleton-bg"></div>
 
   <!-- MACAW SILHOUETTE -->
-  <div class="macaw-wrapper">
   <img
     src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
     class="skeleton-macaw"
     draggable="false"
   >
-    </div>
 
   <div class="skeleton-app">
 

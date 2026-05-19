@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link
+
+<link
   rel="icon"
   type="image/png"
   href="./favicon.png"
 />
-  <link
+
+<link
   rel="apple-touch-icon"
   href="./favicon.png"
 />
@@ -20,7 +22,9 @@
   name="apple-mobile-web-app-status-bar-style"
   content="black-translucent"
 />
+
 <meta charset="UTF-8" />
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -32,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-  href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap&display=swap"
   rel="stylesheet"
 />
 
@@ -62,18 +66,159 @@ body{
   overflow-x:hidden;
   overflow-y:auto;
   position:relative;
+
   font-family:'Fredoka',sans-serif;
+
   color:white;
   background:#000;
+
   -webkit-overflow-scrolling:touch;
+
+  -webkit-touch-callout:none;
 
   text-shadow:
   0 2px 12px rgba(0,0,0,0.40);
 }
 
+/* ======================================================
+   IMAGE PROTECTION
+====================================================== */
+
 img{
   display:block;
   max-width:100%;
+
+  -webkit-user-drag:none;
+  user-select:none;
+
+  -webkit-touch-callout:none;
+
+  pointer-events:none;
+}
+
+button,
+input{
+  pointer-events:auto;
+}
+
+/* ======================================================
+   SKELETON SCREEN
+====================================================== */
+
+.skeleton-screen{
+  position:fixed;
+  inset:0;
+
+  z-index:999999;
+
+  background:
+  linear-gradient(
+    180deg,
+    #07140c,
+    #0d1d14
+  );
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+
+  padding:40px 20px;
+
+  transition:
+  opacity 0.8s ease,
+  visibility 0.8s ease;
+}
+
+.skeleton-screen.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.skeleton-shimmer{
+  position:relative;
+  overflow:hidden;
+
+  background:
+  rgba(255,255,255,0.08);
+
+  border-radius:24px;
+}
+
+.skeleton-shimmer::after{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:-150%;
+
+  width:120%;
+  height:100%;
+
+  background:
+  linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+
+  animation:
+  skeletonMove 1.5s infinite;
+}
+
+@keyframes skeletonMove{
+
+  100%{
+    left:150%;
+  }
+
+}
+
+.skeleton-logo{
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+
+  margin-top:18px;
+  margin-bottom:28px;
+}
+
+.skeleton-hero{
+  width:90%;
+  max-width:340px;
+  height:120px;
+
+  margin-bottom:30px;
+}
+
+.skeleton-card{
+  width:100%;
+  max-width:390px;
+
+  padding:24px;
+
+  border-radius:32px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.skeleton-line{
+  height:18px;
+  margin-bottom:16px;
+
+  border-radius:999px;
+}
+
+.skeleton-line.large{
+  height:52px;
+  border-radius:24px;
 }
 
 /* ======================================================
@@ -83,6 +228,7 @@ img{
 .bg-image{
   position:fixed;
   inset:0;
+
   width:100vw;
   height:100dvh;
 
@@ -94,15 +240,18 @@ img{
   background-repeat:no-repeat;
 
   z-index:-30;
+
   pointer-events:none;
 
   transform:translate3d(0,0,0);
+
   will-change:transform;
 }
 
 .bg-overlay{
   position:fixed;
   inset:0;
+
   width:100%;
   height:100dvh;
 
@@ -114,6 +263,7 @@ img{
   );
 
   z-index:-29;
+
   pointer-events:none;
 }
 
@@ -124,6 +274,7 @@ img{
 .app{
   width:100%;
   max-width:430px;
+
   margin:0 auto;
 
   padding:
@@ -141,10 +292,14 @@ img{
 
 .macaw-overlay{
   position:fixed;
+
   left:-32px;
   top:22%;
+
   width:165px;
+
   z-index:12;
+
   pointer-events:none;
 
   will-change:transform;
@@ -164,9 +319,11 @@ img{
   top:-10vh;
 
   font-size:24px;
+
   opacity:0.60;
 
   pointer-events:none;
+
   z-index:1;
 }
 
@@ -198,12 +355,14 @@ img{
   -webkit-backdrop-filter:blur(12px);
 
   z-index:1;
+
   pointer-events:none;
 }
 
 .orb1{
   width:100px;
   height:100px;
+
   top:15%;
   left:-40px;
 }
@@ -211,6 +370,7 @@ img{
 .orb2{
   width:90px;
   height:90px;
+
   top:50%;
   right:-35px;
 }
@@ -218,6 +378,7 @@ img{
 .orb3{
   width:70px;
   height:70px;
+
   bottom:5%;
   left:20%;
 }
@@ -322,6 +483,7 @@ img{
     translateY(0px)
     rotate(0deg);
   }
+
 }
 
 @keyframes leafFall{
@@ -337,6 +499,7 @@ img{
     translate3d(-10px,120vh,0)
     rotate(360deg);
   }
+
 }
 
 @keyframes orbMove1{
@@ -360,6 +523,7 @@ img{
   100%{
     transform:translate(0px,0px);
   }
+
 }
 
 @keyframes orbMove2{
@@ -383,6 +547,7 @@ img{
   100%{
     transform:translate(0px,0px);
   }
+
 }
 
 @keyframes orbMove3{
@@ -406,12 +571,14 @@ img{
   100%{
     transform:translate(0px,0px);
   }
+
 }
 
 @keyframes textReveal{
 
   0%{
     opacity:0;
+
     transform:
     translateY(25px)
     scale(0.96);
@@ -419,10 +586,12 @@ img{
 
   100%{
     opacity:1;
+
     transform:
     translateY(0px)
     scale(1);
   }
+
 }
 
 @keyframes cardReveal{
@@ -436,6 +605,7 @@ img{
     opacity:1;
     transform:translateY(0px);
   }
+
 }
 
 @keyframes buttonGlow{
@@ -452,6 +622,7 @@ img{
   100%{
     box-shadow:0 0 0px rgba(255,255,255,0);
   }
+
 }
 
 @keyframes pulse{
@@ -467,6 +638,7 @@ img{
   100%{
     transform:scale(1);
   }
+
 }
 
 /* ======================================================
@@ -475,7 +647,9 @@ img{
 
 .top-logo{
   width:120px;
+
   margin:0 auto;
+
   margin-top:4px;
   margin-bottom:-10px;
 }
@@ -512,6 +686,7 @@ img{
 
 .glass-card{
   width:100%;
+
   margin-top:8px;
 
   padding:24px 18px;
@@ -536,14 +711,19 @@ img{
 
 .card-title{
   text-align:center;
+
   font-size:28px;
+
   margin-bottom:12px;
 }
 
 .card-subtitle{
   text-align:center;
+
   line-height:1.7;
+
   font-size:15px;
+
   margin-bottom:24px;
 }
 
@@ -553,6 +733,7 @@ img{
 
 .input-group{
   position:relative;
+
   margin-bottom:18px;
 
   animation:
@@ -561,8 +742,10 @@ img{
 
 .input-icon{
   position:absolute;
+
   top:24px;
   left:18px;
+
   transform:translateY(-50%);
 }
 
@@ -584,6 +767,7 @@ input{
   rgba(255,255,255,0.14);
 
   color:white;
+
   font-size:16px;
 
   backdrop-filter:blur(8px);
@@ -613,6 +797,7 @@ input:focus{
   margin-top:10px;
 
   border-radius:999px;
+
   overflow:hidden;
 
   background:
@@ -637,9 +822,11 @@ input:focus{
 
 .digit-count{
   margin-top:6px;
+
   text-align:right;
 
   font-size:12px;
+
   opacity:0.75;
 }
 
@@ -651,6 +838,7 @@ button{
   width:100%;
 
   border:none;
+
   border-radius:24px;
 
   padding:18px;
@@ -663,6 +851,7 @@ button{
   );
 
   color:white;
+
   font-size:18px;
   font-weight:700;
 
@@ -701,7 +890,9 @@ button:disabled{
   1px solid rgba(255,120,120,0.25);
 
   text-align:center;
+
   font-size:14px;
+
   color:#ffe3e3;
 }
 
@@ -711,6 +902,7 @@ button:disabled{
 
 .loading-container{
   display:none;
+
   margin-top:24px;
 
   animation:
@@ -719,7 +911,9 @@ button:disabled{
 
 .loading-text{
   text-align:center;
+
   margin-bottom:12px;
+
   font-size:15px;
 }
 
@@ -731,6 +925,7 @@ button:disabled{
   rgba(255,255,255,0.12);
 
   border-radius:999px;
+
   overflow:hidden;
 }
 
@@ -770,6 +965,7 @@ button:disabled{
   border-radius:28px;
 
   padding:20px;
+
   margin-bottom:22px;
 
   backdrop-filter:blur(10px);
@@ -795,6 +991,7 @@ button:disabled{
   border-radius:50%;
 
   top:50%;
+
   transform:translateY(-50%);
 }
 
@@ -808,7 +1005,9 @@ button:disabled{
 
 .student-name{
   font-size:24px;
+
   margin-bottom:14px;
+
   text-align:center;
 }
 
@@ -829,12 +1028,15 @@ button:disabled{
   border-radius:18px;
 
   padding:14px;
+
   margin-bottom:10px;
 }
 
 .info-label{
   font-size:12px;
+
   opacity:0.80;
+
   margin-bottom:4px;
 }
 
@@ -843,18 +1045,15 @@ button:disabled{
   font-weight:600;
 }
 
-.share-btn{
-  margin-top:14px;
-  font-size:15px;
-}
-
 /* ======================================================
    ERROR
 ====================================================== */
 
 .error{
   text-align:center;
+
   margin-top:18px;
+
   color:#ffd7d7;
 }
 
@@ -865,6 +1064,7 @@ button:disabled{
 .footer{
   margin-top:36px;
   margin-bottom:30px;
+
   text-align:center;
 
   animation:
@@ -873,7 +1073,9 @@ button:disabled{
 
 .footer-text{
   font-size:14px;
+
   line-height:1.7;
+
   margin-bottom:18px;
 }
 
@@ -897,6 +1099,7 @@ button:disabled{
   height:10px;
 
   pointer-events:none;
+
   z-index:9999;
 
   opacity:0;
@@ -914,6 +1117,7 @@ button:disabled{
   justify-content:center;
 
   color:white;
+
   font-size:12px;
 
   text-shadow:
@@ -965,12 +1169,43 @@ button:disabled{
     scale(0.2)
     rotate(360deg);
   }
+
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- ======================================================
+     SKELETON LOADER
+====================================================== -->
+
+<div class="skeleton-screen" id="skeletonScreen">
+
+  <div class="skeleton-logo skeleton-shimmer"></div>
+
+  <div class="skeleton-hero skeleton-shimmer"></div>
+
+  <div class="skeleton-card">
+
+    <div class="skeleton-line skeleton-shimmer"></div>
+
+    <div class="skeleton-line skeleton-shimmer"></div>
+
+    <div
+      class="skeleton-line large skeleton-shimmer"
+      style="margin-top:24px;"
+    ></div>
+
+    <div
+      class="skeleton-line large skeleton-shimmer"
+      style="margin-top:20px;"
+    ></div>
+
+  </div>
+
+</div>
 
 <div class="bg-image"></div>
 <div class="bg-overlay"></div>
@@ -987,6 +1222,7 @@ button:disabled{
   src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
   class="macaw-overlay"
   alt="Macaw"
+  draggable="false"
 />
 
 <div class="app">
@@ -995,6 +1231,7 @@ button:disabled{
     src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
     class="top-logo"
     alt="Top Logo"
+    draggable="false"
   >
 
   <section class="hero">
@@ -1003,6 +1240,7 @@ button:disabled{
       src="./Layer 2.png"
       class="hero-title"
       alt="Rainforest Falls"
+      draggable="false"
     >
 
   </section>
@@ -1033,10 +1271,12 @@ button:disabled{
       >
 
       <div class="digit-progress">
+
         <div
           class="digit-fill"
           id="digitFill"
         ></div>
+
       </div>
 
       <div
@@ -1110,6 +1350,7 @@ button:disabled{
       <img
         src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
         alt="Footer Logo"
+        draggable="false"
       >
 
     </div>
@@ -1119,6 +1360,55 @@ button:disabled{
 </div>
 
 <script>
+
+/* ======================================================
+   PAGE LOADER
+====================================================== */
+
+window.addEventListener(
+  "load",
+  () => {
+
+    setTimeout(() => {
+
+      document
+      .getElementById("skeletonScreen")
+      .classList.add("hidden");
+
+    },700);
+
+  }
+);
+
+/* ======================================================
+   IMAGE PROTECTION
+====================================================== */
+
+document.addEventListener(
+  "contextmenu",
+  (e) => {
+
+    if(
+      e.target.tagName === "IMG"
+    ){
+      e.preventDefault();
+    }
+
+  }
+);
+
+document.addEventListener(
+  "dragstart",
+  (e) => {
+
+    if(
+      e.target.tagName === "IMG"
+    ){
+      e.preventDefault();
+    }
+
+  }
+);
 
 /* ======================================================
    GOOGLE SHEET API
@@ -1272,6 +1562,7 @@ async function searchStudents(){
     "⚠️ Please enter a valid 10-digit phone number.";
 
     button.disabled = false;
+
     isSearching = false;
 
     return;
@@ -1308,6 +1599,7 @@ async function searchStudents(){
     "⚠️ No internet connection detected.";
 
     button.disabled = false;
+
     isSearching = false;
 
     return;
@@ -1320,6 +1612,7 @@ async function searchStudents(){
   "0%";
 
   error.innerHTML = "";
+
   results.innerHTML = "";
 
   let progress = 0;
@@ -1468,13 +1761,6 @@ async function searchStudents(){
           </div>
         </div>
 
-        <button
-          class="share-btn"
-          onclick="shareStudentCard(this)"
-        >
-          📤 Share Ticket
-        </button>
-
       `;
 
       results.appendChild(card);
@@ -1550,52 +1836,6 @@ async function searchStudents(){
       isSearching = false;
 
     },500);
-
-  }
-
-}
-
-/* ======================================================
-   SHARE FUNCTION
-====================================================== */
-
-async function shareStudentCard(button){
-
-  const card =
-  button.closest(".student-card");
-
-  const text =
-  card.innerText;
-
-  try{
-
-    if(navigator.share){
-
-      await navigator.share({
-        title:
-        "Rainforest Falls Ticket",
-        text:text
-      });
-
-    }
-
-    else{
-
-      await navigator.clipboard.writeText(
-        text
-      );
-
-      alert(
-        "Ticket copied to clipboard!"
-      );
-
-    }
-
-  }
-
-  catch(err){
-
-    console.error(err);
 
   }
 

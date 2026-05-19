@@ -2,43 +2,18 @@
 <html lang="en">
 <head>
 
-<link
-  rel="icon"
-  type="image/png"
-  href="./favicon.png"
-/>
-
-<link
-  rel="apple-touch-icon"
-  href="./favicon.png"
-/>
-
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes"
-/>
-
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="black-translucent"
-/>
-
-<meta charset="UTF-8" />
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-/>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+<link rel="apple-touch-icon" href="./favicon.png"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 
 <title>RAINFOREST FALLS 🌿</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
 <style>
 
@@ -66,18 +41,12 @@ body{
   overflow-x:hidden;
   overflow-y:auto;
   position:relative;
-
   font-family:'Fredoka',sans-serif;
-
   color:white;
   background:#000;
-
   -webkit-overflow-scrolling:touch;
-
   -webkit-touch-callout:none;
-
-  text-shadow:
-  0 2px 12px rgba(0,0,0,0.40);
+  text-shadow:0 2px 12px rgba(0,0,0,0.40);
 }
 
 /* ======================================================
@@ -87,273 +56,194 @@ body{
 img{
   display:block;
   max-width:100%;
-
   -webkit-user-drag:none;
   user-select:none;
-
   -webkit-touch-callout:none;
-
   pointer-events:none;
 }
 
-button,
-input{
+button,input{
   pointer-events:auto;
 }
 
 /* ======================================================
-   SKELETON SCREEN
+   LOADER SCREEN  ← replaces old skeleton-screen
 ====================================================== */
 
-/* ======================================================
-   TRUE IMAGE SKELETON
-====================================================== */
-
-.skeleton-screen{
+.loader-screen{
   position:fixed;
   inset:0;
-
   z-index:999999;
-
   overflow:hidden;
-
-  background:
-  linear-gradient(
-    180deg,
-    #07140c 0%,
-    #0d1d14 100%
-  );
-
-  transition:
-  opacity 0.8s ease,
-  visibility 0.8s ease;
+  background:linear-gradient(180deg,#07140c 0%,#0d1d14 100%);
+  transition:opacity 0.8s ease, visibility 0.8s ease;
 }
 
-.skeleton-screen.hidden{
+.loader-screen.hidden{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
 }
 
-/* ======================================================
-   BACKGROUND GLOW
-====================================================== */
-
-.skeleton-bg{
+/* Canopy glow */
+.loader-glow{
   position:absolute;
   inset:0;
-
-  background:
-  radial-gradient(
-    circle at top left,
-    rgba(255,255,255,0.05),
-    transparent 40%
-  );
+  background:radial-gradient(circle at top left, rgba(255,255,255,0.07), transparent 38%);
 }
 
-/* ======================================================
-   APP LAYOUT
-====================================================== */
+/* Atmospheric orbs */
+.loader-orb{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  pointer-events:none;
+}
 
-.skeleton-app{
+.loader-orb-1{ width:120px; height:120px; top:11%; left:-52px; }
+.loader-orb-2{ width:90px;  height:90px;  right:-28px; top:48%; }
+.loader-orb-3{ width:72px;  height:72px;  bottom:8%; left:18%; }
+
+/* Static leaves — no animation until real app wakes */
+.loader-leaf{
+  position:absolute;
+  font-size:26px;
+  opacity:0.55;
+  pointer-events:none;
+}
+
+.loader-leaf-1{ top:18%; right:14%; }
+.loader-leaf-2{ top:58%; left:8%; }
+.loader-leaf-3{ bottom:16%; right:20%; }
+
+/* Macaw — left edge, partially off-canvas */
+.loader-macaw{
+  position:fixed;
+  left:-32px;
+  top:22%;
+  width:165px;
+  z-index:4;
+  pointer-events:none;
+  filter:drop-shadow(0 0 34px rgba(10,40,20,0.5));
+  transform-origin:center;
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .loader-macaw{
+    animation:macawBreath 4s ease-in-out infinite;
+  }
+}
+
+@keyframes macawBreath{
+  0%  { transform:scale(1); }
+  50% { transform:scale(1.03); }
+  100%{ transform:scale(1); }
+}
+
+/* Center column */
+.loader-column{
+  position:relative;
   width:100%;
   max-width:430px;
-
   margin:0 auto;
-
-  padding:
-  env(safe-area-inset-top)
-  18px
-  env(safe-area-inset-bottom);
-
-  position:relative;
+  padding:calc(env(safe-area-inset-top) + 8px) 18px env(safe-area-inset-bottom);
+  z-index:5;
 }
 
-/* ======================================================
-   REAL IMAGE SILHOUETTES
-====================================================== */
-
-.skeleton-logo,
-.skeleton-hero,
-.skeleton-footer-logo,
-.skeleton-macaw{
-
-  opacity:0.20;
-
-  filter:
-  grayscale(1)
-  brightness(0.45)
-  contrast(0.9)
-  blur(2px);
-
-  animation:
-  skeletonPulse 2s ease-in-out infinite;
+/* Shared pulse */
+@keyframes softPulse{
+  0%  { opacity:0.62; }
+  50% { opacity:1; }
+  100%{ opacity:0.62; }
 }
 
-@keyframes skeletonPulse{
-
-  0%{
-    opacity:0.16;
-  }
-
-  50%{
-    opacity:0.28;
-  }
-
-  100%{
-    opacity:0.16;
-  }
-
+.loader-logo{
+  width:118px;
+  margin:0 auto -8px auto;
+  opacity:0.85;
+  animation:softPulse 3s ease-in-out infinite;
 }
 
-/* ======================================================
-   MACAW
-====================================================== */
-
-.skeleton-macaw{
-  position:absolute;
-
-  left:-28px;
-  top:22%;
-
-  width:150px;
-
-  transform:
-  rotate(-8deg);
-}
-
-/* ======================================================
-   TOP LOGO
-====================================================== */
-
-.skeleton-logo{
-  width:120px;
-
-  margin:
-  4px auto -10px auto;
-}
-
-/* ======================================================
-   HERO
-====================================================== */
-
-.skeleton-hero{
+.loader-hero{
   width:100%;
   max-width:360px;
-
-  margin:
-  0 auto;
+  display:block;
+  margin:0 auto;
+  animation:softPulse 3s ease-in-out infinite;
 }
 
-/* ======================================================
-   GLASS CARD
-====================================================== */
-
-.skeleton-card{
-  width:100%;
-
-  margin-top:8px;
-
-  padding:24px 18px;
-
+/* Glass skeleton card */
+.loader-card{
+  margin-top:10px;
   border-radius:34px;
-
-  background:
-  rgba(255,255,255,0.08);
-
-  border:
-  1px solid rgba(255,255,255,0.08);
-
-  backdrop-filter:blur(12px);
+  padding:24px 18px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.10);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
 }
 
-/* ======================================================
-   TEXT PLACEHOLDERS
-====================================================== */
-
-.skeleton-title,
-.skeleton-subtitle,
-.skeleton-input,
-.skeleton-button,
-.skeleton-footer-line{
-
-  background:
-  rgba(255,255,255,0.08);
-
-  animation:
-  skeletonPulse 2s ease-in-out infinite;
-}
-
-.skeleton-title{
-  width:65%;
-  height:30px;
-
+.loader-bar,
+.loader-input-skel,
+.loader-button-skel,
+.loader-footer-bar{
+  background:rgba(255,255,255,0.08);
   border-radius:999px;
-
-  margin:
-  0 auto 18px auto;
+  animation:skeletonBreathe 2s ease-in-out infinite;
 }
 
-.skeleton-subtitle{
-  width:100%;
-  height:16px;
+/* Organic desync — each bar slightly offset */
+.loader-bar:nth-child(1)      { animation-delay:0s; }
+.loader-bar:nth-child(2)      { animation-delay:0.2s; }
+.loader-bar:nth-child(3)      { animation-delay:0.45s; }
+.loader-input-skel             { animation-delay:0.6s; }
+.loader-button-skel            { animation-delay:0.8s; }
 
-  border-radius:999px;
-
-  margin-bottom:12px;
+@keyframes skeletonBreathe{
+  0%  { opacity:0.42; }
+  50% { opacity:0.82; }
+  100%{ opacity:0.42; }
 }
 
-.skeleton-subtitle.short{
-  width:70%;
+/* Card bar sizing */
+.loader-title-bar{ width:60%; height:28px; margin:0 auto 20px auto; }
+.loader-subtitle-bar{ width:100%; height:15px; margin-bottom:12px; }
+.loader-subtitle-bar.short{ width:72%; margin-bottom:26px; }
+.loader-input-skel{ width:100%; height:58px; border-radius:22px; margin-bottom:18px; }
+.loader-button-skel{ width:100%; height:60px; border-radius:24px; }
 
-  margin-bottom:26px;
-}
-
-.skeleton-input{
-  width:100%;
-  height:58px;
-
-  border-radius:22px;
-
-  margin-bottom:18px;
-}
-
-.skeleton-button{
-  width:100%;
-  height:60px;
-
-  border-radius:24px;
-}
-
-/* ======================================================
-   FOOTER
-====================================================== */
-
-.skeleton-footer{
-  margin-top:36px;
-
+/* Footer skeleton */
+.loader-footer{
+  margin-top:34px;
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-.skeleton-footer-line{
-  width:82%;
-  height:14px;
+.loader-footer-bar{ width:82%; height:14px; margin-bottom:10px; }
+.loader-footer-bar.short{ width:58%; }
 
-  border-radius:999px;
-
-  margin-bottom:10px;
-}
-
-.skeleton-footer-line.short{
-  width:58%;
-}
-
-.skeleton-footer-logo{
-  width:110px;
-
+.loader-footer-logo{
+  width:112px;
   margin-top:14px;
+  opacity:0.45;
+  filter:grayscale(1) saturate(0);
+  animation:softPulse 3s ease-in-out infinite;
+}
+
+/* ======================================================
+   REAL APP WRAPPER  ← fades in after loader hides
+====================================================== */
+
+.real-app{
+  opacity:0;
+  transition:opacity 1.1s ease;
+}
+
+.real-app.visible{
+  opacity:1;
 }
 
 /* ======================================================
@@ -363,42 +253,25 @@ input{
 .bg-image{
   position:fixed;
   inset:0;
-
   width:100vw;
   height:100dvh;
-
-  background-image:
-  url('./ChatGppPT Image May 9, 2026, 10_52_48 PM (1).png');
-
+  background-image:url('./ChatGppPT Image May 9, 2026, 10_52_48 PM (1).png');
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
-
   z-index:-30;
-
   pointer-events:none;
-
   transform:translate3d(0,0,0);
-
   will-change:transform;
 }
 
 .bg-overlay{
   position:fixed;
   inset:0;
-
   width:100%;
   height:100dvh;
-
-  background:
-  linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.10),
-    rgba(0,0,0,0.50)
-  );
-
+  background:linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.50));
   z-index:-29;
-
   pointer-events:none;
 }
 
@@ -409,54 +282,33 @@ input{
 .app{
   width:100%;
   max-width:430px;
-
   margin:0 auto;
-
-  padding:
-  env(safe-area-inset-top)
-  18px
-  env(safe-area-inset-bottom);
-
+  padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom);
   position:relative;
   z-index:5;
 }
 
 /* ======================================================
-   MACAW
-====================================================== */
-
-/* ======================================================
-   MACAW
+   MACAW — identical position to loader macaw
 ====================================================== */
 
 .macaw-overlay{
   position:fixed;
-
   left:-32px;
   top:22%;
-
   width:165px;
-
   z-index:12;
-
   pointer-events:none;
-
   will-change:transform;
-
-  filter:
-  drop-shadow(
-    0 16px 28px rgba(0,0,0,0.38)
-  );
+  filter:drop-shadow(0 0 34px rgba(10,40,20,0.5));
 }
 
-@media (prefers-reduced-motion: no-preference){
-
+@media (prefers-reduced-motion:no-preference){
   .macaw-overlay{
-    animation:
-    macawFloat 17s ease-in-out infinite;
+    animation:macawFloat 17s ease-in-out infinite;
   }
-
 }
+
 /* ======================================================
    LEAVES
 ====================================================== */
@@ -464,27 +316,15 @@ input{
 .leaf{
   position:fixed;
   top:-10vh;
-
   font-size:24px;
-
   opacity:0.60;
-
   pointer-events:none;
-
   z-index:1;
 }
 
-.leaf1{
-  left:8%;
-}
-
-.leaf2{
-  left:72%;
-}
-
-.leaf3{
-  left:45%;
-}
+.leaf1{ left:8%; }
+.leaf2{ left:72%; }
+.leaf3{ left:45%; }
 
 /* ======================================================
    ORBS
@@ -492,299 +332,117 @@ input{
 
 .orb{
   position:fixed;
-
   border-radius:50%;
-
-  background:
-  rgba(255,255,255,0.08);
-
+  background:rgba(255,255,255,0.08);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-
   z-index:1;
-
   pointer-events:none;
 }
 
-.orb1{
-  width:100px;
-  height:100px;
+.orb1{ width:100px; height:100px; top:15%; left:-40px; }
+.orb2{ width:90px;  height:90px;  top:50%; right:-35px; }
+.orb3{ width:70px;  height:70px;  bottom:5%; left:20%; }
 
-  top:15%;
-  left:-40px;
+/* ======================================================
+   KEYFRAMES (live app)
+====================================================== */
+
+@keyframes macawEntrance{
+  0%{
+    opacity:0;
+    transform:translateX(-60px) rotate(-15deg);
+  }
+  100%{
+    opacity:1;
+    transform:translateX(0px) rotate(0deg);
+  }
 }
 
-.orb2{
-  width:90px;
-  height:90px;
-
-  top:50%;
-  right:-35px;
+@keyframes macawFloat{
+  0%  { transform:translateY(0px)  rotate(0deg); }
+  25% { transform:translateY(-8px) rotate(-1deg); }
+  50% { transform:translateY(5px)  rotate(1deg); }
+  75% { transform:translateY(-5px) rotate(-0.5deg); }
+  100%{ transform:translateY(0px)  rotate(0deg); }
 }
 
-.orb3{
-  width:70px;
-  height:70px;
+@keyframes leafFall{
+  0%  { transform:translate3d(0,-10vh,0)   rotate(0deg); }
+  100%{ transform:translate3d(-10px,120vh,0) rotate(360deg); }
+}
 
-  bottom:5%;
-  left:20%;
+@keyframes orbMove1{
+  0%  { transform:translate(0px,0px); }
+  25% { transform:translate(30px,40px); }
+  50% { transform:translate(70px,-20px); }
+  75% { transform:translate(20px,30px); }
+  100%{ transform:translate(0px,0px); }
+}
+
+@keyframes orbMove2{
+  0%  { transform:translate(0px,0px); }
+  25% { transform:translate(-50px,30px); }
+  50% { transform:translate(-20px,-40px); }
+  75% { transform:translate(-60px,10px); }
+  100%{ transform:translate(0px,0px); }
+}
+
+@keyframes orbMove3{
+  0%  { transform:translate(0px,0px); }
+  25% { transform:translate(40px,-30px); }
+  50% { transform:translate(-30px,-50px); }
+  75% { transform:translate(20px,20px); }
+  100%{ transform:translate(0px,0px); }
+}
+
+@keyframes textReveal{
+  0%  { opacity:0; transform:translateY(25px) scale(0.96); }
+  100%{ opacity:1; transform:translateY(0px)  scale(1); }
+}
+
+@keyframes cardReveal{
+  0%  { opacity:0; transform:translateY(40px); }
+  100%{ opacity:1; transform:translateY(0px); }
+}
+
+@keyframes buttonGlow{
+  0%  { box-shadow:0 0 0px  rgba(255,255,255,0); }
+  50% { box-shadow:0 0 22px rgba(255,255,255,0.20); }
+  100%{ box-shadow:0 0 0px  rgba(255,255,255,0); }
+}
+
+@keyframes pulse{
+  0%  { transform:scale(1); }
+  50% { transform:scale(1.05); }
+  100%{ transform:scale(1); }
 }
 
 /* ======================================================
-   REDUCED MOTION SUPPORT
+   REDUCED MOTION — live page animations
 ====================================================== */
 
-@media (prefers-reduced-motion: no-preference){
+@media (prefers-reduced-motion:no-preference){
 
-   .macaw-overlay{
+  .macaw-overlay{
     animation:
     macawEntrance 1.4s cubic-bezier(0.22,1,0.36,1) forwards,
     macawFloat 17s ease-in-out infinite 1.5s;
   }
 
-  .leaf{
-    animation-name:leafFall;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
-  }
+  .leaf{ animation-name:leafFall; animation-timing-function:linear; animation-iteration-count:infinite; }
+  .leaf1{ animation-duration:12s; }
+  .leaf2{ animation-duration:16s; animation-delay:2s; }
+  .leaf3{ animation-duration:20s; animation-delay:4s; }
 
-  .leaf1{
-    animation-duration:12s;
-  }
+  .orb1{ animation:orbMove1 18s ease-in-out infinite; }
+  .orb2{ animation:orbMove2 22s ease-in-out infinite; }
+  .orb3{ animation:orbMove3 26s ease-in-out infinite; }
 
-  .leaf2{
-    animation-duration:16s;
-    animation-delay:2s;
-  }
+  .top-logo  { animation:pulse 4s ease-in-out infinite; }
+  .hero-title{ animation:pulse 5s ease-in-out infinite, textReveal 1.2s ease; }
 
-  .leaf3{
-    animation-duration:20s;
-    animation-delay:4s;
-  }
-
-  .orb1{
-    animation:
-    orbMove1 18s ease-in-out infinite;
-  }
-
-  .orb2{
-    animation:
-    orbMove2 22s ease-in-out infinite;
-  }
-
-  .orb3{
-    animation:
-    orbMove3 26s ease-in-out infinite;
-  }
-
-  .top-logo{
-    animation:
-    pulse 4s ease-in-out infinite;
-  }
-
-  .hero-title{
-    animation:
-    pulse 5s ease-in-out infinite,
-    textReveal 1.2s ease;
-  }
-
-  button{
-    animation:
-    buttonGlow 3s infinite,
-    textReveal 1.8s ease;
-  }
-
-}
-
-/* ======================================================
-   KEYFRAMES
-====================================================== */
-
-@keyframes macawFloat{
-
-  0%{
-    transform:
-    translateY(0px)
-    rotate(0deg);
-  }
-
-  25%{
-    transform:
-    translateY(-8px)
-    rotate(-1deg);
-  }
-
-  50%{
-    transform:
-    translateY(5px)
-    rotate(1deg);
-  }
-
-  75%{
-    transform:
-    translateY(-5px)
-    rotate(-0.5deg);
-  }
-
-  100%{
-    transform:
-    translateY(0px)
-    rotate(0deg);
-  }
-
-}
-  @keyframes leafFall{
-
-  0%{
-    transform:
-    translate3d(0,-10vh,0)
-    rotate(0deg);
-  }
-
-  100%{
-    transform:
-    translate3d(-10px,120vh,0)
-    rotate(360deg);
-  }
-
-}
-
-@keyframes orbMove1{
-
-  0%{
-    transform:translate(0px,0px);
-  }
-
-  25%{
-    transform:translate(30px,40px);
-  }
-
-  50%{
-    transform:translate(70px,-20px);
-  }
-
-  75%{
-    transform:translate(20px,30px);
-  }
-
-  100%{
-    transform:translate(0px,0px);
-  }
-
-}
-
-@keyframes orbMove2{
-
-  0%{
-    transform:translate(0px,0px);
-  }
-
-  25%{
-    transform:translate(-50px,30px);
-  }
-
-  50%{
-    transform:translate(-20px,-40px);
-  }
-
-  75%{
-    transform:translate(-60px,10px);
-  }
-
-  100%{
-    transform:translate(0px,0px);
-  }
-
-}
-
-@keyframes orbMove3{
-
-  0%{
-    transform:translate(0px,0px);
-  }
-
-  25%{
-    transform:translate(40px,-30px);
-  }
-
-  50%{
-    transform:translate(-30px,-50px);
-  }
-
-  75%{
-    transform:translate(20px,20px);
-  }
-
-  100%{
-    transform:translate(0px,0px);
-  }
-
-}
-
-@keyframes textReveal{
-
-  0%{
-    opacity:0;
-
-    transform:
-    translateY(25px)
-    scale(0.96);
-  }
-
-  100%{
-    opacity:1;
-
-    transform:
-    translateY(0px)
-    scale(1);
-  }
-
-}
-
-@keyframes cardReveal{
-
-  0%{
-    opacity:0;
-    transform:translateY(40px);
-  }
-
-  100%{
-    opacity:1;
-    transform:translateY(0px);
-  }
-
-}
-
-@keyframes buttonGlow{
-
-  0%{
-    box-shadow:0 0 0px rgba(255,255,255,0);
-  }
-
-  50%{
-    box-shadow:
-    0 0 22px rgba(255,255,255,0.20);
-  }
-
-  100%{
-    box-shadow:0 0 0px rgba(255,255,255,0);
-  }
-
-}
-
-@keyframes pulse{
-
-  0%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.05);
-  }
-
-  100%{
-    transform:scale(1);
-  }
+  button{ animation:buttonGlow 3s infinite, textReveal 1.8s ease; }
 
 }
 
@@ -794,9 +452,7 @@ input{
 
 .top-logo{
   width:120px;
-
   margin:0 auto;
-
   margin-top:4px;
   margin-bottom:-10px;
 }
@@ -810,9 +466,7 @@ input{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-
   text-align:center;
-
   margin-top:-8px;
   margin-bottom:-10px;
 }
@@ -820,11 +474,7 @@ input{
 .hero-title{
   width:100%;
   max-width:360px;
-
-  filter:
-  drop-shadow(
-    0 10px 25px rgba(0,0,0,0.45)
-  );
+  filter:drop-shadow(0 10px 25px rgba(0,0,0,0.45));
 }
 
 /* ======================================================
@@ -833,44 +483,27 @@ input{
 
 .glass-card{
   width:100%;
-
   margin-top:8px;
-
   padding:24px 18px;
-
   border-radius:34px;
-
-  background:
-  rgba(255,255,255,0.12);
-
-  border:
-  1px solid rgba(255,255,255,0.18);
-
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.18);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-
-  box-shadow:
-  0 12px 40px rgba(0,0,0,0.20);
-
-  animation:
-  cardReveal 1.2s ease;
+  box-shadow:0 12px 40px rgba(0,0,0,0.20);
+  animation:cardReveal 1.2s ease;
 }
 
 .card-title{
   text-align:center;
-
   font-size:28px;
-
   margin-bottom:12px;
 }
 
 .card-subtitle{
   text-align:center;
-
   line-height:1.7;
-
   font-size:15px;
-
   margin-bottom:24px;
 }
 
@@ -880,56 +513,34 @@ input{
 
 .input-group{
   position:relative;
-
   margin-bottom:18px;
-
-  animation:
-  textReveal 1.4s ease;
+  animation:textReveal 1.4s ease;
 }
 
 .input-icon{
   position:absolute;
-
   top:24px;
   left:18px;
-
   transform:translateY(-50%);
 }
 
 input{
   width:100%;
-
   border:none;
   outline:none;
-
   border-radius:22px;
-
-  padding:
-  18px
-  18px
-  18px
-  52px;
-
-  background:
-  rgba(255,255,255,0.14);
-
+  padding:18px 18px 18px 52px;
+  background:rgba(255,255,255,0.14);
   color:white;
-
   font-size:16px;
-
   backdrop-filter:blur(8px);
-
   transition:0.25s ease;
 }
 
-input::placeholder{
-  color:rgba(255,255,255,0.75);
-}
+input::placeholder{ color:rgba(255,255,255,0.75); }
 
 input:focus{
-  background:
-  rgba(255,255,255,0.20);
-
+  background:rgba(255,255,255,0.20);
   transform:scale(1.01);
 }
 
@@ -940,40 +551,24 @@ input:focus{
 .digit-progress{
   width:100%;
   height:8px;
-
   margin-top:10px;
-
   border-radius:999px;
-
   overflow:hidden;
-
-  background:
-  rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.12);
 }
 
 .digit-fill{
   width:0%;
   height:100%;
-
   border-radius:999px;
-
   transition:0.2s ease;
-
-  background:
-  linear-gradient(
-    90deg,
-    #7dff8f,
-    #d8ffe1
-  );
+  background:linear-gradient(90deg,#7dff8f,#d8ffe1);
 }
 
 .digit-count{
   margin-top:6px;
-
   text-align:right;
-
   font-size:12px;
-
   opacity:0.75;
 }
 
@@ -983,40 +578,20 @@ input:focus{
 
 button{
   width:100%;
-
   border:none;
-
   border-radius:24px;
-
   padding:18px;
-
-  background:
-  linear-gradient(
-    135deg,
-    rgba(255,255,255,0.25),
-    rgba(255,255,255,0.14)
-  );
-
+  background:linear-gradient(135deg,rgba(255,255,255,0.25),rgba(255,255,255,0.14));
   color:white;
-
   font-size:18px;
   font-weight:700;
-
   cursor:pointer;
-
   backdrop-filter:blur(8px);
-
   transition:0.25s ease;
 }
 
-button:active{
-  transform:scale(0.98);
-}
-
-button:disabled{
-  opacity:0.7;
-  cursor:not-allowed;
-}
+button:active{ transform:scale(0.98); }
+button:disabled{ opacity:0.7; cursor:not-allowed; }
 
 /* ======================================================
    OFFLINE WARNING
@@ -1024,22 +599,13 @@ button:disabled{
 
 .offline-warning{
   display:none;
-
   margin-top:14px;
   padding:14px;
-
   border-radius:18px;
-
-  background:
-  rgba(255,120,120,0.16);
-
-  border:
-  1px solid rgba(255,120,120,0.25);
-
+  background:rgba(255,120,120,0.16);
+  border:1px solid rgba(255,120,120,0.25);
   text-align:center;
-
   font-size:14px;
-
   color:#ffe3e3;
 }
 
@@ -1049,46 +615,29 @@ button:disabled{
 
 .loading-container{
   display:none;
-
   margin-top:24px;
-
-  animation:
-  textReveal 0.5s ease;
+  animation:textReveal 0.5s ease;
 }
 
 .loading-text{
   text-align:center;
-
   margin-bottom:12px;
-
   font-size:15px;
 }
 
 .progress-bar{
   width:100%;
   height:14px;
-
-  background:
-  rgba(255,255,255,0.12);
-
+  background:rgba(255,255,255,0.12);
   border-radius:999px;
-
   overflow:hidden;
 }
 
 .progress-fill{
   width:0%;
   height:100%;
-
   border-radius:999px;
-
-  background:
-  linear-gradient(
-    90deg,
-    #6eff8f,
-    #c2ffcf
-  );
-
+  background:linear-gradient(90deg,#6eff8f,#c2ffcf);
   transition:width 0.25s linear;
 }
 
@@ -1096,94 +645,57 @@ button:disabled{
    RESULTS
 ====================================================== */
 
-.results{
-  margin-top:24px;
-}
+.results{ margin-top:24px; }
 
 .student-card{
   position:relative;
-
-  background:
-  rgba(255,255,255,0.12);
-
-  border:
-  2px dashed rgba(255,255,255,0.22);
-
+  background:rgba(255,255,255,0.12);
+  border:2px dashed rgba(255,255,255,0.22);
   border-radius:28px;
-
   padding:20px;
-
   margin-bottom:22px;
-
   backdrop-filter:blur(10px);
-
-  animation:
-  cardReveal 0.5s ease;
-
+  animation:cardReveal 0.5s ease;
   overflow:hidden;
 }
 
 .student-card::before,
 .student-card::after{
-
   content:"";
-
   position:absolute;
-
   width:34px;
   height:34px;
-
   background:#000;
-
   border-radius:50%;
-
   top:50%;
-
   transform:translateY(-50%);
 }
 
-.student-card::before{
-  left:-17px;
-}
-
-.student-card::after{
-  right:-17px;
-}
+.student-card::before{ left:-17px; }
+.student-card::after{ right:-17px; }
 
 .student-name{
   font-size:24px;
-
   margin-bottom:14px;
-
   text-align:center;
 }
 
 .ticket-divider{
   width:100%;
-
-  border-top:
-  2px dashed rgba(255,255,255,0.20);
-
-  margin:
-  16px 0;
+  border-top:2px dashed rgba(255,255,255,0.20);
+  margin:16px 0;
 }
 
 .info-box{
-  background:
-  rgba(255,255,255,0.10);
-
+  background:rgba(255,255,255,0.10);
   border-radius:18px;
-
   padding:14px;
-
   margin-bottom:10px;
 }
 
 .info-label{
   font-size:12px;
-
   opacity:0.80;
-
   margin-bottom:4px;
 }
 
@@ -1192,15 +704,18 @@ button:disabled{
   font-weight:600;
 }
 
+.share-btn{
+  margin-top:14px;
+  font-size:15px;
+}
+
 /* ======================================================
    ERROR
 ====================================================== */
 
 .error{
   text-align:center;
-
   margin-top:18px;
-
   color:#ffd7d7;
 }
 
@@ -1211,18 +726,13 @@ button:disabled{
 .footer{
   margin-top:36px;
   margin-bottom:30px;
-
   text-align:center;
-
-  animation:
-  textReveal 2s ease;
+  animation:textReveal 2s ease;
 }
 
 .footer-text{
   font-size:14px;
-
   line-height:1.7;
-
   margin-bottom:18px;
 }
 
@@ -1231,9 +741,7 @@ button:disabled{
   justify-content:center;
 }
 
-.footer-logo img{
-  width:120px;
-}
+.footer-logo img{ width:120px; }
 
 /* ======================================================
    TOUCH STARS
@@ -1241,144 +749,100 @@ button:disabled{
 
 .touch-star{
   position:fixed;
-
   width:10px;
   height:10px;
-
   pointer-events:none;
-
   z-index:9999;
-
   opacity:0;
 }
 
 .touch-star::before{
-
   content:"✦";
-
   position:absolute;
   inset:0;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   color:white;
-
   font-size:12px;
-
-  text-shadow:
-  0 0 6px rgba(255,255,255,0.9),
-  0 0 12px rgba(255,255,255,0.7),
-  0 0 18px rgba(255,255,255,0.5);
+  text-shadow:0 0 6px rgba(255,255,255,0.9), 0 0 12px rgba(255,255,255,0.7), 0 0 18px rgba(255,255,255,0.5);
 }
 
 @keyframes touchStarAnim{
+  0%  { opacity:0; transform:translate(-50%,-50%) scale(0.2) rotate(0deg); }
+  20% { opacity:1; transform:translate(-50%,-50%) scale(1.4) rotate(90deg); }
+  60% { opacity:0.85; transform:translate(calc(-50% + var(--drift-x)),calc(-50% + var(--drift-y))) scale(0.9) rotate(220deg); }
+  100%{ opacity:0; transform:translate(calc(-50% + (var(--drift-x) * 1.8)),calc(-50% + (var(--drift-y) * 1.8))) scale(0.2) rotate(360deg); }
+}
 
-  0%{
-    opacity:0;
+/* ======================================================
+   REDUCED MOTION — global off switch
+====================================================== */
 
-    transform:
-    translate(-50%,-50%)
-    scale(0.2)
-    rotate(0deg);
-  }
-
-  20%{
-    opacity:1;
-
-    transform:
-    translate(-50%,-50%)
-    scale(1.4)
-    rotate(90deg);
-  }
-
-  60%{
-    opacity:0.85;
-
-    transform:
-    translate(
-      calc(-50% + var(--drift-x)),
-      calc(-50% + var(--drift-y))
-    )
-    scale(0.9)
-    rotate(220deg);
-  }
-
-  100%{
-    opacity:0;
-
-    transform:
-    translate(
-      calc(-50% + (var(--drift-x) * 1.8)),
-      calc(-50% + (var(--drift-y) * 1.8))
-    )
-    scale(0.2)
-    rotate(360deg);
-  }
-
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
 }
 
 </style>
 </head>
 
 <body>
+
 <!-- ======================================================
-     TRUE IMAGE SKELETON
+     LOADER SCREEN
 ====================================================== -->
 
-<div class="skeleton-screen" id="skeletonScreen">
+<div class="loader-screen" id="loaderScreen">
 
-  <div class="skeleton-bg"></div>
+  <div class="loader-glow"></div>
 
-  <!-- MACAW SILHOUETTE -->
+  <div class="loader-orb loader-orb-1"></div>
+  <div class="loader-orb loader-orb-2"></div>
+  <div class="loader-orb loader-orb-3"></div>
+
+  <div class="loader-leaf loader-leaf-1">🌿</div>
+  <div class="loader-leaf loader-leaf-2">🍃</div>
+  <div class="loader-leaf loader-leaf-3">🌱</div>
+
+  <!-- MACAW — left edge, partially off-canvas -->
   <img
     src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
-    class="skeleton-macaw"
+    class="loader-macaw"
     draggable="false"
   >
 
-  <div class="skeleton-app">
+  <div class="loader-column">
 
-    <!-- TOP LOGO -->
     <img
       src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
-      class="skeleton-logo"
+      class="loader-logo"
       draggable="false"
     >
 
-    <!-- HERO IMAGE -->
     <img
       src="./Layer 2.png"
-      class="skeleton-hero"
+      class="loader-hero"
       draggable="false"
     >
 
-    <!-- GLASS CARD -->
-    <div class="skeleton-card">
+    <div class="loader-card">
 
-      <div class="skeleton-title"></div>
-
-      <div class="skeleton-subtitle"></div>
-
-      <div class="skeleton-subtitle short"></div>
-
-      <div class="skeleton-input"></div>
-
-      <div class="skeleton-button"></div>
+      <div class="loader-bar loader-title-bar"></div>
+      <div class="loader-bar loader-subtitle-bar"></div>
+      <div class="loader-bar loader-subtitle-bar short"></div>
+      <div class="loader-input-skel"></div>
+      <div class="loader-button-skel"></div>
 
     </div>
 
-    <!-- FOOTER -->
-    <div class="skeleton-footer">
+    <div class="loader-footer">
 
-      <div class="skeleton-footer-line"></div>
-
-      <div class="skeleton-footer-line short"></div>
+      <div class="loader-footer-bar"></div>
+      <div class="loader-footer-bar short"></div>
 
       <img
         src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
-        class="skeleton-footer-logo"
+        class="loader-footer-logo"
         draggable="false"
       >
 
@@ -1388,152 +852,110 @@ button:disabled{
 
 </div>
 
-<div class="bg-image"></div>
-<div class="bg-overlay"></div>
+<!-- ======================================================
+     REAL APP  ← fades in as loader fades out
+====================================================== -->
 
-<div class="leaf leaf1">🌿</div>
-<div class="leaf leaf2">🍃</div>
-<div class="leaf leaf3">🌱</div>
+<div class="real-app" id="realApp">
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+  <div class="bg-image"></div>
+  <div class="bg-overlay"></div>
 
-<img
-  src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
-  class="macaw-overlay"
-  alt="Macaw"
-  draggable="false"
-/>
+  <div class="leaf leaf1">🌿</div>
+  <div class="leaf leaf2">🍃</div>
+  <div class="leaf leaf3">🌱</div>
 
-<div class="app">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
 
+  <!-- MACAW — exact same position as loader macaw for seamless dissolve -->
   <img
-    src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
-    class="top-logo"
-    alt="Top Logo"
+    src="./ChatGPT Image May 12, 2026, 02_00_29 PM (1).png"
+    class="macaw-overlay"
+    alt="Macaw"
     draggable="false"
-  >
+  />
 
-  <section class="hero">
+  <div class="app">
 
     <img
-      src="./Layer 2.png"
-      class="hero-title"
-      alt="Rainforest Falls"
+      src="https://ci3.googleusercontent.com/mail-sig/AIorK4zgCzgfj7mV4jDsEo9FA5FmwI06SwLkAVgJCEq7bIl3YhJP7b3nWRiK7P6-SZF-rvpXWiy5olswOQwI"
+      class="top-logo"
+      alt="Top Logo"
       draggable="false"
     >
 
-  </section>
-
-  <div class="glass-card">
-
-    <div class="card-title">
-      👋 Welcome Parent
-    </div>
-
-    <div class="card-subtitle">
-      Enter the Phone Number According to the Registration Form
-    </div>
-
-    <div class="input-group">
-
-      <div class="input-icon">
-        📞
-      </div>
-
-      <input
-        type="tel"
-        inputmode="numeric"
-        autocomplete="tel"
-        id="phone"
-        placeholder="Phone Number"
-        maxlength="10"
-      >
-
-      <div class="digit-progress">
-
-        <div
-          class="digit-fill"
-          id="digitFill"
-        ></div>
-
-      </div>
-
-      <div
-        class="digit-count"
-        id="digitCount"
-      >
-        0 / 10 digits
-      </div>
-
-    </div>
-
-    <button id="searchButton">
-      🌴 Search 🌴
-    </button>
-
-    <div
-      class="offline-warning"
-      id="offlineWarning"
-    >
-      ⚠️ You appear to be offline. Please check your internet connection.
-    </div>
-
-    <div
-      class="loading-container"
-      id="loadingContainer"
-    >
-
-      <div
-        class="loading-text"
-        id="loadingText"
-      >
-        🌿 Searching the rainforest...
-      </div>
-
-      <div class="progress-bar">
-
-        <div
-          class="progress-fill"
-          id="progressFill"
-        ></div>
-
-      </div>
-
-    </div>
-
-    <div
-      class="error"
-      id="error"
-      role="status"
-      aria-live="polite"
-    ></div>
-
-    <div
-      class="results"
-      id="results"
-      role="status"
-      aria-live="polite"
-    ></div>
-
-  </div>
-
-  <div class="footer">
-
-    <div class="footer-text">
-      🌿 Rainforest Falls Kids Carnival ✨<br>
-      Adventure, friendship & unforgettable memories 💚
-    </div>
-
-    <div class="footer-logo">
-
+    <section class="hero">
       <img
-        src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
-        alt="Footer Logo"
+        src="./Layer 2.png"
+        class="hero-title"
+        alt="Rainforest Falls"
         draggable="false"
       >
+    </section>
 
+    <div class="glass-card">
+
+      <div class="card-title">👋 Welcome Parent</div>
+
+      <div class="card-subtitle">
+        Enter the Phone Number According to the Registration Form
+      </div>
+
+      <div class="input-group">
+
+        <div class="input-icon">📞</div>
+
+        <input
+          type="tel"
+          inputmode="numeric"
+          autocomplete="tel"
+          id="phone"
+          placeholder="Phone Number"
+          maxlength="10"
+          aria-label="Phone number (10 digits)"
+        >
+
+        <div class="digit-progress">
+          <div class="digit-fill" id="digitFill"></div>
+        </div>
+
+        <div class="digit-count" id="digitCount">0 / 10 digits</div>
+
+      </div>
+
+      <button id="searchButton">🌴 Search 🌴</button>
+
+      <div class="offline-warning" id="offlineWarning">
+        ⚠️ You appear to be offline. Please check your internet connection.
+      </div>
+
+      <div class="loading-container" id="loadingContainer">
+        <div class="loading-text" id="loadingText">🌿 Searching the rainforest...</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="error" id="error" role="status" aria-live="polite"></div>
+
+      <div class="results" id="results" role="region" aria-label="Search results" aria-live="polite"></div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">
+        🌿 Rainforest Falls Kids Carnival ✨<br>
+        Adventure, friendship & unforgettable memories 💚
+      </div>
+      <div class="footer-logo">
+        <img
+          src="https://chop.imgix.net/production/e84dfb1c-17d8-4cef-ab61-ee25b808e2df/logo/1584669001294.png"
+          alt="Footer Logo"
+          draggable="false"
+        >
+      </div>
     </div>
 
   </div>
@@ -1543,53 +965,39 @@ button:disabled{
 <script>
 
 /* ======================================================
-   PAGE LOADER
+   CINEMATIC LOADER TRANSITION
 ====================================================== */
 
-window.addEventListener(
-  "load",
-  () => {
+window.addEventListener("load", () => {
 
+  const loader = document.getElementById("loaderScreen");
+  const app    = document.getElementById("realApp");
+
+  setTimeout(() => {
+
+    loader.classList.add("hidden");
+    app.classList.add("visible");
+
+    /* Auto-focus input after app is visible */
     setTimeout(() => {
+      document.getElementById("phone").focus();
+    }, 900);
 
-      document
-      .getElementById("skeletonScreen")
-      .classList.add("hidden");
+  }, 700);
 
-    },700);
-
-  }
-);
+});
 
 /* ======================================================
    IMAGE PROTECTION
 ====================================================== */
 
-document.addEventListener(
-  "contextmenu",
-  (e) => {
+document.addEventListener("contextmenu", (e) => {
+  if(e.target.tagName === "IMG") e.preventDefault();
+});
 
-    if(
-      e.target.tagName === "IMG"
-    ){
-      e.preventDefault();
-    }
-
-  }
-);
-
-document.addEventListener(
-  "dragstart",
-  (e) => {
-
-    if(
-      e.target.tagName === "IMG"
-    ){
-      e.preventDefault();
-    }
-
-  }
-);
+document.addEventListener("dragstart", (e) => {
+  if(e.target.tagName === "IMG") e.preventDefault();
+});
 
 /* ======================================================
    GOOGLE SHEET API
@@ -1609,13 +1017,7 @@ const rainforestEmojis = [
 ];
 
 function randomEmoji(){
-
-  return rainforestEmojis[
-    Math.floor(
-      Math.random() *
-      rainforestEmojis.length
-    )
-  ];
+  return rainforestEmojis[Math.floor(Math.random() * rainforestEmojis.length)];
 }
 
 /* ======================================================
@@ -1623,38 +1025,23 @@ function randomEmoji(){
 ====================================================== */
 
 let isSearching = false;
-
 let lastSearchTime = 0;
-
-const SEARCH_COOLDOWN = 3000;
+const SEARCH_COOLDOWN = 1500;
 
 /* ======================================================
    INPUT FILTER
 ====================================================== */
 
-document
-.getElementById("phone")
-.addEventListener("input", function(){
+document.getElementById("phone").addEventListener("input", function(){
 
-  this.value =
-  this.value.replace(/[^0-9]/g, "");
+  this.value = this.value.replace(/[^0-9]/g, "");
 
-  document.getElementById(
-    "error"
-  ).innerHTML = "";
+  document.getElementById("error").innerHTML = "";
 
-  const length =
-  this.value.length;
+  const length = this.value.length;
 
-  document.getElementById(
-    "digitCount"
-  ).innerHTML =
-  `${length} / 10 digits`;
-
-  document.getElementById(
-    "digitFill"
-  ).style.width =
-  `${length * 10}%`;
+  document.getElementById("digitCount").innerHTML = `${length} / 10 digits`;
+  document.getElementById("digitFill").style.width = `${length * 10}%`;
 
 });
 
@@ -1663,31 +1050,12 @@ document
 ====================================================== */
 
 function updateOnlineStatus(){
-
-  const warning =
-  document.getElementById(
-    "offlineWarning"
-  );
-
-  if(navigator.onLine){
-    warning.style.display = "none";
-  }
-  else{
-    warning.style.display = "block";
-  }
-
+  const warning = document.getElementById("offlineWarning");
+  warning.style.display = navigator.onLine ? "none" : "block";
 }
 
-window.addEventListener(
-  "online",
-  updateOnlineStatus
-);
-
-window.addEventListener(
-  "offline",
-  updateOnlineStatus
-);
-
+window.addEventListener("online",  updateOnlineStatus);
+window.addEventListener("offline", updateOnlineStatus);
 updateOnlineStatus();
 
 /* ======================================================
@@ -1698,102 +1066,45 @@ async function searchStudents(){
 
   const now = Date.now();
 
-  if(
-    now - lastSearchTime <
-    SEARCH_COOLDOWN
-  ){
-
-    document.getElementById(
-      "error"
-    ).innerHTML =
-    "⏳ Please wait a moment before searching again.";
-
+  if(now - lastSearchTime < SEARCH_COOLDOWN){
+    document.getElementById("error").innerHTML = "⏳ Please wait a moment before searching again.";
     return;
   }
 
   lastSearchTime = now;
 
-  if(isSearching){
-    return;
-  }
+  if(isSearching) return;
 
   isSearching = true;
 
-  const button =
-  document.getElementById(
-    "searchButton"
-  );
-
+  const button = document.getElementById("searchButton");
   button.disabled = true;
 
-  const phone =
-  document
-  .getElementById("phone")
-  .value
-  .trim();
+  const phone = document.getElementById("phone").value.trim();
 
-  const phoneRegex =
-  /^[0-9]{10}$/;
-
-  if(!phoneRegex.test(phone)){
-
-    document.getElementById(
-      "error"
-    ).innerHTML =
-    "⚠️ Please enter a valid 10-digit phone number.";
-
+  if(!/^[0-9]{10}$/.test(phone)){
+    document.getElementById("error").innerHTML = "⚠️ Please enter a valid 10-digit phone number.";
     button.disabled = false;
-
     isSearching = false;
-
     return;
   }
 
-  const loadingContainer =
-  document.getElementById(
-    "loadingContainer"
-  );
-
-  const progressFill =
-  document.getElementById(
-    "progressFill"
-  );
-
-  const loadingText =
-  document.getElementById(
-    "loadingText"
-  );
-
-  const error =
-  document.getElementById(
-    "error"
-  );
-
-  const results =
-  document.getElementById(
-    "results"
-  );
+  const loadingContainer = document.getElementById("loadingContainer");
+  const progressFill     = document.getElementById("progressFill");
+  const loadingText      = document.getElementById("loadingText");
+  const error            = document.getElementById("error");
+  const results          = document.getElementById("results");
 
   if(!navigator.onLine){
-
-    error.innerHTML =
-    "⚠️ No internet connection detected.";
-
+    error.innerHTML = "⚠️ No internet connection detected.";
     button.disabled = false;
-
     isSearching = false;
-
     return;
   }
 
-  loadingContainer.style.display =
-  "block";
-
-  progressFill.style.width =
-  "0%";
-
+  loadingContainer.style.display = "block";
+  progressFill.style.width = "0%";
   error.innerHTML = "";
-
   results.innerHTML = "";
 
   let progress = 0;
@@ -1811,136 +1122,74 @@ async function searchStudents(){
   const interval = setInterval(() => {
 
     progress += 8;
+    if(progress > 92) progress = 92;
 
-    if(progress > 92){
-      progress = 92;
+    progressFill.style.width = progress + "%";
+
+    if(progress % 20 === 0 && loadingMessages[++messageIndex]){
+      loadingText.innerHTML = loadingMessages[messageIndex];
     }
 
-    progressFill.style.width =
-    progress + "%";
-
-    if(progress % 20 === 0){
-
-      messageIndex++;
-
-      if(
-        loadingMessages[messageIndex]
-      ){
-
-        loadingText.innerHTML =
-        loadingMessages[
-          messageIndex
-        ];
-
-      }
-
-    }
-
-  },180);
+  }, 180);
 
   try{
 
-    const controller =
-    new AbortController();
-
-    const timeout =
-    setTimeout(() => {
-
-      controller.abort();
-
-    },15000);
-
-    const response =
-    await fetch(
-      `${SHEET_URL}?phone=${encodeURIComponent(phone)}&t=${Date.now()}`,
-      {
-        signal:controller.signal
-      }
+    const fetchTimeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Request timed out")), 15000)
     );
 
-    clearTimeout(timeout);
+    const response = await Promise.race([
+      fetch(
+        `${SHEET_URL}?phone=${encodeURIComponent(phone)}&t=${Date.now()}`,
+        { method:"GET", redirect:"follow", credentials:"omit" }
+      ),
+      fetchTimeout
+    ]);
 
-    if(!response.ok){
+    if(!response.ok) throw new Error("Network response failed");
 
-      throw new Error(
-        "Network response failed"
-      );
-    }
+    const data = await response.json();
 
-    const data =
-    await response.json();
-
-    progressFill.style.width =
-    "100%";
-
-    const matchedStudents =
-    data;
+    progressFill.style.width = "100%";
 
     results.innerHTML = "";
 
-    if(matchedStudents.length === 0){
-
-      error.innerHTML =
-      "🌧️ No entries were found with this phone number.";
-
+    if(data.length === 0){
+      error.innerHTML = "🌧️ No entries were found with this phone number.";
       return;
     }
 
-    matchedStudents.forEach(student => {
+    data.forEach(student => {
 
-      const card =
-      document.createElement("div");
-
-      card.className =
-      "student-card";
+      const card = document.createElement("div");
+      card.className = "student-card";
 
       card.innerHTML = `
-
-        <div class="student-name">
-          ${randomEmoji()} ${student.NAME}
-        </div>
-
+        <div class="student-name">${randomEmoji()} ${student.NAME}</div>
         <div class="ticket-divider"></div>
-
         <div class="info-box">
-          <div class="info-label">
-            🚩 TEAM NAME
-          </div>
-
-          <div class="info-value">
-            ${student.TEAM}
-          </div>
+          <div class="info-label">🚩 TEAM NAME</div>
+          <div class="info-value">${student.TEAM}</div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">👥 CREW NO.</div>
+          <div class="info-value">${student.CREW}</div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">🎤 LEADER</div>
+          <div class="info-value">${student.LEADER}</div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">🚌 PICKUP AT</div>
+          <div class="info-value">${student.PICKUP}</div>
         </div>
 
-        <div class="info-box">
-          <div class="info-label">
-            👥 CREW NO.
-          </div>
-
-          <div class="info-value">
-            ${student.CREW}
-          </div>
-        </div>
-
-        <div class="info-box">
-          <div class="info-label">
-            🎤 LEADER
-          </div>
-
-          <div class="info-value">
-            ${student.LEADER}
-          </div>
-        </div>
-
-        <div class="info-box">
-          <div class="info-label">
-            🚌 PICKUP AT
-          </div>
-
-          <div class="info-value">
-            ${student.PICKUP}
-          </div>
-        </div>
+        <button
+          class="share-btn"
+          onclick="shareStudentCard(this)"
+        >
+          📤 Share Ticket
+        </button>
 
       `;
 
@@ -1948,59 +1197,31 @@ async function searchStudents(){
 
     });
 
-    const resetButton =
-    document.createElement("button");
+    const resetButton = document.createElement("button");
+    resetButton.innerHTML = "🔍 Search Again";
+    resetButton.style.marginTop = "12px";
 
-    resetButton.innerHTML =
-    "🔍 Search Again";
+    resetButton.addEventListener("click", () => {
+      results.innerHTML = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("digitFill").style.width = "0%";
+      document.getElementById("digitCount").innerHTML = "0 / 10 digits";
+      document.getElementById("phone").focus();
+    });
 
-    resetButton.style.marginTop =
-    "12px";
-
-    resetButton.addEventListener(
-      "click",
-      () => {
-
-        results.innerHTML = "";
-
-        document.getElementById(
-          "phone"
-        ).value = "";
-
-        document.getElementById(
-          "digitFill"
-        ).style.width = "0%";
-
-        document.getElementById(
-          "digitCount"
-        ).innerHTML =
-        "0 / 10 digits";
-
-        document.getElementById(
-          "phone"
-        ).focus();
-
-      }
-    );
-
-    results.appendChild(
-      resetButton
-    );
+    results.appendChild(resetButton);
 
     celebrate();
 
-    if(navigator.vibrate){
-      navigator.vibrate(200);
-    }
+    if(navigator.vibrate) navigator.vibrate(200);
 
   }
 
   catch(err){
 
     console.error(err);
+    error.innerHTML = "🌧️ Lost connection to the rainforest trails. Please try again.";
 
-    error.innerHTML =
-    "🌧️ Lost connection to the rainforest trails.";
   }
 
   finally{
@@ -2008,164 +1229,116 @@ async function searchStudents(){
     clearInterval(interval);
 
     setTimeout(() => {
-
-      loadingContainer.style.display =
-      "none";
-
+      loadingContainer.style.display = "none";
       button.disabled = false;
-
       isSearching = false;
-
-    },500);
+    }, 500);
 
   }
 
 }
 
 /* ======================================================
-   BUTTON CLICK
+   SHARE FUNCTION
 ====================================================== */
 
-document
-.getElementById("searchButton")
-.addEventListener(
-  "click",
-  searchStudents
-);
+async function shareStudentCard(button){
 
-/* ======================================================
-   ENTER KEY
-====================================================== */
+  const card = button.closest(".student-card");
+  const text = card.innerText;
 
-document
-.getElementById("phone")
-.addEventListener(
-  "keydown",
-  function(event){
+  try{
 
-    if(event.key === "Enter"){
-      searchStudents();
+    if(navigator.share){
+
+      await navigator.share({
+        title:"Rainforest Falls Ticket",
+        text:text
+      });
+
+    }
+    else{
+
+      await navigator.clipboard.writeText(text);
+      alert("Ticket copied to clipboard!");
+
     }
 
   }
-);
+  catch(err){
+    console.error(err);
+  }
+
+}
+
+/* ======================================================
+   BUTTON & ENTER KEY
+====================================================== */
+
+document.getElementById("searchButton").addEventListener("click", searchStudents);
+
+document.getElementById("phone").addEventListener("keydown", function(event){
+  if(event.key === "Enter") searchStudents();
+});
 
 /* ======================================================
    TOUCH STARS
 ====================================================== */
 
 let activeStars = 0;
-
-const MAX_STARS = 70;
+const MAX_STARS = 35;
 
 function createTouchStar(x, y){
 
-  if(activeStars >= MAX_STARS){
-    return;
-  }
-
+  if(activeStars >= MAX_STARS) return;
   activeStars++;
 
-  const star =
-  document.createElement("div");
+  const star = document.createElement("div");
+  star.className = "touch-star";
+  star.style.left = x + "px";
+  star.style.top  = y + "px";
 
-  star.className =
-  "touch-star";
+  const driftX = (Math.random() * 50 - 25) + "px";
+  const driftY = (Math.random() * 50 - 25) + "px";
 
-  star.style.left =
-  x + "px";
+  star.style.setProperty("--drift-x", driftX);
+  star.style.setProperty("--drift-y", driftY);
 
-  star.style.top =
-  y + "px";
-
-  const driftX =
-  (Math.random() * 50 - 25) + "px";
-
-  const driftY =
-  (Math.random() * 50 - 25) + "px";
-
-  star.style.setProperty(
-    "--drift-x",
-    driftX
-  );
-
-  star.style.setProperty(
-    "--drift-y",
-    driftY
-  );
-
-  const duration =
-  700 + Math.random() * 500;
-
-  star.style.animation =
-  `touchStarAnim ${duration}ms ease-out forwards`;
+  const duration = 700 + Math.random() * 500;
+  star.style.animation = `touchStarAnim ${duration}ms ease-out forwards`;
 
   document.body.appendChild(star);
 
   setTimeout(() => {
-
     star.remove();
-
     activeStars--;
-
   }, duration + 100);
 
 }
 
 let lastTouchTime = 0;
 
-document.addEventListener(
-  "touchmove",
-  (e) => {
-
-    const now = Date.now();
-
-    if(now - lastTouchTime < 35){
-      return;
-    }
-
-    lastTouchTime = now;
-
-    const touch =
-    e.touches[0];
-
-    for(let i = 0; i < 2; i++){
-
-      createTouchStar(
-        touch.clientX +
-        (Math.random() * 18 - 9),
-
-        touch.clientY +
-        (Math.random() * 18 - 9)
-      );
-
-    }
-
-  },
-  { passive:true }
-);
+document.addEventListener("touchmove", (e) => {
+  const now = Date.now();
+  if(now - lastTouchTime < 50) return;
+  lastTouchTime = now;
+  const touch = e.touches[0];
+  for(let i = 0; i < 2; i++){
+    createTouchStar(
+      touch.clientX + (Math.random() * 18 - 9),
+      touch.clientY + (Math.random() * 18 - 9)
+    );
+  }
+}, { passive:true });
 
 let lastMouseTime = 0;
 
-document.addEventListener(
-  "mousemove",
-  (e) => {
-
-    const now = Date.now();
-
-    if(now - lastMouseTime < 40){
-      return;
-    }
-
-    lastMouseTime = now;
-
-    createTouchStar(
-      e.clientX,
-      e.clientY
-    );
-
-  }
-);
+document.addEventListener("mousemove", (e) => {
+  const now = Date.now();
+  if(now - lastMouseTime < 50) return;
+  lastMouseTime = now;
+  createTouchStar(e.clientX, e.clientY);
+});
 
 /* ======================================================
    CELEBRATION
@@ -2173,101 +1346,51 @@ document.addEventListener(
 
 function celebrate(){
 
-  const emojis = [
-    "✨","🌿","🍃","🦋","🌈"
-  ];
+  const emojis = ["✨","🌿","🍃","🦋","🌈"];
 
-  const centerX =
-  window.innerWidth / 2;
+  const centerX = window.innerWidth  / 2;
+  const centerY = window.innerHeight * 0.42;
 
-  const centerY =
-  window.innerHeight * 0.42;
+  const fragment = document.createDocumentFragment();
 
   for(let i = 0; i < 18; i++){
 
-    const particle =
-    document.createElement("div");
+    const particle = document.createElement("div");
 
-    particle.innerHTML =
-    emojis[
-      Math.floor(
-        Math.random() *
-        emojis.length
-      )
-    ];
+    particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
 
-    particle.style.position =
-    "fixed";
+    Object.assign(particle.style, {
+      position:   "fixed",
+      left:       centerX + "px",
+      top:        centerY + "px",
+      fontSize:   (18 + Math.random() * 10) + "px",
+      pointerEvents: "none",
+      zIndex:     "9999",
+      opacity:    "0",
+      transition: "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease"
+    });
 
-    particle.style.left =
-    centerX + "px";
+    fragment.appendChild(particle);
 
-    particle.style.top =
-    centerY + "px";
-
-    particle.style.fontSize =
-    (18 + Math.random() * 10)
-    + "px";
-
-    particle.style.pointerEvents =
-    "none";
-
-    particle.style.zIndex =
-    "9999";
-
-    particle.style.opacity =
-    "0";
-
-    particle.style.transition =
-    "transform 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s ease";
-
-    document.body.appendChild(
-      particle
-    );
-
-    const angle =
-    Math.random() *
-    Math.PI * 2;
-
-    const distance =
-    80 + Math.random() * 140;
-
-    const x =
-    Math.cos(angle) *
-    distance;
-
-    const y =
-    Math.sin(angle) *
-    distance;
+    const angle    = Math.random() * Math.PI * 2;
+    const distance = 80 + Math.random() * 140;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
 
     setTimeout(() => {
-
-      particle.style.opacity =
-      "1";
-
-      particle.style.transform = `
-        translate(${x}px, ${y}px)
-        scale(1.4)
-        rotate(${Math.random()*120-60}deg)
-      `;
-
-    },30);
+      document.body.appendChild(particle);
+      requestAnimationFrame(() => {
+        particle.style.opacity   = "1";
+        particle.style.transform = `translate(${x}px,${y}px) scale(1.4) rotate(${Math.random()*120-60}deg)`;
+      });
+    }, i * 30);
 
     setTimeout(() => {
+      particle.style.opacity   = "0";
+      particle.style.transform += " scale(0.6)";
+    }, 1800);
 
-      particle.style.opacity =
-      "0";
-
-      particle.style.transform +=
-      " scale(0.6)";
-
-    },1800);
-
-    setTimeout(() => {
-
-      particle.remove();
-
-    },3000);
+    setTimeout(() => particle.remove(), 3000);
 
   }
 

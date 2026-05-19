@@ -293,7 +293,7 @@ input{
 .macaw-overlay{
   position:fixed;
 
-  left:-32px;
+  left:-260px;
   top:22%;
 
   width:165px;
@@ -302,12 +302,24 @@ input{
 
   pointer-events:none;
 
-  will-change:transform;
+  will-change:
+  transform,
+  opacity;
+
+  opacity:0;
 
   filter:
   drop-shadow(
     0 16px 28px rgba(0,0,0,0.38)
   );
+
+  transform:
+  translateX(-120px)
+  scale(0.92);
+
+  animation:
+  macawEntrance 1.4s cubic-bezier(0.22,1,0.36,1) forwards,
+  macawFloat 17s ease-in-out infinite 1.5s;
 }
 
 /* ======================================================
@@ -452,6 +464,39 @@ input{
    KEYFRAMES
 ====================================================== */
 
+  @keyframes macawEntrance{
+
+  0%{
+    opacity:0;
+
+    transform:
+    translateX(-140px)
+    scale(0.85);
+  }
+
+  55%{
+    opacity:1;
+
+    transform:
+    translateX(18px)
+    scale(1.03);
+  }
+
+  75%{
+    transform:
+    translateX(-6px)
+    scale(0.99);
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+    translateX(0px)
+    scale(1);
+  }
+
+}
 @keyframes macawFloat{
 
   0%{
